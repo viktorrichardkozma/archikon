@@ -4,17 +4,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getMenuState } from '../../actions'
 
-//Action
-
 import LoadingBar from '../common/loading-bar'
 
-const styles = theme => ({
-  contents: theme.contents,
-  noBorderBottom: theme.noBorderBottom,
-  progress: theme.progress
-});
-
-class Projects extends React.Component {
+class Office extends React.Component {
 
   constructor(props) {
     super(props);
@@ -45,9 +37,6 @@ class Projects extends React.Component {
   }
 }
 
-Permissions.propTypes = {
-  listOfProjects: PropTypes.array,
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -61,4 +50,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Projects);
+export default connect(mapStateToProps, mapDispatchToProps)(Office);

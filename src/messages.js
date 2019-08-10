@@ -28,7 +28,7 @@ export default {
     hu:{
         'menu_home': 'Főoldal',
         'menu_projects': 'Projektek',
-	    'menu_office': 'Studió',
+	    'menu_office': 'Stúdió',
         'menu_contact': 'Kapcsolat',
         'selected_view': 'Válogatott munkáink',
         'list_view': 'Lista',

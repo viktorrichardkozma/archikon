@@ -2,13 +2,13 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  cursor: url('./components/common/cursor/cursor.png'), default;
+  cursor: url('./components/common/cursor/cursor.svg'), default;
 }
 
 a {
   text-decoration: none;
   color: inherit;
-  cursor: url('./components/common/cursor/cursor_hand.png'), pointer;
+  cursor: url('./components/common/cursor/cursor_hand.svg'), pointer;
 
 }
 

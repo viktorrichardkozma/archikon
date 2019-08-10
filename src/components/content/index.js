@@ -16,6 +16,9 @@ import notfound from '../notfound'
 import admin from '../admin'
 import projectEntity from '../projectEntity'
 
+import { withRouter } from 'react-router-dom'
+import classNames from 'classnames';
+
 class Projects extends React.Component {
 
   constructor(props) {
@@ -29,19 +32,18 @@ class Projects extends React.Component {
     // this.props.getProjects()
   }
 
-
-
   render() {
-
+    const {location} = this.props;
 
     return (
-      <div className="content-wrapper">
+      <div className={classNames('content-wrapper', { 'content-wrapper-main-page': (location.pathname==='/') ? true : false})}>
           <Switch>
             <Route exact path="/" component={home} />
             <Route exact path="/projects/" component={projects} />
             <Route exact path="/projects/:id" component={projectEntity} />
             <Route exact path="/office" component={office} />
             <Route exact path="/contact" component={contact} />
+            <Route exact path="/admin" component={admin} />
             <Route component={notfound} />
           </Switch>
       </div>
@@ -65,4 +67,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Projects);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Projects));
