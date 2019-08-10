@@ -1,10 +1,29 @@
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  cursor: url('./components/common/cursor/cursor.png'), default;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: url('./components/common/cursor/cursor_hand.png'), pointer;
+
+}
+
 body {
   margin: 0;
   padding: 0;
+  height:100%;
   font-family: "Avenir";
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root{
+  height: 100%;
 }
 
 @font-face {

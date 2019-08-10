@@ -7,7 +7,7 @@ export default function  () {
         <div className="spinner">
             <div class="spinner__item1"></div>
             <div class="spinner__item2"></div>
-            <div class="spinner__item3"></div>
+            <div class="__item3"></div>
         </div>
     )
 }

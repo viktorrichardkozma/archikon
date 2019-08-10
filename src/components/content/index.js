@@ -3,12 +3,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import LoadingBar from '../common/loading-bar'
+import './content.scss'
 
-const styles = theme => ({
-  contents: theme.contents,
-  noBorderBottom: theme.noBorderBottom,
-  progress: theme.progress
-});
+import {Route, Switch} from 'react-router-dom'
+
+import home from '../home'
+import projects from '../projects'
+import office from '../office'
+import contact from '../contact'
+import notfound from '../notfound'
+
+import admin from '../admin'
+import projectEntity from '../projectEntity'
 
 class Projects extends React.Component {
 
@@ -23,22 +29,21 @@ class Projects extends React.Component {
     // this.props.getProjects()
   }
 
-  static getDerivedStateFromProps(nextProps, prevState){
-    if (nextProps.projects !== prevState.projects) {
-        return { list: nextProps.externalList };
-    }
-    else return null; // Triggers no change in the state
-    }
 
 
   render() {
-    const {projects} = this.props
+
 
     return (
       <div className="content-wrapper">
-             
-             
-             <LoadingBar/>
+          <Switch>
+            <Route exact path="/" component={home} />
+            <Route exact path="/projects/" component={projects} />
+            <Route exact path="/projects/:id" component={projectEntity} />
+            <Route exact path="/office" component={office} />
+            <Route exact path="/contact" component={contact} />
+            <Route component={notfound} />
+          </Switch>
       </div>
     );
   }

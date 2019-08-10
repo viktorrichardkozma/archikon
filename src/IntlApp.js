@@ -13,8 +13,11 @@ import {IntlProvider} from 'react-intl';
 import Menu from './components/menu'
 import Content from './components/content'
 
-
 import {localeSet} from './actions'
+
+//ROUTING
+import {Router} from 'react-router-dom'
+import { createBrowserHistory } from 'history'
 
 //STYLESHEET
 import './App.scss';
@@ -35,14 +38,17 @@ class IntlApp extends Component {
   render(){
     const {lang} = this.props;
 
+    let history = createBrowserHistory()
+
     return (
+      <Router history={history}>     
         <IntlProvider locale={lang} messages={messages[lang]}>
           <div className="App">
-          <Menu/>
-          <Content/>
-
+            <Menu/>
+            <Content/>
           </div>
         </IntlProvider>
+      </Router>     
     );
   }
 }
