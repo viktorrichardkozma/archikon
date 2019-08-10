@@ -1,0 +1,36 @@
+@import '../../../colors.scss';
+
+.project-listing-selector {
+    display: flex;
+    width: 100%;
+    background: white;
+    box-sizing: border-box;
+    z-index: 1;
+    padding: 50px 0px;
+
+    .option-wrapper{
+        display:flex;
+        justify-content: flex-start;
+        color: $link-non-activated;
+
+        .option-item{
+            font-size:12px;
+
+            &:first-child{
+                margin-right:10px;
+            }
+
+            &:hover{
+                color: $link-activated;
+            }
+
+            .activated {
+                color: $link-activated;
+            }
+            
+        }
+    }
+
+
+}
+

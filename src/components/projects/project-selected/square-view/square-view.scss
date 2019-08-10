@@ -1,0 +1,47 @@
+$this-padding: 10px;
+$this-tile-size-sm: 100%;
+$this-tile-size-md: 33.3333%;
+$this-tile-size-lg: 16.6666%;
+
+.square {
+    position: relative;
+    display: inline-block;
+    height: 0;
+    width: $this-tile-size-sm;
+    padding-top: $this-tile-size-sm;
+    
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    
+    @media (min-width: 480px) {
+      width: $this-tile-size-md;
+      padding-top: $this-tile-size-md;
+    }
+    
+    @media (min-width: 768px) {
+      width: $this-tile-size-lg;
+      padding-top: $this-tile-size-lg;
+    }
+    
+    &-inner {
+      position: absolute;
+      display: flex;
+      text-align: left;
+      justify-content: left;
+      align-items: center;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: 20px;
+      font-size:14px;
+      background: gray;
+      &-content {
+        margin-left:20px;
+        width:50%;
+      }
+    }
+    
+  }

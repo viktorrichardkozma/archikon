@@ -1,26 +1,30 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import { connect } from 'react-redux';
-import { getMenuState } from '../../actions'
+import { fetchingProjects } from '../../actions/';
+
+import Selector from './selector';
+import ProjectListed from './project-list';
+import ProjectSelected from './project-selected';
+
+import './projects.scss'
 
 //Action
 
 import LoadingBar from '../common/loading-bar'
-
-const styles = theme => ({
-  contents: theme.contents,
-  noBorderBottom: theme.noBorderBottom,
-  progress: theme.progress
-});
 
 class Projects extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-        list: []
+        viewMode: 'selected'
     };
+  }
+
+  changeView = (view) => {
+    this.setState({viewMode: view})
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
@@ -28,30 +32,28 @@ class Projects extends React.Component {
         return { list: nextProps.externalList };
     }
     else return null; // Triggers no change in the state
-    }
-
+  }
 
   render() {
-    const {projects} = this.props
-    const listOfProjects = projects && this.props.projects.isFetching !== true ? (
-          "cica"
-    ) : <LoadingBar/>
+    const {viewMode} = this.state;
 
     return (
-      <div>
-        {listOfProjects}
-      </div>
+      <Fragment>
+        <Selector changeView={this.changeView} viewMode={this.state.viewMode} />
+        {(true) ? ((viewMode === 'selected' ?
+          (<ProjectSelected />) : 
+          (<ProjectListed />)
+        )
+        ) : <LoadingBar/>}
+      </Fragment>
     );
   }
 }
 
-Permissions.propTypes = {
-  listOfProjects: PropTypes.array,
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMenuState: (filters) => dispatch(getMenuState(filters))
+    getProjects: () => dispatch(fetchingProjects())
   };
 };
 

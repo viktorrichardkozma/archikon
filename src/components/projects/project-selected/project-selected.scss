@@ -1,0 +1,17 @@
+.project-selected {
+    width:100%;
+}
+
+.project-selected-wrapper {
+    $this-padding: 5px;
+
+    padding: 0;
+    margin: - $this-padding - 15px;
+    font-size: 0; 
+}
+
+// .project-selected-wrapper::after {
+//     content: '';
+//     flex: auto;
+// }
+

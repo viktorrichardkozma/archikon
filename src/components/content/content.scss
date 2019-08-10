@@ -1,11 +1,10 @@
 .content-wrapper {
     max-width: 1920px;
-    display:flex;
     justify-content: center;
-    height: 100%;
-    padding-top: 80px;
+    padding: 80px 50px 0px 50px;
 }
 
 .content-wrapper-main-page {
+    display:flex;
     height:calc(100% - 80px);
 }

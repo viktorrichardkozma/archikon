@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {Component} from 'react';
 
 import { connect } from 'react-redux';
-import { getMenuState } from '../../actions'
 
 //Action
 
-import LoadingBar from '../common/loading-bar'
 
 const styles = theme => ({
   contents: theme.contents,
@@ -14,7 +12,7 @@ const styles = theme => ({
   progress: theme.progress
 });
 
-class Projects extends React.Component {
+class ProjectListed extends Component {
 
   constructor(props) {
     super(props);
@@ -33,25 +31,17 @@ class Projects extends React.Component {
 
   render() {
     const {projects} = this.props
-    const listOfProjects = projects && this.props.projects.isFetching !== true ? (
-          "cica"
-    ) : <LoadingBar/>
 
     return (
       <div>
-        {listOfProjects}
+          LISTVIEW
       </div>
     );
   }
 }
 
-Permissions.propTypes = {
-  listOfProjects: PropTypes.array,
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMenuState: (filters) => dispatch(getMenuState(filters))
   };
 };
 
@@ -61,4 +51,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Projects);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectListed);

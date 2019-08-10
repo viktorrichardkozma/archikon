@@ -1,0 +1,18 @@
+@import '../../colors.scss';
+
+.project-listing-selector {
+    display: flex;
+    width: 100%;
+
+    .option-wrapper{
+        display:flex;
+        justify-content: flex-start;
+
+        .option-wrapper:first-child {
+            margin-right:10px;
+        }
+    }
+
+
+}
+

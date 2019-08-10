@@ -10,10 +10,10 @@ $white: rgb(255,255,255);
 
 .selectors {
 	position: absolute;
-	top: 20px;
+	top: 60px;
 	right: 0;
 	width: 50px;
-	height: calc(100% - 20px);
+	height: calc(100% - 60px);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -26,7 +26,6 @@ $white: rgb(255,255,255);
 		border-radius: 50%;
 		margin: 5px 0;
 		opacity: 0.6;
-		cursor: pointer;
 		transition: background .3s ease-in-out, opacity .3s ease-in-out;
 		&:hover,
 		&.active {
