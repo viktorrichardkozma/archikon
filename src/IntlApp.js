@@ -1,0 +1,55 @@
+import React, {Component} from 'react';
+
+//REDUX
+import store from './store'; 
+import { connect } from 'react-redux';
+
+//LOCALIZATION
+import {addLocaleData} from 'react-intl'
+import en from 'react-intl/locale-data/en'
+import hu from 'react-intl/locale-data/hu'
+import messages from './messages'
+import {IntlProvider} from 'react-intl';
+import Menu from './components/menu'
+import Content from './components/content'
+
+
+import {localeSet} from './actions'
+
+//STYLESHEET
+import './App.scss';
+
+//LOCALIZATION INIT
+addLocaleData(en)
+addLocaleData(hu)
+
+if(localStorage.alhub) 
+{ 
+  store.dispatch(localeSet(localStorage.alhubLang))
+} else {
+  store.dispatch(localeSet('hu'))
+}
+
+class IntlApp extends Component {
+
+  render(){
+    const {lang} = this.props;
+
+    return (
+        <IntlProvider locale={lang} messages={messages[lang]}>
+          <div className="App">
+          <Menu/>
+          <Content/>
+
+          </div>
+        </IntlProvider>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  lang: state.localization.lang
+});
+
+
+export default connect(mapStateToProps,{})(IntlApp);

@@ -1,5 +1,6 @@
 export default {
     en:{
+        'menu_home': 'Home',
         'menu_projects': 'Projects',
         'menu_office': 'Office',
         'menu_contact': 'Contact',
@@ -22,10 +23,10 @@ export default {
         
         'about_office': 'About Us',
         'people_office': 'People',
-        'prizes_office': 'Prizes',
- 
+        'prizes_office': 'Prizes'
     },
     hu:{
+        'menu_home': 'Főoldal',
         'menu_projects': 'Projektek',
 	    'menu_office': 'Studió',
         'menu_contact': 'Kapcsolat',

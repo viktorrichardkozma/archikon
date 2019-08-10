@@ -1,0 +1,81 @@
+@import '../../colors.scss';
+
+.menu {
+    display: flex;
+    padding: 25px;
+
+    .menu-wrapper{
+        width:100%;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .logo-wrapper{
+            flex: 0 0 138px;
+
+            .logo {
+                font-family: 'Avenir_Demi';
+                font-weight: 500;
+                font-size:16px;
+            }
+        }
+         
+        .line-wrapper{
+            flex: 1;
+            position: relative;
+            margin: 0 40px;
+
+            .line {
+                position: absolute;
+                top:50%;
+                width: 100%;
+                border: 1px solid black;
+            }
+        }
+
+        .menu-item-wrapper {
+            flex: 0 0 500px; 
+            cursor:pointer;
+
+
+            .menu-items{
+                color: $link-non-activated;
+                display:flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .menu-item:first-child{
+                    display:flex;
+                    margin: 0px 10px 0 0;
+                }
+
+                .menu-item{
+                    display:flex;
+                    margin: 0 10px;
+                    font-size: 14px;
+                }
+
+                .menu-item:hover {
+                    color:$link-activated;
+                }
+
+                .icons-wrapper {
+                    display: flex;
+                    align-items:center;
+                    flex-basis:100px;
+                    color: $link-activated;
+
+                    .icon-item {
+                        width: 33%;
+                        margin: 0 5px;
+                    }
+                    .icon-item svg{
+                       display:flex;
+                    }
+                 
+                }
+            }
+        }
+    }
+}
+
