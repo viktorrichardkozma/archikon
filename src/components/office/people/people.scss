@@ -1,0 +1,20 @@
+.project-selected {
+    width:100%;
+}
+
+.people{
+    padding: 0 10%;
+
+    .people-wrapper {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+// .project-selected-wrapper::after {
+//     content: '';
+//     flex: auto;
+// }
+

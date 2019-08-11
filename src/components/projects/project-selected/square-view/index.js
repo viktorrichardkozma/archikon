@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
 import { connect } from 'react-redux';
@@ -19,19 +18,23 @@ class SquareView extends Component {
 
   render() {
     const {data} = this.props
-    console.log(data)
 
     return (
     <div class="square">
-        <div class="square-inner" style={{ backgroundImage : data.img}}>
+        <div class="square-inner" style={{
+            backgroundImage :`url(${data.img})`,
+            backgroundPosition: 'center',
+            backgroundSize: '200px'}} >
           
-          <div class="square-inner-content">
-            <div class="name">
-                {data.name}
-            </div>
-            <br/>
-            <div class="location">
-                {data.location}
+          <div class="square-inner-content" >
+            <div class="square-inner-content-wrapper" >
+                <div class="name">
+                    {data.name}
+                </div>
+                <br/>
+                <div class="location">
+                    {data.location}
+                </div>
             </div>
           </div>
         </div>

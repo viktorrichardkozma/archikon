@@ -1,1 +1,0 @@
-SZIA NÓRI

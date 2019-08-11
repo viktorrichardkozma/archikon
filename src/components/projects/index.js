@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, {Fragment} from 'react';
 
 import { connect } from 'react-redux';
@@ -40,11 +39,14 @@ class Projects extends React.Component {
     return (
       <Fragment>
         <Selector changeView={this.changeView} viewMode={this.state.viewMode} />
-        {(true) ? ((viewMode === 'selected' ?
-          (<ProjectSelected />) : 
-          (<ProjectListed />)
-        )
-        ) : <LoadingBar/>}
+        <div className="project-view-wrapper">
+          {(true) ? ((viewMode === 'selected' ?
+            (<ProjectSelected />) : 
+            (<ProjectListed />)
+          )
+          ) : <LoadingBar/>}
+        </div>
+
       </Fragment>
     );
   }

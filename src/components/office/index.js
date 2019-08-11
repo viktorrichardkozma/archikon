@@ -1,38 +1,55 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import { connect } from 'react-redux';
-import { getMenuState } from '../../actions'
+import { fetchingProjects } from '../../actions/';
 
+import Selector from './selector';
+
+import './office.scss'
+
+//Action
 import LoadingBar from '../common/loading-bar'
 
-class Office extends React.Component {
+import People from './people';
+import AboutUs from './aboutus';
+import Awards from './awards';
+
+class Projects extends React.Component {
 
   constructor(props) {
     super(props);
+    this.enableContent = this.enableContent.bind(this)
+
     this.state = {
-        list: []
+        viewMode: 'aboutus',
+        isLoading: true
     };
+
+    setTimeout(this.enableContent, 1300)
   }
 
-  static getDerivedStateFromProps(nextProps, prevState){
-    if (nextProps.projects !== prevState.projects) {
-        return { list: nextProps.externalList };
-    }
-    else return null; // Triggers no change in the state
-    }
+  changeView = (view) => {
+    this.setState({viewMode: view})
+  }
 
+  enableContent() {
+    this.setState({isLoading:false})
+  }
 
   render() {
-    const {projects} = this.props
-    const listOfProjects = projects && this.props.projects.isFetching !== true ? (
-          "cica"
-    ) : <LoadingBar/>
+    const {viewMode} = this.state;
 
     return (
-      <div>
-        {listOfProjects}
-      </div>
+        (true) ? (
+        <Fragment>
+          <Selector changeView={this.changeView} viewMode={this.state.viewMode} />
+          <div className="office-wrapper">  
+            <AboutUs visible={(viewMode==="aboutus")} />  
+            <People visible={(viewMode==="people")} />
+            <Awards visible={(viewMode==="awards")} />
+          </div>
+        </Fragment>
+        )  : <LoadingBar/> 
     );
   }
 }
@@ -40,7 +57,7 @@ class Office extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMenuState: (filters) => dispatch(getMenuState(filters))
+    getProjects: () => dispatch(fetchingProjects())
   };
 };
 
@@ -50,4 +67,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Office);
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 
 import { connect } from 'react-redux';
@@ -30,71 +29,111 @@ class ProjectsSelected extends Component {
     
     const projects= [
         {
+          id:1,
           name: "Egyszülős központ",
           location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
+          img: "./selected/item1.jpg"
         },
         {
+            id:2,
           name: "Egyszülős központ",
           location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
+          img: "./selected/item1.jpg"
         },
         {
+            id:3,
           name: "Egyszülős központ",
           location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
+          img: "./selected/item1.jpg"
         },
         {
+            id:4,
           name: "Egyszülős központ",
           location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
+          img: "./selected/item1.jpg"
         },
         {
+            id:5,
           name: "Egyszülős központ",
           location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
+          img: "./selected/item1.jpg"
         },
         {
+            id:6,
           name: "Egyszülős központ",
           location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
+          img: "./selected/item1.jpg"
         },
         {
+            id:6,
           name: "Egyszülős központ",
           location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
+          img: "./selected/item1.jpg"
         },
         {
+            id:7,
           name: "Egyszülős központ",
           location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
+          img: "./selected/item1.jpg"
         },
         {
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
-        },
-        {
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
-        },
-        {
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "CICA"
-        }
+            id:1,
+            name: "Egyszülős központ",
+            location: "Budapest, IX. kerület, Üllői út",
+            img: "./selected/item1.jpg"
+          },
+          {
+              id:2,
+            name: "Egyszülős központ",
+            location: "Budapest, IX. kerület, Üllői út",
+            img: "./selected/item1.jpg"
+          },
+          {
+              id:3,
+            name: "Egyszülős központ",
+            location: "Budapest, IX. kerület, Üllői út",
+            img: "./selected/item1.jpg"
+          },
+          {
+              id:4,
+            name: "Egyszülős központ",
+            location: "Budapest, IX. kerület, Üllői út",
+            img: "./selected/item1.jpg"
+          },
+          {
+              id:5,
+            name: "Egyszülős központ",
+            location: "Budapest, IX. kerület, Üllői út",
+            img: "./selected/item1.jpg"
+          },
+          {
+              id:6,
+            name: "Egyszülős központ",
+            location: "Budapest, IX. kerület, Üllői út",
+            img: "./selected/item1.jpg"
+          },
+          {
+              id:6,
+            name: "Egyszülős központ",
+            location: "Budapest, IX. kerület, Üllői út",
+            img: "./selected/item1.jpg"
+          },
+          {
+              id:7,
+            name: "Egyszülős központ",
+            location: "Budapest, IX. kerület, Üllői út",
+            img: "./selected/item1.jpg"
+          }
       ];
 
     const selectedProjects = projects.map(project => 
-        <SquareView data={project}/>    
+        <SquareView id={project.id} data={project}/>    
     )
 
     return (
         <div className="project-selected">
             <div className="project-selected-wrapper">
               {selectedProjects}
-
             </div>
         </div>
     );

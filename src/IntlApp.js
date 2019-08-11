@@ -16,8 +16,9 @@ import Content from './components/content'
 import {localeSet} from './actions'
 
 //ROUTING
-import {Router} from 'react-router-dom'
 import { createBrowserHistory } from 'history'
+import { BrowserRouter } from "react-router-dom";
+
 
 //STYLESHEET
 import './App.scss';
@@ -41,14 +42,14 @@ class IntlApp extends Component {
     let history = createBrowserHistory()
 
     return (
-      <Router history={history}>     
+      <BrowserRouter history={history}>     
         <IntlProvider locale={lang} messages={messages[lang]}>
           <div className="App">
             <Menu/>
             <Content/>
           </div>
         </IntlProvider>
-      </Router>     
+      </BrowserRouter>     
     );
   }
 }

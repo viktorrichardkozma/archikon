@@ -1,12 +1,13 @@
 @import '../../../colors.scss';
 
-.project-listing-selector {
+.office-view-selector {
     display: flex;
     width: 100%;
     background: white;
     box-sizing: border-box;
     z-index: 1;
     padding: 50px 0px;
+    position: fixed;
 
     .selector-wrapper{
         display:flex;
@@ -20,8 +21,10 @@
             flex: 0 0 180px;
 
             .view-mode-item {
-                &:first-child{
-                    margin-right:10px;
+                margin-right:10px;
+
+                &:last-child{
+                    margin-right:0px;
                 }
 
                 &:hover{

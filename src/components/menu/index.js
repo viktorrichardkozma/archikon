@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import {getMenuState, setLocale} from '../../actions'
+import { setLocale} from '../../actions'
 
 import {FormattedMessage} from 'react-intl'
 
@@ -23,7 +22,7 @@ class Menu extends React.Component {
     };
   }
 
-  changeLanguage = (event) => {
+  changeLanguage = () => {
     const {language} = this.props
     const chosenLanguage = (language.lang==='hu') ? 'en' : 'hu';
     this.props.setLocale(chosenLanguage);
@@ -38,7 +37,6 @@ class Menu extends React.Component {
 
   render() {
     const {language, location} = this.props;
-
 
     return (
       <div className="menu">
@@ -95,13 +93,9 @@ class Menu extends React.Component {
   }
 }
 
-Permissions.propTypes = {
-  listOfProjects: PropTypes.array,
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMenuState: (filters) => dispatch(getMenuState(filters)),
     setLocale: (lang) => dispatch(setLocale(lang))
   };
 };
