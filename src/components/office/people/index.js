@@ -5,7 +5,27 @@ import { connect } from 'react-redux';
 
 import './people.scss'
 
-import Card from './Card';
+import Card from './Card/index.js';
+
+class Header2 extends React.Component {
+	render() {
+		return (
+			<h2>
+        {this.props.data}
+			</h2>
+		);
+	}
+}
+
+class Button extends React.Component {
+	render() {
+		return (
+			<div className="apply">
+        {this.props.data}
+			</div>
+		);
+	}
+}
 
 class People extends Component {
 
@@ -25,6 +45,29 @@ class People extends Component {
 
   render() {
     // const {people} = this.props;
+
+    const boss = [{
+      "name": "Batta Miklós",
+      "title": "Építész tervező",
+      "mail": "miklos.batta@archikon.hu",
+      "phone": " +36 1 209 9376/113",
+      "photo": "batta.png"
+    },
+    {
+      "name": "Benedek Botond",
+      "title": "Építész tervező",
+      "mail": "botond.benedek@archikon.hu",
+      "phone": " +36 30 201 5887",
+      "photo": "benedek.png"
+    },
+    {
+      "name": "Bognár Gergely",
+      "title": "Építész tervező",
+      "mail": "gergely.bognar@archikon.hu",
+      "phone": " +36 70 358 5903",
+      "photo": "bognar.png"
+    }]
+
     const people = [
       {
         "name": "Batta Miklós",
@@ -175,14 +218,50 @@ class People extends Component {
       }
      ];
 
+     const exPeople = [
+       'Kozma Viktor Richárd',
+       'Kaszanyi Nóra',
+       'Hegyi Gellért',
+       'Kozma Viktor Richárd',
+       'Kaszanyi Nóra',
+       'Hegyi Gellért'
+     ]
+
     return (this.props.visible===true) ?
     (  
       <div className="people">
-        <div className="people-wrapper">
-          { people.map(human => {
-            return <Card key={human.photo} data={human}/> 
-          }) }
+        <div className="boss-wrapper">
+          { 
+            boss.map(human => {
+              return <Card key={human.photo} data={human}/> 
+            })
+          }
         </div>
+
+        <div className="people-wrapper">
+          {
+            people.map(human => {
+              return <Card key={human.photo} data={human}/> 
+            })
+          }
+        </div>
+        <hr/>
+        <div className="people-ex-wrapper">
+          <Header2 data={"Volt munkatársaink"}/>
+          { 
+            exPeople.map(human => {
+            return <div> {human} </div>
+
+            })
+          }
+        </div>
+        <hr/>
+        <div className="people-new-wrapper">
+
+          <Header2 data={"Jövőbeli munkatársaink"}/>
+          <Button data={"JELENTKEZZ"}/>
+        </div>
+
       </div>
     ) : null
   }

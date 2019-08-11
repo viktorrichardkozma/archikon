@@ -25,7 +25,7 @@ class Projects extends React.Component {
         isLoading: true
     };
 
-    setTimeout(this.enableContent, 1300)
+    setTimeout(this.enableContent, 1280)
   }
 
   changeView = (view) => {

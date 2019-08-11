@@ -1,11 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 
-export default class index extends Component {
+
+class Menu extends React.Component {
+
   render() {
+    const {language} = this.props;
+
     return (
-      <div>
-        not found
+      <div >
+      {(language.lang==='hu') ? 'az oldal nem létezik' : 'not found'}
       </div>
-    )
+    );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    language: state.localization
+  };
+};
+
+export default connect(mapStateToProps, {})(Menu);

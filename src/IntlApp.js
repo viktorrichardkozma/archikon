@@ -47,6 +47,7 @@ class IntlApp extends Component {
           <div className="App">
             <Menu/>
             <Content/>
+            {/* <Footer/> */}
           </div>
         </IntlProvider>
       </BrowserRouter>     

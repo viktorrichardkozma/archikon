@@ -2,13 +2,15 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
-  cursor: url('./components/common/cursor/cursor.png'), default;
+  scroll-behavior: smooth;
+
+  cursor: default;
 }
 
 a, .selector{
   text-decoration: none;
   color: inherit;
-  cursor: url('./components/common/cursor/cursor_hand.png'), pointer;
+  cursor:  pointer;
 
 }
 

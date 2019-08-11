@@ -30,71 +30,50 @@ class ProjectListed extends Component {
 
   render() {
     const {projects} = this.props;
-    const data = {
-        "2018" : [
-          {
-            'id': 1,
-            'name': 'Palatinus Strand főépület rekonstrukció',
-            'subtitle' : 'Budapest Építészeti Nívódíj, Kiemelt dícséret',
-            'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
-          },
-          {
-            'id': 2,
-            'name': 'Hotel Moments',
-            'subtitle' : 'Budapesti Építész Kamara Építészeti Nívódíj, Építőipari Nívódíj',
-            'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
-          },
-          {
-            'id': 3,
-            'name': 'Hotel Moments',
-            'subtitle' : 'Budapesti Építész Kamara Építészeti Nívódíj, Építőipari Nívódíj',
-            'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
-          }
-        ],
-      "2013" : [
+    const data = [
         {
           'id': 1,
           'name': 'Palatinus Strand főépület rekonstrukció',
+          'year': 2018,
           'subtitle' : 'Budapest Építészeti Nívódíj, Kiemelt dícséret',
           'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
         },
         {
           'id': 2,
           'name': 'Hotel Moments',
+          'year': 2018,
           'subtitle' : 'Budapesti Építész Kamara Építészeti Nívódíj, Építőipari Nívódíj',
           'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
         },
         {
           'id': 3,
           'name': 'Hotel Moments',
+          'year': 2018,
+          'subtitle' : 'Budapesti Építész Kamara Építészeti Nívódíj, Építőipari Nívódíj',
+          'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
+        },
+        {
+          'id': 3,
+          'name': 'Hotel Moments',
+          'year': 2018,
           'subtitle' : 'Budapesti Építész Kamara Építészeti Nívódíj, Építőipari Nívódíj',
           'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
         }
-      ]
-    }
-
-    let awards;
-
-    for (const [key, value] of Object.entries(data)) {
-      
-
-      value.map(award =>
+      ]   
+     const awards = data.map(award =>
         <div>
           <p>
+          {`${award.year} | `}
             <a href={award.link}>
-          {award.name}
-            </a> 
-          </p> 
-          <p>
-           {award.subtitle}
+            <b> {award.name}  </b>
+            </a> {`| ${award.subtitle}`}         
           </p> 
         </div> 
       )
-    }
 
     return (this.props.visible===true) ?
     (<div>
-      awards
+      {awards}
     </div>) : null
   
   }

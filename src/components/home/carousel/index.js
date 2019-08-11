@@ -16,7 +16,32 @@ class Carousel extends Component {
 			}
 		};
 	}
-	_changeActive(id) {
+
+	componentDidMount(){
+		const {data} = this.props;
+
+	
+		this.interval = setInterval(() => {
+			if (this.state.activeID===data.length-1){
+				this.setState({
+					activeID: 0,
+				})
+			} else {
+				this.setState((prevState, props) => ({
+					activeID: prevState.activeID + 1
+				})); 
+			}
+
+			this.changeActive(this.state.activeID)
+		}, 4000);
+
+	}	
+
+	componentWillUnmount() {
+		clearInterval(this.interval);
+	  }
+
+	changeActive(id) {
 		this.setState({
 			activeID: id,
 			wrapperStyle: {
@@ -24,7 +49,7 @@ class Carousel extends Component {
 			}
 		});
 	}
-	_buttonColour() {
+	buttonColour() {
 		if(!this.state.buttonHover){
 			this.setState({
 				buttonHover: true,
@@ -47,12 +72,12 @@ class Carousel extends Component {
 				<Selectors 
 					data={this.props.data}
 					activeID={this.state.activeID}
-					_changeActive={this._changeActive.bind(this)}
+					changeActive={this.changeActive.bind(this)}
 				/>
 				<Panel 
 					data={this.props.data[this.state.activeID]}
 					buttonStyle={this.state.buttonStyle}
-					_buttonColour={this._buttonColour.bind(this)}
+					buttonColour={this.buttonColour.bind(this)}
 				/>
 			</section>
 		);
@@ -70,9 +95,9 @@ class Panel extends React.Component {
 	}
 }
 class Selectors extends React.Component {
-	_handleClick(e) {
+	handleClick(e) {
 		if (this.props.id !== this.props.activeID) {
-			this.props._changeActive(this.props.id);
+			this.props.changeActive(this.props.id);
 		} else {
 			return;
 		}
@@ -84,8 +109,8 @@ class Selectors extends React.Component {
 					<Selector 
 						key={item.id}
 						id={item.id}
-						_handleClick={this._handleClick}
-						_changeActive={this.props._changeActive}
+						handleClick={this.handleClick}
+						changeActive={this.props.changeActive}
 						activeID={this.props.activeID}
 					/>
 				)}
@@ -93,6 +118,7 @@ class Selectors extends React.Component {
 		);
 	}
 }
+
 class Selector extends React.Component {
 	render() {
 		let componentClass = 'selector';
@@ -100,7 +126,7 @@ class Selector extends React.Component {
 			componentClass = 'selector active';
 		}
 		return (
-			<div className={componentClass} onClick={this.props._handleClick.bind(this)}></div>
+			<div className={componentClass} onClick={this.props.handleClick.bind(this)}></div>
 		);
 	}
 }

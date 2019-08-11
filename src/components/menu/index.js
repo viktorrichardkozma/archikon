@@ -42,7 +42,9 @@ class Menu extends React.Component {
       <div className="menu">
         <div className="menu-wrapper">
           <div className="logo-wrapper">
+            <Link to="/">
               Archikon Architects
+            </Link>
           </div>
           <div className="line-wrapper">
             <div className="line"> 

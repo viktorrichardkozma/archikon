@@ -8,14 +8,18 @@ class Home extends Component {
 
     const data = [{
       id: 0,
-      img: './carousel-item/carousel-item-1.jpg'
-    }, {
-      id: 1,
       img: './carousel-item/carousel-item-2.jpg'
     }, {
-      id: 2,
+      id: 1,
       img: './carousel-item/carousel-item-3.jpg'
-    }];
+    }, {
+      id: 2,
+      img: './carousel-item/carousel-item-1.jpg'
+    },{
+      id: 3,
+      img: './carousel-item/carousel-item-4.jpg'
+    }
+    ];
 
 		return (
 			<section className="carousel-wrapper">
