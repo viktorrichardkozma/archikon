@@ -6,7 +6,18 @@
 
 }
 
+
+
 .content-wrapper-main-page {
     display:flex;
     height:calc(100% - 80px);
 }
+
+@media screen and (max-width: 767px) {
+    .content-wrapper-main-page {
+        padding: 0px;
+        height: 50%;
+        top: 50%;
+        position: relative;
+    }
+ }

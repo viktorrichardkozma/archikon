@@ -20,8 +20,7 @@ class AboutUs extends Component {
         return { list: nextProps.externalList };
     }
     else return null; // Triggers no change in the state
-    }
-
+  }
 
   render() {
     const {visible,language} = this.props
@@ -40,7 +39,6 @@ class AboutUs extends Component {
         {renderHTML(data.en)}
         </div>))
        : null }
-
       </div>
   }
 }

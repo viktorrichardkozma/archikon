@@ -3,3 +3,11 @@
 	padding:0px 0px 40px 0px;
 	width: 100%;
 }
+
+
+@media screen and (max-width: 767px) {
+
+	.carousel-wrapper{
+		padding: 0px;
+	}
+ }

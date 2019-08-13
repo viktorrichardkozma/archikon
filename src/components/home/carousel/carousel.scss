@@ -39,6 +39,7 @@ section.wrapper {
 	width: 100%;
 	height: 100%;
 	background-size: cover;
+	background-position: center;
 	transition: background-image 500ms ease-in-out;
 }
 
@@ -56,8 +57,7 @@ aside.panel {
 		height: 100%;
 
 		.carousel-logo{
-			width:150px;
-			
+			width:150px;	
 		}
 
 	}
@@ -72,3 +72,17 @@ aside.panel {
 		opacity: 1;
 	}
 }
+
+
+@media screen and (max-width: 767px) {
+
+	.selectors{
+		display:none;
+	}
+
+	aside.panel .carousel-logo-wrapper .carousel-logo{
+		display: none;	
+	}
+
+
+ }

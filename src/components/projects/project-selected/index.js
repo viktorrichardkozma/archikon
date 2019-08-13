@@ -27,7 +27,7 @@ class ProjectsSelected extends Component {
   render() {
     // const {projects} = this.props;
     
-    const projects= [
+    const projects = [
         {
           id:1,
           name: "Egyszülős központ",
@@ -35,7 +35,7 @@ class ProjectsSelected extends Component {
           img: "./selected/item1.jpg"
         },
         {
-            id:2,
+          id:2,
           name: "Egyszülős központ",
           location: "Budapest, IX. kerület, Üllői út",
           img: "./selected/item1.jpg"
@@ -113,7 +113,7 @@ class ProjectsSelected extends Component {
             img: "./selected/item1.jpg"
           },
           {
-              id:6,
+            id:6,
             name: "Egyszülős központ",
             location: "Budapest, IX. kerület, Üllői út",
             img: "./selected/item1.jpg"

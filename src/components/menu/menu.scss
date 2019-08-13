@@ -94,3 +94,132 @@
     }
 }
 
+
+
+@media screen and (max-width: 767px) {
+
+    .menu {
+        height:50%;
+        padding: 0px;
+
+        &.menu-closed{
+            height:55px;
+        }
+
+        &.main-page{
+            height:50%
+        }
+
+        .menu-button{
+            width:25px;
+            cursor: pointer;
+            position:fixed;
+            right: 20px;
+            top: 20px;
+        }
+    
+        .fake-header{
+
+            -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+            -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+            animation-name: example;
+            animation-duration: 4s;
+
+
+            .header-logo-wrapper{
+                width:100%;
+                height: 100%;
+                align-items: flex-end;
+                display: flex;
+                box-sizing: border-box;
+                padding:20px;
+        
+                &.opened{
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .header-logo{
+                    width:25%;
+                  
+                }
+            }
+        }
+
+        
+        .menu-wrapper{
+            width:100%;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            .logo-wrapper{
+                display:none;
+            }
+             
+            .line-wrapper{
+                display:none;
+            }
+    
+            .menu-item-wrapper {
+                justify-content: flex-end;
+                flex: 1 1;
+                width: 100%;
+                box-sizing: border-box;
+                height: 100%;
+                padding: 80px 20px 20px 20px;
+                
+
+                .menu-items{
+                    flex-direction: column;
+                    height: 100%;
+                    align-items: flex-end;
+
+                    .menu-item{
+                        display:flex;
+                        margin: 0px;
+                        font-size: 14px;
+
+                        &:first-child{
+                            display:flex;
+                            margin: 0px;
+                        }
+                    }
+    
+                    .menu-item:hover {
+                        color:$link-activated;
+                        // text-decoration: underline;
+                    }
+    
+                    .icons-wrapper {
+                        display: flex;
+                        align-items:center;
+                        justify-content: flex-end;
+                        flex-direction: column;
+                        color: $link-activated;
+    
+                        .icon-item {
+                            width: 100%;
+                            margin: 0;
+
+                            &.language {
+                                text-transform: uppercase;
+                                text-align: right;
+                            } 
+                        }
+    
+                        .icon-item svg{
+                           display:flex;
+                           margin-right: -5px;
+                        }
+    
+                        .icon-item:hover svg{
+                            // transform: scale(1.1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
