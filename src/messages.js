@@ -23,7 +23,9 @@ export default {
         
         'about_office': 'About Us',
         'people_office': 'People',
-        'prizes_office': 'Prizes'
+        'prizes_office': 'Prizes',
+
+        'button_info': 'Info'
     },
     hu:{
         'menu_home': 'Főoldal',
@@ -48,6 +50,8 @@ export default {
     
         'about_office': 'Cégünkről',
         'people_office': 'Munkatársak',
-        'prizes_office': 'Díjak'
+        'prizes_office': 'Díjak',
+
+        'button_info': 'Információ'
     }
 }

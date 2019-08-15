@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import {FormattedMessage} from 'react-intl'
 
-import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 import './square-view.scss'
 
@@ -24,7 +25,7 @@ class SquareView extends Component {
         <div className="square-inner" style={{
             backgroundImage :`url(${data.img})`,
             backgroundPosition: 'center',
-            backgroundSize: '200px'}} >
+            backgroundSize: '250px'}} >
           
           <div className="square-inner-content" >
             <div className="square-inner-content-wrapper" >
@@ -35,6 +36,12 @@ class SquareView extends Component {
                 <div className="location">
                     {data.location}
                 </div>
+                <br/>
+                <Link to={`/projects/${data.id}`}>
+                  <div className="button">
+                      <FormattedMessage id="button_info"> </FormattedMessage>
+                  </div>
+                </Link>
             </div>
           </div>
         </div>

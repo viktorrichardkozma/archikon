@@ -123,7 +123,24 @@ class ProjectsSelected extends Component {
             name: "Egyszülős központ",
             location: "Budapest, IX. kerület, Üllői út",
             img: "./selected/item1.jpg"
-          }
+          },
+          {
+            id:7,
+          name: "Egyszülős központ",
+          location: "Budapest, IX. kerület, Üllői út",
+          img: "./selected/item1.jpg"
+        },   {
+          id:7,
+        name: "Egyszülős központ",
+        location: "Budapest, IX. kerület, Üllői út",
+        img: "./selected/item1.jpg"
+      },
+      {
+        id:7,
+      name: "Egyszülős központ",
+      location: "Budapest, IX. kerület, Üllői út",
+      img: "./selected/item1.jpg"
+    }
       ];
 
     const selectedProjects = projects.map(project => 

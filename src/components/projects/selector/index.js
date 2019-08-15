@@ -6,7 +6,9 @@ import {FormattedMessage} from 'react-intl'
 import classNames from 'classnames';
 
 import './selector.scss'
-import { Link, withRouter } from 'react-router-dom'
+
+import Dropdown from 'react-dropdown'
+import 'react-dropdown/style.css'
 
 class ProjectTypeSelector extends React.Component {
 
@@ -24,6 +26,10 @@ class ProjectTypeSelector extends React.Component {
 
   render() {
     const {viewMode} = this.props;
+     
+    const options = [
+      'one', 'two', 'three'
+    ]
 
     return (
       <div className="project-listing-selector">
@@ -35,6 +41,13 @@ class ProjectTypeSelector extends React.Component {
             <div onClick={() => this.changeView('list')} className={classNames('view-mode-item', 'selector', { 'activated': (viewMode==='list') ? true : false})}>
               <FormattedMessage id="list_view"> </FormattedMessage>
             </div>
+          </div>
+          <div>
+ 
+
+
+
+
           </div>
           {
             (viewMode==='list') ? (

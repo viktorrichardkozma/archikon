@@ -6,7 +6,10 @@
     background: white;
     box-sizing: border-box;
     z-index: 1;
+    top: 80px;
     padding: 50px 0px;
+    position: -webkit-sticky;
+    position: sticky;
 
     .selector-wrapper{
         display:flex;
@@ -60,3 +63,59 @@
 
 }
 
+
+@media screen and (max-width: 767px) {
+
+    .project-listing-selector {
+        top:60px;
+
+        .selector-wrapper{
+            display:flex;
+            justify-content: space-between;
+            color: $link-non-activated;
+            width: 100%;
+            font-size:12px;
+
+            .view-mode-wrapper {
+                display: flex;
+                flex: 0 0 180px;
+
+                .view-mode-item {
+                    &:first-child{
+                        margin-right:10px;
+                    }
+
+                    &:hover{
+                        color: $link-activated;
+                    }
+
+                    .activated {
+                        color: $link-activated;
+                    }
+                }
+            }
+
+                .filter-wrapper{
+                    display:none;
+
+                    .filter-item {
+                    margin-right:20px;
+
+                    &:last-child{
+                        margin-right:0px;
+                    }
+
+                    &:hover{
+                        color: $link-activated;
+                    }
+
+                    .activated {
+                        color: $link-activated;
+                    }
+                }
+
+            }
+            
+        }
+    }
+}

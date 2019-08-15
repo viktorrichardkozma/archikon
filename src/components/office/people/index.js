@@ -10,7 +10,7 @@ import Card from './Card/index.js';
 class Header2 extends React.Component {
 	render() {
 		return (
-			<h2>
+			<h2 style={{textAlign:'center'}}>
         {this.props.data}
 			</h2>
 		);

@@ -15,7 +15,9 @@ const Card = (data) => {
           <div className="name">
             {data.data.name}
           </div>
-          <div className="contact">
+          <div className="detail">
+            {data.data.title}
+            <br/>
             {data.data.mail}
             <br/>
             {data.data.phone}

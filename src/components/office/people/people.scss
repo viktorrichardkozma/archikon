@@ -5,6 +5,9 @@
 .people{
     padding: 0 10%;
 
+    @media screen and (max-width: 767px) {
+        padding:0;
+     }
 
     .boss-wrapper {
         display: flex;

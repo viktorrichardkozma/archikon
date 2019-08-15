@@ -7,7 +7,6 @@ import {FormattedMessage} from 'react-intl'
 import classNames from 'classnames';
 import headerLogo from '../common/logos/archikon_logo_black.png'
 
-
 import { ReactComponent as FacebookIcon} from '../common/icons/facebook.svg'
 import { ReactComponent as InstagramIcon} from '../common/icons/instagram.svg'
 import { ReactComponent as MenuOpened} from '../common/icons/menuOpened.svg'
