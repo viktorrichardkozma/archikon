@@ -105,8 +105,9 @@
     .menu {
         height:50%;
         padding: 0px;
+        z-index: 2;
 
-        border-bottom: 1px solid;
+        border-bottom: 1px solid rgba(0,0,0,.1);;
 
         &.menu-closed{
             height:60px;

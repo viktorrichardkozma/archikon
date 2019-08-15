@@ -18,6 +18,9 @@ import projectEntity from '../projectEntity'
 import { withRouter } from 'react-router-dom'
 import classNames from 'classnames';
 
+import headerLogo from '../common/logos/archikon_logo_black.png'
+
+
 class Projects extends React.Component {
 
   constructor(props) {
@@ -35,7 +38,7 @@ class Projects extends React.Component {
     const {location} = this.props;
 
     return (
-      <div className={classNames('content-wrapper', { 'content-wrapper-main-page': (location.pathname==='/') ? true : false})}>
+      <div className={classNames('content-wrapper', { 'content-wrapper-main-page': (location.pathname==='/' || location.pathname==='/contact') ? true : false})}>
           <Switch>
             <Route exact path="/" component={home} />
             <Route exact path="/projects/" component={projects} />
@@ -45,6 +48,7 @@ class Projects extends React.Component {
             <Route exact path="/admin" component={admin} />
             <Route component={notfound} />
           </Switch>
+          {(location.pathname==='/office') && <img className="fixed-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
       </div>
     );
   }

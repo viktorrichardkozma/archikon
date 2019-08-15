@@ -2,7 +2,17 @@
 .office-decription-wrapper{
     padding-left:150px + 40px;
     padding-right: 40%;
+
+    .desc-logo{
+
+        display: block;
+        width: 50px;
+        margin-bottom: 20px;
+    }
+
 }
+
+
 
 @media screen and (max-width: 767px) {
 

@@ -264,7 +264,7 @@ class People extends Component {
         <div className="people-new-wrapper">
 
           <Header2 data={"Jövőbeli munkatársaink"}/>
-          <a href="mailto:someone@yoursite.com?subject=Archikon | jelentkezés"> 
+          <a href="mailto:titkarsag@archikon.hu?subject=Archikon | jelentkezés"> 
             <Button data={"JELENTKEZZ!"}/>
           </a> 
         </div>

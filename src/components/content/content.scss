@@ -2,12 +2,20 @@
     max-width: 1920px;
     margin: 0 auto;
     padding: 80px 50px 0px 50px;
-    height: calc(100% - 80px);
+    height: auto;
+
+    .fixed-logo{
+        position: fixed;
+        bottom:50px;
+        left:50px;
+        width:50px;
+    }
+
 }
 
 .content-wrapper-main-page {
     display:flex;
-    height:calc(100% - 80px);
+    height:100%;
 
     .header-logo-wrapper{
         display: none;
@@ -15,11 +23,14 @@
     }
 }
 
-
 @media screen and (max-width: 767px) {
 
     .content-wrapper {
-        height:100%;
+        padding: 60px 50px 0px 50px;
+
+        .fixed-logo{
+            display:none;
+        }
     }
 
     .content-wrapper-main-page {
