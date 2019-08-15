@@ -1,6 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component,Fragment} from 'react'
 import Carousel from './carousel/'
 import './home.scss'
+import classNames from 'classnames';
+import headerLogo from '../common/logos/archikon_logo_black.png'
+
 
 class Home extends Component {
   
@@ -22,9 +25,15 @@ class Home extends Component {
     ];
 
 		return (
+      <Fragment>
+      <div className="header-logo-wrapper">
+        {<img className="header-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
+      </div>
+
 			<section className="carousel-wrapper">
 				<Carousel data={data} />
 			</section>
+    </Fragment>
 		);
 	}
 }

@@ -46,6 +46,8 @@ class People extends Component {
   render() {
     // const {people} = this.props;
 
+
+
     const boss = [{
       "name": "Batta Miklós",
       "title": "Építész tervező",
@@ -227,6 +229,9 @@ class People extends Component {
        'Hegyi Gellért'
      ]
 
+    const bossLen = boss.length;
+
+
     return (this.props.visible===true) ?
     (  
       <div className="people">
@@ -259,7 +264,9 @@ class People extends Component {
         <div className="people-new-wrapper">
 
           <Header2 data={"Jövőbeli munkatársaink"}/>
-          <Button data={"JELENTKEZZ"}/>
+          <a href="mailto:someone@yoursite.com?subject=Archikon | jelentkezés"> 
+            <Button data={"JELENTKEZZ!"}/>
+          </a> 
         </div>
 
       </div>

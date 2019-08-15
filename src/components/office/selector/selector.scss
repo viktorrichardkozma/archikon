@@ -63,3 +63,28 @@
 
 }
 
+@media screen and (max-width: 767px) {
+    .office-view-selector {
+   
+        .selector-wrapper{
+            width:100%;
+    
+            .view-mode-wrapper {
+                justify-content: space-around;
+                width: 100%;
+                flex: 1 1;
+                
+                .view-mode-item {
+                    margin-right:0;
+                    width:33%;
+                    text-align: center;
+                }
+            }
+            
+        }
+    
+    
+    }
+
+}
+

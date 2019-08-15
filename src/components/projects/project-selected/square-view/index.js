@@ -20,19 +20,19 @@ class SquareView extends Component {
     const {data} = this.props
 
     return (
-    <div class="square">
-        <div class="square-inner" style={{
+    <div className="square">
+        <div className="square-inner" style={{
             backgroundImage :`url(${data.img})`,
             backgroundPosition: 'center',
             backgroundSize: '200px'}} >
           
-          <div class="square-inner-content" >
-            <div class="square-inner-content-wrapper" >
-                <div class="name">
+          <div className="square-inner-content" >
+            <div className="square-inner-content-wrapper" >
+                <div className="name">
                     {data.name}
                 </div>
                 <br/>
-                <div class="location">
+                <div className="location">
                     {data.location}
                 </div>
             </div>
