@@ -4,19 +4,51 @@ import {fetchingProject} from '../../actions/';
 import LoadingBar from '../common/loading-bar'
 import { connect } from 'react-redux';
 import Carousel from '../home/carousel';
+import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl'
+
 import { ReactComponent as Arrow} from '../common/icons/nyil.svg'
 import CategoriesTranslator from '../common/categoryTranslator';
+import { ReactComponent as DownArrow} from '../common/icons/down.svg';
 
 class projectEntity extends Component {
   state = {
     isLoading: this.props.isLoading,
-    selectedProject: this.props.selectedProject
+    selectedProject: this.props.selectedProject,
+    seeMoreOpened: false,
+    seeMoreEnabled: false
   };
 
   componentDidMount(){
     this.props.getProject(this.props.match.params.id); 
+
+    window.addEventListener("resize", this.resize.bind(this));
+    this.resize();
   }
+
+  changeseeMoreState = () => {
+    const {seeMoreOpened} = this.state;
+    console.log(seeMoreOpened)
+
+    this.setState({
+      seeMoreOpened: !seeMoreOpened
+    })
+
+  };
+
   
+  resize() {
+    if (window.innerWidth <= 768){
+      this.setState({
+        seeMoreEnabled: true
+      })
+    } else {
+      this.setState({
+        seeMoreEnabled: false
+      })
+    }
+  }
+
   static getDerivedStateFromProps(props, state) {
     // Any time the current user changes,
     // Reset any parts of state that are tied to that user.
@@ -30,15 +62,12 @@ class projectEntity extends Component {
     return null;
   }
 
-
   render() {
-    const {selectedProject, isLoading} = this.state;
+    const {selectedProject, isLoading, seeMoreOpened, seeMoreEnabled} = this.state;
     const {language} = this.props;
 
-    console.log(selectedProject)
-
     let addedIdToImages = (selectedProject) ? selectedProject.images.map( (image, id) => {
-      return {id: id, img: image.image} 
+      return {id: id, image: image.image} 
      }
     ) : null 
  
@@ -60,7 +89,7 @@ class projectEntity extends Component {
             </div>
             <div className="address-wrapper">
               <div className="year">
-                2010
+                {selectedProject.year}
               </div>
               <div className="address">
                 {(language.lang==='hu') ? selectedProject.location_hu + ", "+selectedProject.country_hu : selectedProject.location_en + ", "+selectedProject.country_en}
@@ -68,7 +97,44 @@ class projectEntity extends Component {
             </div>
             <div className="description-wrapper">
               <div className="description">
-               {(language.lang==='hu') ? selectedProject.description_hu : selectedProject.description_en}
+               {
+                 (!seeMoreEnabled) ? (
+                    (language.lang==='hu')
+                    ? selectedProject.description_hu
+                    : selectedProject.description_en
+                 ) : (
+                    (selectedProject.description_hu.length < 200) ?
+                  (
+                    (language.lang==='hu')
+                    ? selectedProject.description_hu
+                    : selectedProject.description_en
+                  ) : (
+                    (!seeMoreOpened) ? (
+                      <div>
+                        <div className="seemore-wrapper" onClick={()=>this.changeseeMoreState()} >
+                          <FormattedMessage id="see_more"> </FormattedMessage>
+                          <DownArrow/> 
+                        </div>
+                        {(language.lang==='hu')
+                        ? selectedProject.description_hu.substring(0, 400)+"..."
+                        : selectedProject.description_en.substring(0, 400)+"..."}
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="seemore-wrapper" onClick={()=>this.changeseeMoreState()}>
+                             <FormattedMessage id="see_less"> </FormattedMessage>
+                             <DownArrow className={classNames({'up' : seeMoreOpened})} /> 
+                        </div>
+                        {(language.lang==='hu')
+                          ? selectedProject.description_hu
+                          : selectedProject.description_en
+                        }
+                      </div>
+                    )
+                  )
+                 )
+                 
+                }
               </div>
             </div>
           </div>

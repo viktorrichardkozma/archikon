@@ -7,6 +7,8 @@ import {
    FETCHED_PROJECT_DATA,
    FETCHED_AWARDS_DATA,
    FETCHING_AWARDS_DATA,
+   FETCHED_SLIDESHOW_DATA,
+   FETCHING_SLIDESHOW_DATA,
    LOCALE_SET,
    ERROR} from './types';
 
@@ -114,6 +116,37 @@ export function fetchedAwards(data) {
       awards: data.data
     };
 }
+
+
+
+//SLIDESHOW
+
+export const fetchingSlideshow = () => dispatch => {
+    dispatch(loadingSlideshow());
+    axios.get('http://92.119.123.89/slideshows/')
+        .then(data => dispatch(fetchedSlideshow(data)))
+        .catch(err=>
+            dispatch({
+                type: ERROR,
+                payload: err.data
+            })
+    );
+}
+
+//LOADING
+const loadingSlideshow = () => dispatch => {
+    dispatch({
+        type: FETCHING_SLIDESHOW_DATA
+    })
+}
+
+export function fetchedSlideshow(data) {
+    return {
+      type: FETCHED_SLIDESHOW_DATA,
+      slideshow: data.data
+    };
+}
+
 
 //LANGUAGES
 export const localeSet = lang  => ({

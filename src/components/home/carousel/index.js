@@ -8,7 +8,7 @@ class Carousel extends Component {
 		this.state = {
 			activeID: 0,
 			wrapperStyle: {
-				backgroundImage: `url('${this.props.data[0].img}')`
+				backgroundImage: `url('${this.props.data[0].image}')`
 			},
 			buttonHover: false,
 			buttonStyle: {
@@ -19,7 +19,6 @@ class Carousel extends Component {
 
 	componentDidMount(){
 		const {data} = this.props;
-
 	
 		this.interval = setInterval(() => {
 			if (this.state.activeID===data.length-1){
@@ -34,18 +33,18 @@ class Carousel extends Component {
 
 			this.changeActive(this.state.activeID)
 		}, 4000);
-
 	}	
 
 	componentWillUnmount() {
 		clearInterval(this.interval);
-	  }
+
+	}
 
 	changeActive(id) {
 		this.setState({
 			activeID: id,
 			wrapperStyle: {
-				backgroundImage: `url('${this.props.data[id].img}')`
+				backgroundImage: `url('${this.props.data[id].image}')`
 			}
 		});
 	}
@@ -76,11 +75,11 @@ class Carousel extends Component {
 					activeID={this.state.activeID}
 					changeActive={this.changeActive.bind(this)}
 				/>
-				{ !hidePanel && <Panel 
+				{ (!hidePanel && <Panel 
 					data={this.props.data[this.state.activeID]}
 					buttonStyle={this.state.buttonStyle}
 					buttonColour={this.buttonColour.bind(this)}
-				/> }
+				/> )}
 			</section>
 		);
 	}

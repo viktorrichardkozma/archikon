@@ -25,7 +25,11 @@ export default {
         'people_office': 'People',
         'prizes_office': 'Prizes',
 
-        'button_info': 'Info'
+        'button_info': 'Info',
+
+        'see_more': "See more",
+        'see_less': "See less",
+
     },
     hu:{
         'menu_home': 'Főoldal',
@@ -52,6 +56,10 @@ export default {
         'people_office': 'Munkatársak',
         'prizes_office': 'Díjak',
 
-        'button_info': 'Információ'
+        'button_info': 'Információ',
+
+        'see_more': "Több",
+        'see_less': "Kevesebb",
+
     }
 }

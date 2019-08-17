@@ -12,6 +12,8 @@ export default class index extends Component {
             <Maps/>
           </div>
           <div className="contact-wrapper-part">
+            <div className="text">
+
             <h1> Archikon Architects Kft.  </h1>
             <p>
               1114 Budapest, Bartók Béla út 61. fsz. 4-6.
@@ -25,6 +27,7 @@ export default class index extends Component {
             <p>
               E-mail: titkarsag@archikon.hu | Web: archikon.hu
             </p>  
+            </div>
           </div>
         </div>
       </div>

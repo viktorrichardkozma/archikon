@@ -42,7 +42,7 @@ class Menu extends Component {
   };
 
   changePage = () => {
-    if (window.innerWidth <= 768){
+    if (window.innerWidth <= 767){
       this.setState({
         isMenuOpened: false
       })
@@ -55,7 +55,7 @@ class Menu extends Component {
 }
 
 resize() {
-    if (window.innerWidth <= 768){
+    if (window.innerWidth <= 767){
       //SZENTSÉGESATYAURISTEN
       this.setState({
         isMenuOpened: false
