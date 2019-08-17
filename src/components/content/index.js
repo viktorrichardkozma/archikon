@@ -11,15 +11,12 @@ import projects from '../projects'
 import office from '../office'
 import contact from '../contact'
 import notfound from '../notfound'
-
-import admin from '../admin'
 import projectEntity from '../projectEntity'
 
 import { withRouter } from 'react-router-dom'
 import classNames from 'classnames';
 
 import headerLogo from '../common/logos/archikon_logo_black.png'
-
 
 class Projects extends React.Component {
 
@@ -46,7 +43,6 @@ class Projects extends React.Component {
             <Route exact path="/projects/:id" component={projectEntity} />
             <Route exact path="/office" component={office} />
             <Route exact path="/contact" component={contact} />
-            <Route exact path="/admin" component={admin} />
             <Route component={notfound} />
           </Switch>
           {(location.pathname==='/office') && <img className="fixed-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}

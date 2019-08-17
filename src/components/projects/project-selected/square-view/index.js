@@ -5,40 +5,29 @@ import { Link } from 'react-router-dom'
 
 import './square-view.scss'
 
-
 //Action
 
-class SquareView extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-        list: []
-    };
-  }
-
-  render() {
-    const {data} = this.props
-
-    return (
-    <Link to={`/projects/${data.id}`}>
+const SquareView = (props) => {
+  return <Link to={`/projects/${props.data.id}`}>
       <div className="square">
           <div className="square-inner" style={{
-              backgroundImage :`url(${data.img})`,
+              backgroundImage :`url(${props.data.thumbnail})`,
               backgroundPosition: 'center',
               backgroundSize: '250px'}} >
             
             <div className="square-inner-content" >
               <div className="square-inner-content-wrapper" >
                   <div className="name">
-                      {data.name}
+                      {(props.language==='hu') ? props.data.name_hu : props.data.name_en}
+
                   </div>
                   <br/>
                   <div className="location">
-                      {data.location}
+                    {(props.language==='hu') ? props.data.location_hu : props.data.location_en}
+
                   </div>
                   <br/>
-                  <Link to={`/projects/${data.id}`}>
+                  <Link to={`/projects/${props.data.id}`}>
                     <div className="button">
                         <FormattedMessage id="button_info"> </FormattedMessage>
                     </div>
@@ -48,8 +37,7 @@ class SquareView extends Component {
           </div>
         </div>
       </Link>
-    );
-  }
+ 
 }
 
 export default (SquareView);

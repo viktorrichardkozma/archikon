@@ -2,92 +2,68 @@ import React, {Component} from 'react';
 
 import { connect } from 'react-redux';
 
-//Action
+import {fetchingAwards} from '../../../actions/';
 
 
-const styles = theme => ({
-  contents: theme.contents,
-  noBorderBottom: theme.noBorderBottom,
-  progress: theme.progress
-});
+import LoadingBar from '../../common/loading-bar'
 
-class ProjectListed extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-        list: []
-    };
+class Awards extends Component {
+
+  state = {
+    isLoading: this.props.isLoading,
+    awards: this.props.awards
+  };
+
+  componentDidMount(){
+    this.props.getAwards()
   }
 
-  static getDerivedStateFromProps(nextProps, prevState){
-    if (nextProps.projects !== prevState.projects) {
-        return { list: nextProps.externalList };
+  static getDerivedStateFromProps(props, state) {
+    if (props.awards !== state.awards) {
+      return {
+        awards: props.awards,
+        isLoading: props.isLoading
+      };
     }
-    else return null; // Triggers no change in the state
-    }
-
-
+    return null;
+  }
   render() {
-    const {projects} = this.props;
-    const data = [
-        {
-          'id': 1,
-          'name': 'Palatinus Strand főépület rekonstrukció',
-          'year': 2018,
-          'subtitle' : 'Budapest Építészeti Nívódíj, Kiemelt dícséret',
-          'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
-        },
-        {
-          'id': 2,
-          'name': 'Hotel Moments',
-          'year': 2018,
-          'subtitle' : 'Budapesti Építész Kamara Építészeti Nívódíj, Építőipari Nívódíj',
-          'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
-        },
-        {
-          'id': 3,
-          'name': 'Hotel Moments',
-          'year': 2018,
-          'subtitle' : 'Budapesti Építész Kamara Építészeti Nívódíj, Építőipari Nívódíj',
-          'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
-        },
-        {
-          'id': 3,
-          'name': 'Hotel Moments',
-          'year': 2018,
-          'subtitle' : 'Budapesti Építész Kamara Építészeti Nívódíj, Építőipari Nívódíj',
-          'link': 'http://archikon.hu/epuletek/palatinus_strandfurdo.252.html?&pageid=16&typeid=3'
-        }
-      ]   
-     const awards = data.map(award =>
+    const {awards, isLoading}= this.state;
+    const {language} = this.props;
+
+    return (this.props.visible===true) ?
+    (
+      (isLoading===false && awards) ? (
+      <div>
+      {awards.map(award =>
         <div>
           <p>
           {`${award.year} | `}
             <a href={award.link}>
-            <b> {award.name}  </b>
-            </a> {`| ${award.subtitle}`}         
+            <b> {language.lang==="hu" ? award.name_hu : award.name_en}   </b>
+            </a> {`| ${language.lang==="hu" ? award.subtitle_hu : award.subtitle_en}`}         
           </p> 
         </div> 
-      )
-
-    return (this.props.visible===true) ?
-    (<div>
-      {awards}
-    </div>) : null
-  
+      )}
+    </div>) : <LoadingBar/>
+    ) : null 
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  };
-};
-
 const mapStateToProps = (state) => {
   return {
-    projects: state.projects,
+    awards: state.awards.awards,
+    isLoading: state.awards.isLoading,
+    language: state.localization
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectListed);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAwards: () => dispatch(fetchingAwards())
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Awards);

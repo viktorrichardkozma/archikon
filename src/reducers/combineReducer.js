@@ -1,10 +1,12 @@
 import {combineReducers} from 'redux';
-import adminReducer from './admin';
+import staffReducer from './staff';
+import awardsReducer from './awards';
 import projectReducer from './project';
 import localizationReducer from './localization';
 
 export default combineReducers({
-    admin: adminReducer,
     project: projectReducer,
-    localization: localizationReducer
+    staff: staffReducer,
+    localization: localizationReducer,
+    awards: awardsReducer
 });

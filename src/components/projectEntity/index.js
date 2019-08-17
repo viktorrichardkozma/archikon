@@ -35,6 +35,8 @@ class projectEntity extends Component {
     const {selectedProject, isLoading} = this.state;
     const {language} = this.props;
 
+    console.log(selectedProject)
+
     let addedIdToImages = (selectedProject) ? selectedProject.images.map( (image, id) => {
       return {id: id, img: image.image} 
      }

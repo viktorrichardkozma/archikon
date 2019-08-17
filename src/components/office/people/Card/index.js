@@ -1,26 +1,37 @@
 import React from 'react'
 import './Card.scss'
 
-const Card = (data) => {
+const Card = (props) => {
+  console.log(props)
+
+  let name = props.data.name.split(' ');
+
+  if (props.language==='en') {
+    let first_name = name[0];
+    let last_name = name[name.length-1]
+    name[name.length-1] = first_name;
+    name[0] = last_name
+  }
+
+  console.log(name)
+
   return (
     <div className="people-card">
       <div className="people-card-inner">
         <div className="avatar-wrapper">
-          <img src={'./people/'+'batta.png'}>
+          <img src={props.data.image}>
           </img>
-          {/* <img src={'./people/'+data.data.photo}>
-          </img> */}
         </div>
         <div className="text-wrapper">     
           <div className="name">
-            {data.data.name}
+            {name.join(' ')}
           </div>
           <div className="detail">
-            {data.data.title}
+            { (props.language==='hu') ? props.data.title_hu : props.data.title_en}
             <br/>
-            {data.data.mail}
+            {props.data.mail}
             <br/>
-            {data.data.phone}
+            {props.data.phone}
           </div>
         </div>
       </div>

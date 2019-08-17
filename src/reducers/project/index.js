@@ -1,4 +1,4 @@
-import { FETCHED_PROJECTS_DATA, FETCHED_PROJECT_DATA, FETCHING_PROJECTS_DATA} from '../../actions/types';
+import { FETCHED_PROJECTS_DATA, FETCHED_PROJECT_DATA, FETCHING_PROJECT_DATA} from '../../actions/types';
 
 const initialState={
     projects: null,
@@ -8,7 +8,7 @@ const initialState={
 
 export default function(state=initialState,action){
     switch(action.type){
-        case FETCHING_PROJECTS_DATA:
+        case FETCHING_PROJECT_DATA:
             return {
                 ...state,
                 isLoading:true
@@ -16,7 +16,7 @@ export default function(state=initialState,action){
         case FETCHED_PROJECTS_DATA:
             return {
                 ...state,
-                projects: action.projects,
+                projects: action.projects.results,
                 isLoading:false
         };
         case FETCHED_PROJECT_DATA:

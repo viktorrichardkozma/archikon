@@ -24,12 +24,9 @@ class ProjectsSelected extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    // Any time the current user changes,
-    // Reset any parts of state that are tied to that user.
-    // In this simple example, that's just the email.
-    if (props.Project !== state.Projects) {
+    if (props.projects !== state.projects) {
       return {
-        project: props.Projects,
+        projects: props.projects,
         isLoading: props.isLoading
       };
     }
@@ -40,12 +37,15 @@ class ProjectsSelected extends Component {
     const {projects, isLoading} = this.state;
     const {language} = this.props;
 
-    const selectedProjects = projects ? projects.map(project => 
-          <SquareView id={project.id} data={project}/>    
+
+    const selectedProjects = (projects!==null) ? projects.map(project => 
+      <SquareView id={project.id} data={project} language={language.lang}/>    
     ) : null
 
     return (isLoading===false && projects) ? ( 
+      <div>
       {selectedProjects}
+      </div>
     )
     :  <div class="loading-wrapper">
       <LoadingBar/>
