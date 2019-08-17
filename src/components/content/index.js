@@ -37,8 +37,9 @@ class Projects extends React.Component {
   render() {
     const {location} = this.props;
 
+   
     return (
-      <div className={classNames('content-wrapper', { 'content-wrapper-main-page': (location.pathname==='/' || location.pathname==='/contact') ? true : false})}>
+      <div className={classNames('content-wrapper', { 'content-wrapper-main-page': (location.pathname==='/' || location.pathname==='/contact' || !isNaN(location.pathname.substr(location.pathname.lastIndexOf('/') + 1)))? true : false})}>
           <Switch>
             <Route exact path="/" component={home} />
             <Route exact path="/projects/" component={projects} />
@@ -58,6 +59,7 @@ class Projects extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     // getProjects: (filters) => dispatch(getProjects(filters))
+    
   };
 };
 

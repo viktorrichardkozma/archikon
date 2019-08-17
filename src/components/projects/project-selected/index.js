@@ -2,169 +2,68 @@ import React, {Component} from 'react';
 
 import { connect } from 'react-redux';
 import './project-selected.scss'
+import {fetchingProjects} from '../../../actions/';
+
 
 import SquareView from './square-view/';
+import LoadingBar from '../../common/loading-bar'
+
+import { Link } from 'react-router-dom'
 
 //Action
 
 class ProjectsSelected extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-        list: []
-    };
+  state = {
+    isLoading: this.props.isLoading,
+    projects: this.props.projects
+  };
+
+  componentDidMount () { 
+    this.props.getProjects()
   }
 
-  static getDerivedStateFromProps(nextProps, prevState){
-    if (nextProps.projects !== prevState.projects) {
-        return { list: nextProps.externalList };
+  static getDerivedStateFromProps(props, state) {
+    // Any time the current user changes,
+    // Reset any parts of state that are tied to that user.
+    // In this simple example, that's just the email.
+    if (props.Project !== state.Projects) {
+      return {
+        project: props.Projects,
+        isLoading: props.isLoading
+      };
     }
-    else return null; // Triggers no change in the state
-    }
-
+    return null;
+  }
 
   render() {
-    // const {projects} = this.props;
-    
-    const projects = [
-        {
-          id:1,
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "./selected/item1.jpg"
-        },
-        {
-          id:2,
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "./selected/item1.jpg"
-        },
-        {
-            id:3,
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "./selected/item1.jpg"
-        },
-        {
-            id:4,
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "./selected/item1.jpg"
-        },
-        {
-            id:5,
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "./selected/item1.jpg"
-        },
-        {
-            id:6,
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "./selected/item1.jpg"
-        },
-        {
-            id:6,
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "./selected/item1.jpg"
-        },
-        {
-            id:7,
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "./selected/item1.jpg"
-        },
-        {
-            id:1,
-            name: "Egyszülős központ",
-            location: "Budapest, IX. kerület, Üllői út",
-            img: "./selected/item1.jpg"
-          },
-          {
-              id:2,
-            name: "Egyszülős központ",
-            location: "Budapest, IX. kerület, Üllői út",
-            img: "./selected/item1.jpg"
-          },
-          {
-              id:3,
-            name: "Egyszülős központ",
-            location: "Budapest, IX. kerület, Üllői út",
-            img: "./selected/item1.jpg"
-          },
-          {
-              id:4,
-            name: "Egyszülős központ",
-            location: "Budapest, IX. kerület, Üllői út",
-            img: "./selected/item1.jpg"
-          },
-          {
-              id:5,
-            name: "Egyszülős központ",
-            location: "Budapest, IX. kerület, Üllői út",
-            img: "./selected/item1.jpg"
-          },
-          {
-              id:6,
-            name: "Egyszülős központ",
-            location: "Budapest, IX. kerület, Üllői út",
-            img: "./selected/item1.jpg"
-          },
-          {
-            id:6,
-            name: "Egyszülős központ",
-            location: "Budapest, IX. kerület, Üllői út",
-            img: "./selected/item1.jpg"
-          },
-          {
-              id:7,
-            name: "Egyszülős központ",
-            location: "Budapest, IX. kerület, Üllői út",
-            img: "./selected/item1.jpg"
-          },
-          {
-            id:7,
-          name: "Egyszülős központ",
-          location: "Budapest, IX. kerület, Üllői út",
-          img: "./selected/item1.jpg"
-        },   {
-          id:7,
-        name: "Egyszülős központ",
-        location: "Budapest, IX. kerület, Üllői út",
-        img: "./selected/item1.jpg"
-      },
-      {
-        id:7,
-      name: "Egyszülős központ",
-      location: "Budapest, IX. kerület, Üllői út",
-      img: "./selected/item1.jpg"
-    }
-      ];
+    const {projects, isLoading} = this.state;
+    const {language} = this.props;
 
-    const selectedProjects = projects.map(project => 
-        <SquareView id={project.id} data={project}/>    
+    const selectedProjects = projects ? projects.map(project => 
+          <SquareView id={project.id} data={project}/>    
+    ) : null
+
+    return (isLoading===false && projects) ? ( 
+      {selectedProjects}
     )
-
-    return (
-        <div className="project-selected">
-            <div className="project-selected-wrapper">
-              {selectedProjects}
-            </div>
-        </div>
-    );
+    :  <div class="loading-wrapper">
+      <LoadingBar/>
+    </div>
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
+    projects: state.project.projects,
+    isLoading: state.project.isLoading,
+    language: state.localization
   };
 };
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    projects: state.projects,
+    getProjects: () => dispatch(fetchingProjects())
   };
 };
 

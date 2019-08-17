@@ -67,6 +67,8 @@ class Carousel extends Component {
 		}
 	}
 	render() {
+		const {hidePanel} = this.props;
+
 		return (
 			<section className="wrapper" style={this.state.wrapperStyle}>
 				<Selectors 
@@ -74,11 +76,11 @@ class Carousel extends Component {
 					activeID={this.state.activeID}
 					changeActive={this.changeActive.bind(this)}
 				/>
-				<Panel 
+				{ !hidePanel && <Panel 
 					data={this.props.data[this.state.activeID]}
 					buttonStyle={this.state.buttonStyle}
 					buttonColour={this.buttonColour.bind(this)}
-				/>
+				/> }
 			</section>
 		);
 	}

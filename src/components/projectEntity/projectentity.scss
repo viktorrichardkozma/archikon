@@ -1,0 +1,62 @@
+.project-entity{
+    height:100%;
+    width:100%;
+    display:flex;
+
+    .chevron-wrapper{
+        flex: 0 0 50px;
+        height:30px;
+        margin-top: 60px;
+        
+        svg{
+            cursor: pointer;
+            height: 100%;
+            stroke: #BCBCBC;
+        }
+
+        svg:hover{
+            stroke: #1c1c1c;
+        }
+    }
+
+    .detail {
+        flex: 0 0 350px;
+
+        .category-wrapper{
+            margin-top: 100px;
+            font-size: 12px;
+            color: #BCBCBC;
+        }
+
+    }
+
+    .title-wrapper{
+        display: flex;
+        width: 100%;
+        .title{
+            font-size:30px;
+            font-weight: 600;
+
+        }
+    }
+
+    .address-wrapper{
+        width:100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0px 60px 0px
+    }
+
+
+    .description-wrapper{
+        font-size:14px;
+        overflow: scroll;
+        height: 50%;
+    }
+
+    .gallery-wrapper{
+        width:100%;
+        padding: 50px 0px 50px 80px;
+    }
+
+}

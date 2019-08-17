@@ -41,7 +41,7 @@ class People extends Component {
         return { list: nextProps.externalList };
     }
     else return null; // Triggers no change in the state
-    }
+  }
 
   render() {
     // const {people} = this.props;

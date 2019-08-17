@@ -44,10 +44,6 @@ class ProjectTypeSelector extends React.Component {
           </div>
           <div>
  
-
-
-
-
           </div>
           {
             (viewMode==='list') ? (

@@ -5,6 +5,6 @@ import localizationReducer from './localization';
 
 export default combineReducers({
     admin: adminReducer,
-    projects: projectReducer,
+    project: projectReducer,
     localization: localizationReducer
 });
