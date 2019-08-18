@@ -4,13 +4,19 @@
            
         
         .table {
-            margin-top: 2em;
             display: flex;
             flex-direction: column;
             
             .header, .row {
                 display: flex;
                 justify-content: space-between;
+                
+
+                &.notfound {
+                    display: flex;
+                    justify-content: center;
+                    margin-top:10px;
+                }
             
             div {
                 flex: 1;
@@ -22,6 +28,9 @@
             .header {
                 font-size:14px;
                 font-weight: 600;
+                position: sticky;
+                top:180px;
+                background: white;
             div { 
                 cursor: pointer;
             }
@@ -29,5 +38,60 @@
         }
     }
 }
+
+@media screen and (max-width: 767px) {
+
+    .project-listed {
+
+        &-wrapper {
+               
+            
+            .table {
+                margin:0;
+                display: flex;
+                flex-direction: column;
+                
+                .header, .row {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .location, .country{
+                        display: none
+                    }
+                   
+    
+                    &.notfound {
+                        display: flex;
+                        justify-content: center;
+                        margin-top:10px;
+                    }
+                
+                div {
+                    flex: 1;
+                    padding: 0.2rem 0.4em;
+                    border-bottom: 1px solid #1c1c1c;
+                }
+                }
+                
+                .header {
+                    font-size:14px;
+                    font-weight: 600;
+                    position: sticky;
+                    background-color:white;
+                    top: 159px;
+
+                    .location, .country{
+                        display: none
+                    }
+                   
+                div { 
+                    cursor: pointer;
+                }
+                }
+            }
+        }
+    }
+}
+
 
 

@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import {fetchingStaff} from '../../../actions/';
 import LoadingBar from '../../common/loading-bar'
 
-
 import { connect } from 'react-redux';
 //Action
 

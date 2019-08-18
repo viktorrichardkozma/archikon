@@ -45,7 +45,6 @@ class Projects extends React.Component {
             <Route exact path="/contact" component={contact} />
             <Route component={notfound} />
           </Switch>
-          {(location.pathname==='/office') && <img className="fixed-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
       </div>
     );
   }

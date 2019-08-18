@@ -152,7 +152,6 @@ export function fetchedSlideshow(data) {
 
 
 export const addSearchValue = (search) => dispatch => {
-    console.log(search)
     dispatch({
         type: SEARCH_VALUE_DATA,
         payload: search

@@ -28,7 +28,6 @@ export default function(state=initialState,action){
                 isLoading:false
         };
         case SEARCH_VALUE_DATA:
-            console.log(action)
                 return {
                 ...state,
                 searchvalue: action.payload

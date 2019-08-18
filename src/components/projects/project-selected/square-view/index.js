@@ -13,7 +13,7 @@ const SquareView = (props) => {
           <div className="square-inner" style={{
               backgroundImage :`url(${props.data.thumbnail})`,
               backgroundPosition: 'center',
-              backgroundSize: '250px'}} >
+              backgroundSize: '300px'}} >
             
             <div className="square-inner-content" >
               <div className="square-inner-content-wrapper" >

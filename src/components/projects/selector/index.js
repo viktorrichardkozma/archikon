@@ -11,20 +11,23 @@ import './selector.scss'
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 
+
+import search from '../../common/icons/search.svg'
+
+
 class ProjectTypeSelector extends React.Component {
-
-
   changeView = viewMode => {
     this.props.changeView(viewMode);
   };
 
   handleInputChange = event => {
     const {addSearchValue} = this.props 
-    addSearchValue(event.target.value)
+    addSearchValue(event.target.value.trim().toLowerCase())
   }
 
   render() {
     const {viewMode, language, searchvalue} = this.props;
+    
 
     return (
       <div className="project-listing-selector">
@@ -43,7 +46,7 @@ class ProjectTypeSelector extends React.Component {
           {
             (viewMode==='list') ? (
               <div className="filter-wrapper">
-                <input value={searchvalue} type="text"  onChange={this.handleInputChange} className={classNames('filter-item', 'selector','field',{ 'activated': (viewMode==='list') ? true : false})}>
+                <input value={searchvalue} type="text" style={{ backgroundImage: "url("+search+")"} } onChange={this.handleInputChange} className={classNames('filter-item', 'selector','field',{ 'activated': (viewMode==='list') ? true : false})}>
                 </input>
 
                 <div onClick={() => this.filterAdd('none')} className={classNames('filter-item', 'selector', { 'activated': (viewMode==='list') ? true : false})}>
