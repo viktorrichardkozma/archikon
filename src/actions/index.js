@@ -9,6 +9,8 @@ import {
    FETCHING_AWARDS_DATA,
    FETCHED_SLIDESHOW_DATA,
    FETCHING_SLIDESHOW_DATA,
+   SEARCH_VALUE_DATA,
+   FILTER_VALUE_DATA,
    LOCALE_SET,
    ERROR} from './types';
 
@@ -146,6 +148,17 @@ export function fetchedSlideshow(data) {
       slideshow: data.data
     };
 }
+
+
+
+export const addSearchValue = (search) => dispatch => {
+    console.log(search)
+    dispatch({
+        type: SEARCH_VALUE_DATA,
+        payload: search
+    })
+}
+
 
 
 //LANGUAGES

@@ -13,7 +13,7 @@ export default {
         '3_hotel': 'Hotel and Residential',
         '4_industrial': 'Industrial',
         '5_heritage': 'Heritage',
-        '6_others': 'Others',
+        '6_other': 'Other',
 
         'project_list': 'Project',
         'location_list': 'Location',
@@ -44,7 +44,7 @@ export default {
         '3_hotel': 'Szállás és lakóépület',
         '4_industrial': 'Ipari épület',
         '5_heritage': 'Műemlék',
-        '6_others': 'Egyéb',
+        '6_other': 'Egyéb',
 
         'project_list': 'Projekt',
         'location_list': 'Város',

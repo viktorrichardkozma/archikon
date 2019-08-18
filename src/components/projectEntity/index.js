@@ -28,7 +28,6 @@ class projectEntity extends Component {
 
   changeseeMoreState = () => {
     const {seeMoreOpened} = this.state;
-    console.log(seeMoreOpened)
 
     this.setState({
       seeMoreOpened: !seeMoreOpened
@@ -50,9 +49,7 @@ class projectEntity extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    // Any time the current user changes,
-    // Reset any parts of state that are tied to that user.
-    // In this simple example, that's just the email.
+
     if (props.selectedProject !== state.selectedProject) {
       return {
         selectedProject: props.selectedProject,

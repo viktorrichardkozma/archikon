@@ -1,0 +1,33 @@
+.project-listed {
+
+    &-wrapper {
+           
+        
+        .table {
+            margin-top: 2em;
+            display: flex;
+            flex-direction: column;
+            
+            .header, .row {
+                display: flex;
+                justify-content: space-between;
+            
+            div {
+                flex: 1;
+                padding: 0.2rem 0.4em;
+                border-bottom: 1px solid #1c1c1c;
+            }
+            }
+            
+            .header {
+                font-size:14px;
+                font-weight: 600;
+            div { 
+                cursor: pointer;
+            }
+            }
+        }
+    }
+}
+
+

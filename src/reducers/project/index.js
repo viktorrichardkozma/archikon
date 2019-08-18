@@ -1,9 +1,11 @@
-import { FETCHED_PROJECTS_DATA, FETCHED_PROJECT_DATA, FETCHING_PROJECT_DATA} from '../../actions/types';
+import { FETCHED_PROJECTS_DATA, FETCHED_PROJECT_DATA, FETCHING_PROJECT_DATA, SEARCH_VALUE_DATA} from '../../actions/types';
 
 const initialState={
     projects: null,
     selectedProject: null,
-    isLoading: false
+    isLoading: false,
+    filters: null,
+    searchvalue: null
 }
 
 export default function(state=initialState,action){
@@ -25,6 +27,12 @@ export default function(state=initialState,action){
                 selectedProject: action.selectedProject,
                 isLoading:false
         };
+        case SEARCH_VALUE_DATA:
+            console.log(action)
+                return {
+                ...state,
+                searchvalue: action.payload
+            };
         default:
             return state
     }

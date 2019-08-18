@@ -8,18 +8,10 @@ import classNames from 'classnames';
 import './selector.scss'
 import { Link, withRouter } from 'react-router-dom'
 
-class ProjectTypeSelector extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
+class OfficeTypeSelector extends React.Component {
 
   changeView = viewMode => {
     this.props.changeView(viewMode);
-  };
-
-  filterAdd = filter => {
-    this.props.filterAdd(filter);
   };
 
   render() {
@@ -45,4 +37,4 @@ class ProjectTypeSelector extends React.Component {
   }
 }
 
-export default ProjectTypeSelector;
+export default OfficeTypeSelector;

@@ -41,6 +41,19 @@ class Menu extends Component {
 
   };
 
+  resize() {
+    if (window.innerWidth <= 767){
+      //SZENTSÉGESATYAURISTEN
+      this.setState({
+        isMenuOpened: false
+      })
+    } else {
+      this.setState({
+        isMenuOpened: true
+      })
+    }
+  };
+
   changePage = () => {
     if (window.innerWidth <= 767){
       this.setState({
@@ -54,18 +67,7 @@ class Menu extends Component {
     this.resize();
 }
 
-resize() {
-    if (window.innerWidth <= 767){
-      //SZENTSÉGESATYAURISTEN
-      this.setState({
-        isMenuOpened: false
-      })
-    } else {
-      this.setState({
-        isMenuOpened: true
-      })
-    }
-}
+
   render() {
     const {language, location} = this.props;
     const {isMenuOpened} = this.state;

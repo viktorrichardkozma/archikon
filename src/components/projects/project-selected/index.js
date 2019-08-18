@@ -10,15 +10,15 @@ import LoadingBar from '../../common/loading-bar'
 
 import { Link } from 'react-router-dom'
 
-//Action
+import './project-selected.scss'
 
 class ProjectsSelected extends Component {
-
   state = {
     isLoading: this.props.isLoading,
     projects: this.props.projects
   };
 
+  
   componentDidMount () { 
     this.props.getProjects()
   }
@@ -37,13 +37,12 @@ class ProjectsSelected extends Component {
     const {projects, isLoading} = this.state;
     const {language} = this.props;
 
-
     const selectedProjects = (projects!==null) ? projects.map(project => 
       <SquareView id={project.id} data={project} language={language.lang}/>    
     ) : null
 
     return (isLoading===false && projects) ? ( 
-      <div>
+      <div className="project-selected-wrapper">
       {selectedProjects}
       </div>
     )
