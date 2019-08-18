@@ -7,6 +7,8 @@ import Carousel from '../home/carousel';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl'
 import Helmet from 'react-helmet'
+import { withRouter } from 'react-router-dom'
+
 
 import { ReactComponent as Arrow} from '../common/icons/nyil.svg'
 import CategoriesTranslator from '../common/categoryTranslator';
@@ -36,6 +38,10 @@ class projectEntity extends Component {
 
   };
 
+  goBack(){
+    console.log("CIA")
+    this.props.history.goBack();
+  }
   
   resize() {
     if (window.innerWidth <= 768){
@@ -75,7 +81,8 @@ class projectEntity extends Component {
             <title>{`Archikon |  ${language.lang==="hu" ? selectedProject.name_hu : selectedProject.name_en}`} </title>
           </Helmet>
           <div className="chevron-wrapper">
-            <Arrow/> 
+            
+            <Arrow onClick={() => this.goBack()}/> 
           </div>
           <div className="detail">
             <div className="category-wrapper">
@@ -168,7 +175,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default (connect(mapStateToProps, mapDispatchToProps)(projectEntity));
+export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(projectEntity));
 
 
 

@@ -7,6 +7,8 @@ import LoadingBar from '../../common/loading-bar'
 import { Helmet } from 'react-helmet'
 
 import {FormattedMessage} from 'react-intl'
+import Selector from '../selector';
+
 
 import CategoriesTranslator from '../../common/categoryTranslator';
 
@@ -135,39 +137,42 @@ class ProjectListed extends React.Component {
     </div>
    
     return (
-      
-      <div className="project-listed">
-        <Helmet>
-          <title>{`Archikon |  ${language.lang==="hu" ? 'Projektek | Lista' : "Projects | List"}`} </title>
-        </Helmet>
-        <div className="project-listed-wrapper">
-        {(isLoading===false && projects) ? ( 
-          <div className="table">
-            <div className="header">
-              <div id="nameSorter" className="name" onClick={(e) => this.sortBy(language.lang==="hu" ? 'name_hu' : "name_en",e)}>
-                <FormattedMessage id="project_list"> </FormattedMessage>  {this.state.sorterType === "nameSorter" ? "■" : ""}
+      <div className="project-view-wrapper">
+        <Selector/>
+
+        <div className="project-listed">
+          <Helmet>
+            <title>{`Archikon |  ${language.lang==="hu" ? 'Projektek | Lista' : "Projects | List"}`} </title>
+          </Helmet>
+          <div className="project-listed-wrapper">
+          {(isLoading===false && projects) ? ( 
+            <div className="table">
+              <div className="header">
+                <div id="nameSorter" className="name" onClick={(e) => this.sortBy(language.lang==="hu" ? 'name_hu' : "name_en",e)}>
+                  <FormattedMessage id="project_list"> </FormattedMessage>  {this.state.sorterType === "nameSorter" ? "■" : ""}
+                </div>
+                <div id="locationSorter" className="location" onClick={(e) => this.sortBy(language.lang==="hu" ? 'location_hu' : "location_en",e)}>
+                  <FormattedMessage id="location_list"> </FormattedMessage> {this.state.sorterType === "locationSorter" ? "■" : ""}
+                </div>
+                <div id="countrySorter" className="country" onClick={(e) => this.sortBy(language.lang==="hu" ? 'country_hu' : "country_en",e)}>
+                  <FormattedMessage id="country_list"> </FormattedMessage> {this.state.sorterType === "countrySorter" ? "■" : ""}
+                </div>
+              
+                <div id="yearSorter" className="year" onClick={(e) => this.sortBy('year',e)}>
+                <FormattedMessage id="year_list"> </FormattedMessage> {this.state.sorterType === "yearSorter" ? "■" : ""}
+                </div>
+                <div id="yearSorter" className="category">
+                <FormattedMessage id="category_list"> </FormattedMessage>
+                </div>
               </div>
-              <div id="locationSorter" className="location" onClick={(e) => this.sortBy(language.lang==="hu" ? 'location_hu' : "location_en",e)}>
-                <FormattedMessage id="location_list"> </FormattedMessage> {this.state.sorterType === "locationSorter" ? "■" : ""}
-              </div>
-              <div id="countrySorter" className="country" onClick={(e) => this.sortBy(language.lang==="hu" ? 'country_hu' : "country_en",e)}>
-                <FormattedMessage id="country_list"> </FormattedMessage> {this.state.sorterType === "countrySorter" ? "■" : ""}
-              </div>
-             
-              <div id="yearSorter" className="year" onClick={(e) => this.sortBy('year',e)}>
-               <FormattedMessage id="year_list"> </FormattedMessage> {this.state.sorterType === "yearSorter" ? "■" : ""}
-              </div>
-              <div id="yearSorter" className="category">
-               <FormattedMessage id="category_list"> </FormattedMessage>
+              <div className="body">
+                {rows}
               </div>
             </div>
-            <div className="body">
-              {rows}
-            </div>
+            ) : <div class="loading-wrapper">
+            <LoadingBar/>
+          </div>}
           </div>
-          ) : <div class="loading-wrapper">
-          <LoadingBar/>
-        </div>}
         </div>
       </div>
     );

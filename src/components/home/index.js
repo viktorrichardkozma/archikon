@@ -41,8 +41,13 @@ class Home extends Component {
 	render() {
     const {slideshow, isLoading, language}= this.state;
 
+    let addedIdToImages = (slideshow) ? slideshow.map( (image, id) => {
+      return {id: id, image: image.image} 
+     }
+    ) : null 
+
 		return (
-      <Fragment>
+      <div className="content-wrapper-main-page">
       <Helmet>
         <title>{`Archikon |  ${language==="hu" ? 'Főoldal' : "Home"}`} </title>
       </Helmet>
@@ -51,14 +56,14 @@ class Home extends Component {
       </div>
 			<section className="carousel-wrapper">
         {(isLoading===false && slideshow) ? 
-				  <Carousel hidePanel={false} data={slideshow} />
+				  <Carousel hidePanel={false} data={addedIdToImages} />
           : 
           <div class="loading-wrapper">
             <LoadingBar/>
           </div>
         }
 			</section>
-    </Fragment>
+    </div >
 		);
 	}
 }

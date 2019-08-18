@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import {FormattedMessage} from 'react-intl';
+import { Link } from 'react-router-dom'
+
+import { withRouter } from 'react-router-dom'
 
 import classNames from 'classnames';
 import {addSearchValue, addCategoryFilter, removeCategoryFilter} from '../../../actions'
@@ -17,10 +20,6 @@ import search from '../../common/icons/search.svg'
 
 class ProjectTypeSelector extends Component {
 
-
-  changeView = viewMode => {
-    this.props.changeView(viewMode);
-  };
 
   handleInputChange = event => {
     const {addSearchValue} = this.props 
@@ -39,26 +38,30 @@ class ProjectTypeSelector extends Component {
   };
   
   render() {
-    const {viewMode, searchvalue, filters} = this.props;
+    const { searchvalue, filters, location} = this.props;
     
     return (
       <div className="project-listing-selector">
         <div className="selector-wrapper">
           <div className="view-mode-wrapper">
-            <div onClick={() => this.changeView('selected')} className={classNames('view-mode-item', 'selector', { 'activated': (viewMode==='selected') ? true : false})}>
-              <FormattedMessage id="selected_view"> </FormattedMessage>
-            </div>
-            <div onClick={() => this.changeView('list')} className={classNames('view-mode-item', 'selector', { 'activated': (viewMode==='list') ? true : false})}>
-              <FormattedMessage id="list_view"> </FormattedMessage>
-            </div>
+            <Link to={`/projects-selected`}>
+              <div className={classNames('view-mode-item', 'selector', { 'activated': (location.pathname==='/projects-selected') ? true : false})}>
+                <FormattedMessage id="selected_view"> </FormattedMessage>
+              </div>
+            </Link>
+            <Link to={`/projects-listed`}>
+              <div  className={classNames('view-mode-item', 'selector', { 'activated': (location.pathname==='/projects-listed')  ? true : false})}>
+                <FormattedMessage id="list_view"> </FormattedMessage>
+              </div>
+            </Link>
           </div>
           <div>
  
           </div>
           {
-            (viewMode==='list') ? (
+            (location.pathname==='/projects-listed') ? (
               <div className="filter-wrapper">
-                <input value={searchvalue} type="text" style={{ backgroundImage: "url("+search+")"} } onChange={this.handleInputChange} className={classNames('filter-item', 'selector','field',{ 'activated': (viewMode==='list') ? true : false})}>
+                <input value={searchvalue} type="text" style={{ backgroundImage: "url("+search+")"} } onChange={this.handleInputChange} className={classNames('filter-item', 'selector','field',{ 'activated': (location.pathname==='/projects-listed')? true : false})}>
                 </input>
 
                 <div onClick={() => this.toggle('all')} className={classNames('filter-item', 'selector', { 'activated': filters.length===0 })}>
@@ -114,4 +117,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectTypeSelector);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectTypeSelector));

@@ -8,6 +8,8 @@ import SquareView from './square-view/';
 import LoadingBar from '../../common/loading-bar'
 import Helmet from 'react-helmet'
 
+import Selector from '../selector';
+
 import { Link } from 'react-router-dom'
 
 import './project-selected.scss'
@@ -48,16 +50,20 @@ class ProjectsSelected extends Component {
     ) : null
 
     return (isLoading===false && projects) ? ( 
-      <div className="project-selected-wrapper">
-      <Helmet>
-        <title>{`Archikon |  ${language.lang==="hu" ? 'Projektek | Válogatott munkáink' : "Projects | Selected projects"}`} </title>
-      </Helmet>
-      {selectedProjects}
+      <div className="project-view-wrapper">
+           <Selector/>
+          <div className="project-selected-wrapper">
+          <Helmet>
+            <title>{`Archikon |  ${language.lang==="hu" ? 'Projektek | Válogatott munkáink' : "Projects | Selected projects"}`} </title>
+          </Helmet>
+          {selectedProjects}
+          </div>
       </div>
-    )
-    :  <div class="loading-wrapper">
-      <LoadingBar/>
-    </div>
+      )
+      :  <div class="loading-wrapper">
+        <LoadingBar/>
+      </div>
+    
   }
 }
 

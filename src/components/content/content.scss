@@ -1,3 +1,25 @@
+
+    .switch-wrapper {
+        position: relative;
+
+        &.max-height {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+
+       
+    .switch-wrapper > div {
+        position: absolute;
+        width: 100%;
+    }
+
+
+
+
+
 .content-wrapper {
     max-width: 1920px;
     margin: 0 auto;
@@ -14,7 +36,7 @@
 }
 
 .content-wrapper-main-page {
-    display:flex;
+   
     height:100%;
 
     .header-logo-wrapper{
@@ -62,3 +84,4 @@
     align-items: center;
 
 }
+
