@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 
 import { connect } from 'react-redux';
 import { fetchingProjects } from '../../actions/';
+import Helmet from 'react-helmet'
 
 import Selector from './selector';
 
@@ -36,12 +37,24 @@ class Projects extends React.Component {
     this.setState({isLoading:false})
   }
 
-  render() {
-    const {viewMode} = this.state;
+  static getDerivedStateFromProps(props, state) {
+    if (props.language !== state.language) {
+      return {
+        language: props.language.lang
+      };
+    }
+    return null;
+  }
 
+  render() {
+    const { viewMode, language} = this.state;
+  
     return (
         (true) ? (
         <Fragment>
+          <Helmet>
+            <title>{`Archikon |  ${language==="hu" ? 'Iroda' : 'Office'}`} </title>
+          </Helmet>
           <Selector changeView={this.changeView} viewMode={this.state.viewMode} />
           <div className="office-wrapper">  
             <AboutUs visible={(viewMode==="aboutus")} />  
@@ -63,7 +76,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    projects: state.projects,
+    language: state.localization,
+    projects: state.projects
   };
 };
 

@@ -35,7 +35,7 @@ export default function(state=initialState,action){
         case ADD_CATEGORY_FILTER:
                 return {
                 ...state,
-                filters: [...state.filters, action.payload]
+                filters: ((action.payload==="all") ? [] : [...state.filters, action.payload])
             };
         case REMOVE_CATEGORY_FILTER:
                 return {

@@ -31,7 +31,11 @@ class ProjectTypeSelector extends Component {
 
   toggle = filter => {
     const {addCategoryFilter, removeCategoryFilter} = this.props;
-    this.isChecked(filter) ? removeCategoryFilter(filter) : addCategoryFilter(filter)
+    if (filter!=="all") {
+      this.isChecked(filter) ? removeCategoryFilter(filter) : addCategoryFilter(filter)
+    } else {
+      addCategoryFilter(filter)
+    }
   };
   
   render() {

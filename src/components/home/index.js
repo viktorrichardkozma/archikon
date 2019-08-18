@@ -3,6 +3,7 @@ import Carousel from './carousel/'
 import './home.scss'
 import classNames from 'classnames';
 import { connect } from 'react-redux';
+import Helmet from 'react-helmet'
 
 import headerLogo from '../common/logos/archikon_logo_black.png'
 
@@ -21,7 +22,6 @@ class Home extends Component {
     this.props.getSlideshow()
   }
 
-
   static getDerivedStateFromProps(props, state) {
     if (props.slideshow !== state.slideshow) {
       return {
@@ -29,15 +29,23 @@ class Home extends Component {
         isLoading: props.isLoading
       };
     }
+    if (props.language !== state.language) {
+      return {
+        language: props.language.lang
+      };
+    }
     return null;
   }
 
   
 	render() {
-    const {slideshow, isLoading}= this.state;
+    const {slideshow, isLoading, language}= this.state;
 
 		return (
       <Fragment>
+      <Helmet>
+        <title>{`Archikon |  ${language==="hu" ? 'Főoldal' : "Home"}`} </title>
+      </Helmet>
       <div className="header-logo-wrapper">
         {<img className="header-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
       </div>
@@ -63,6 +71,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
+    language: state.localization,
     slideshow: state.slideshow.slideshow,
     isLoading: state.slideshow.isLoading
   };

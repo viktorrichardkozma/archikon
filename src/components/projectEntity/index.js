@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Carousel from '../home/carousel';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl'
+import Helmet from 'react-helmet'
 
 import { ReactComponent as Arrow} from '../common/icons/nyil.svg'
 import CategoriesTranslator from '../common/categoryTranslator';
@@ -70,6 +71,9 @@ class projectEntity extends Component {
  
     return (isLoading===false && selectedProject) ? ( 
         <div className="project-entity">
+          <Helmet>
+            <title>{`Archikon |  ${language.lang==="hu" ? selectedProject.name_hu : selectedProject.name_en}`} </title>
+          </Helmet>
           <div className="chevron-wrapper">
             <Arrow/> 
           </div>

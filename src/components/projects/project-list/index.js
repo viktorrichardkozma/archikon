@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import {fetchingProjects} from '../../../actions/';
 import LoadingBar from '../../common/loading-bar'
 
+import { Helmet } from 'react-helmet'
+
 import {FormattedMessage} from 'react-intl'
 
 import CategoriesTranslator from '../../common/categoryTranslator';
@@ -133,7 +135,11 @@ class ProjectListed extends React.Component {
     </div>
    
     return (
+      
       <div className="project-listed">
+        <Helmet>
+          <title>{`Archikon |  ${language.lang==="hu" ? 'Projektek | Lista' : "Projects | List"}`} </title>
+        </Helmet>
         <div className="project-listed-wrapper">
         {(isLoading===false && projects) ? ( 
           <div className="table">
