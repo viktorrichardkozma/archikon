@@ -6,6 +6,7 @@ import LoadingBar from '../../common/loading-bar'
 
 import {FormattedMessage} from 'react-intl'
 
+import CategoriesTranslator from '../../common/categoryTranslator';
 
 import './project-listed.scss'
 
@@ -15,6 +16,9 @@ const Row = ({id, name, location, country, year, category}) => (
     <div className="location">{location}</div>
     <div className="country">{country}</div>
     <div className="year">{year}</div>
+    <div className="category">
+      <CategoriesTranslator categories={category} />
+    </div>
   </div>
 )
 
@@ -25,7 +29,8 @@ class ProjectListed extends React.Component {
       isLoading: this.props.isLoading,
       projects: null,
       sorted: false,
-      searchvalue: null
+      searchvalue: null,
+      sorterType: "yearSorter"
     };
     
     this.compareBy.bind(this);
@@ -52,10 +57,16 @@ class ProjectListed extends React.Component {
     }
   }
  
-  sortBy(key) {
+  sortBy(key,event) {
     let arrayCopy = [...this.state.projects];
     arrayCopy.sort(this.compareBy(key));
-    this.setState({projects: arrayCopy, sorted: true})
+
+    this.setState({
+      projects: arrayCopy,
+      sorted: true,
+      sorterType: event.currentTarget.id
+    })
+
   }
  
   static getDerivedStateFromProps(props, state) {
@@ -65,19 +76,22 @@ class ProjectListed extends React.Component {
         isLoading: props.isLoading
       };
     }
-
     if (props.searchvalue !== state.searchvalue) {
       return {
         searchvalue: props.searchvalue
       };
     }
-
-
     return null;
   }
 
   render() {
-    const {projects, isLoading, searchvalue} = this.state;
+    const {
+      projects,
+      isLoading,
+      searchvalue,
+      sorterType
+    } = this.state;
+
     const {language} = this.props;
 
     let projectTranslated = (projects) ? projects.map( (project) => (
@@ -114,18 +128,21 @@ class ProjectListed extends React.Component {
         {(isLoading===false && projects) ? ( 
           <div className="table">
             <div className="header">
-              <div className="name" onClick={() => this.sortBy(language.lang==="hu" ? 'name_hu' : "name_en")}>
-                <FormattedMessage id="project_list"> </FormattedMessage>
+              <div id="nameSorter" className="name" onClick={(e) => this.sortBy(language.lang==="hu" ? 'name_hu' : "name_en",e)}>
+                <FormattedMessage id="project_list"> </FormattedMessage>  {this.state.sorterType === "nameSorter" ? "■" : ""}
               </div>
-              <div className="location" onClick={() => this.sortBy(language.lang==="hu" ? 'location_hu' : "location_en")}>
-                <FormattedMessage id="location_list"> </FormattedMessage>
+              <div id="locationSorter" className="location" onClick={(e) => this.sortBy(language.lang==="hu" ? 'location_hu' : "location_en",e)}>
+                <FormattedMessage id="location_list"> </FormattedMessage> {this.state.sorterType === "locationSorter" ? "■" : ""}
               </div>
-              <div className="country" onClick={() => this.sortBy(language.lang==="hu" ? 'country_hu' : "country_en")}>
-                <FormattedMessage id="country_list"> </FormattedMessage>
+              <div id="countrySorter" className="country" onClick={(e) => this.sortBy(language.lang==="hu" ? 'country_hu' : "country_en",e)}>
+                <FormattedMessage id="country_list"> </FormattedMessage> {this.state.sorterType === "countrySorter" ? "■" : ""}
               </div>
-              <div  className="year" onClick={() => this.sortBy('year')}>
-               <FormattedMessage id="year_list"> </FormattedMessage>
-
+             
+              <div id="yearSorter" className="year" onClick={(e) => this.sortBy('year',e)}>
+               <FormattedMessage id="year_list"> </FormattedMessage> {this.state.sorterType === "yearSorter" ? "■" : ""}
+              </div>
+              <div id="yearSorter" className="category">
+               <FormattedMessage id="category_list"> </FormattedMessage>
               </div>
             </div>
             <div className="body">

@@ -37,11 +37,11 @@ class categoriesTranslator extends Component {
     render() {
     const {categories, language} = this.props;
     
-    return  <div>
+    return  <span>
         {categories.split(',').map( category => {
            return <CategoryTranslator lang={language.lang} category={category} />
         })}
-    </div>
+    </span>
 
     
     }

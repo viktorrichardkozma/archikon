@@ -85,10 +85,10 @@ class People extends Component {
         <hr/>
         <div className="people-ex-wrapper">
           <Header2 data={"Volt munkatársaink"}/>
-          { 
+          { (nonactiveStaff.length!==0) ? 
             nonactiveStaff.map(human => {
-            return <div> {human.name} </div>
-            })
+              return <div> {human.name} </div>
+            }) : "-"
           }
         </div>
         <hr/>

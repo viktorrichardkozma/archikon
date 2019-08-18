@@ -19,7 +19,7 @@ export default {
         'location_list': 'Location',
         'country_list': 'Country',
         'year_list': 'Year',
-        'type_list': 'Type',
+        'category_list': 'Category',
         
         'about_office': 'About Us',
         'people_office': 'People',
@@ -50,7 +50,7 @@ export default {
         'location_list': 'Város',
         'country_list': 'Ország',
         'year_list': 'Év',
-        'type_list': 'Kategória',
+        'category_list': 'Kategória',
     
         'about_office': 'Cégünkről',
         'people_office': 'Munkatársak',
