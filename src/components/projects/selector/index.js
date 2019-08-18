@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 
 import classNames from 'classnames';
-import {addSearchValue} from '../../../actions'
+import {addSearchValue, addCategoryFilter} from '../../../actions'
 
 import './selector.scss'
 
@@ -96,7 +96,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addSearchValue: (value) => dispatch(addSearchValue(value))
+    addSearchValue: (value) => dispatch(addSearchValue(value)),
+    addCategoryFilter: (value) => dispatch(addCategoryFilter(value))
   };
 };
 

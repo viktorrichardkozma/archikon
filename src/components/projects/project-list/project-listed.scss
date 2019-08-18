@@ -7,11 +7,16 @@
             display: flex;
             flex-direction: column;
             margin-bottom: 30px;
+
+            .header {
+                .category{
+                    color:#BCBCBC;
+                }
+            }
             
             .header, .row {
                 display: flex;
                 justify-content: space-between;
-                
                 &.notfound {
                     display: flex;
                     justify-content: center;
@@ -30,7 +35,7 @@
                 .category{
                     text-transform: lowercase;
                 }
-                
+
                 &:last-child > div{
                     border-bottom: none;
                 }
@@ -67,7 +72,7 @@
                     display: flex;
                     justify-content: space-between;
 
-                    .location, .country{
+                    .location, .country, .category{
                         display: none
                     }
                    

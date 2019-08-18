@@ -97,9 +97,9 @@ class ProjectListed extends React.Component {
     let projectTranslated = (projects) ? projects.map( (project) => (
       { 
         id: project.id,
-        name: language==="hu" ? project.name_hu : project.name_en,
-        location: language==="hu" ? project.location_hu : project.location_en,
-        country: language==="hu" ? project.country_hu : project.country_en,
+        name: language.lang==="hu" ? project.name_hu : project.name_en,
+        location: language.lang==="hu" ? project.location_hu : project.location_en,
+        country: language.lang==="hu" ? project.country_hu : project.country_en,
         category: project.category,
         year: project.year.toString()
     })
@@ -113,8 +113,6 @@ class ProjectListed extends React.Component {
         project.category.toLowerCase().match(searchvalue) ||
         project.year.match(searchvalue)
     ) : projectTranslated
-
-  
   
   let rows = (projectFiltered && projectFiltered.length!==0) ? projectFiltered.map( (rowData) => <Row {...rowData} />)
     : 

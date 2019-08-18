@@ -8,7 +8,7 @@ const CategoryTranslator = props => {
 
     switch(category.toLowerCase()) {
         case "public":
-            translatedCategory = (props.lang==='hu') ? 'KÖZÉPÜLET ' : category.toUpperCase()           
+            translatedCategory = (props.lang==='hu') ? 'KÖZÉPÜLET ' : " "+category.toUpperCase()           
             break;
         case "commercial":
             translatedCategory = (props.lang==='hu') ? 'KERESKEDELMI ' : category.toUpperCase()           
@@ -20,7 +20,7 @@ const CategoryTranslator = props => {
             translatedCategory = (props.lang==='hu') ? 'IPARI ' : category.toUpperCase()
             break;
         case "heritage":
-            translatedCategory = (props.lang==='hu') ? 'MŰEMLÉK ' : category.toUpperCase()
+            translatedCategory = (props.lang==='hu') ? 'MŰEMLÉK ' : " "+category.toUpperCase()
             break;
         case "other":
             translatedCategory = (props.lang==='hu') ? 'EGYÉB ' : category.toUpperCase()

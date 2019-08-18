@@ -28,6 +28,7 @@ class Awards extends Component {
     }
     return null;
   }
+  
   render() {
     const {awards, isLoading}= this.state;
     const {language} = this.props;
