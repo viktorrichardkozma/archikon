@@ -30,7 +30,8 @@ class ProjectListed extends React.Component {
       projects: null,
       sorted: false,
       searchvalue: null,
-      sorterType: "yearSorter"
+      sorterType: "yearSorter",
+      filters: []
     };
     
     this.compareBy.bind(this);
@@ -81,6 +82,11 @@ class ProjectListed extends React.Component {
         searchvalue: props.searchvalue
       };
     }
+    if (props.filters !== state.filters) {
+      return {
+        filters: props.filters
+      };
+    }
     return null;
   }
 
@@ -89,7 +95,7 @@ class ProjectListed extends React.Component {
       projects,
       isLoading,
       searchvalue,
-      sorterType
+      filters
     } = this.state;
 
     const {language} = this.props;
@@ -104,16 +110,22 @@ class ProjectListed extends React.Component {
         year: project.year.toString()
     })
     ) : null
-
-   let projectFiltered = (searchvalue && projectTranslated) ? 
+ 
+   let projectSearchFiltered = (searchvalue && projectTranslated) ? 
      projectTranslated.filter((project) => 
         project.name.toLowerCase().match(searchvalue) || 
         project.location.toLowerCase().match(searchvalue) ||
         project.country.toLowerCase().match(searchvalue) ||
-        project.category.toLowerCase().match(searchvalue) ||
+        project.category.toLowerCase().includes(searchvalue) ||
         project.year.match(searchvalue)
     ) : projectTranslated
-  
+
+    let projectFiltered = (filters.length!==0 && projectSearchFiltered) ? (
+      projectTranslated.filter((project) => {
+        return (project.category.split(',').filter(category=>filters.includes(category)).length!==0)
+      })
+    ) : projectSearchFiltered
+
   let rows = (projectFiltered && projectFiltered.length!==0) ? projectFiltered.map( (rowData) => <Row {...rowData} />)
     : 
     <div className="row notfound" >
@@ -159,6 +171,7 @@ class ProjectListed extends React.Component {
 const mapStateToProps = (state) => {
   return {
     projects: state.project.projects,
+    filters: state.project.filters,
     searchvalue: state.project.searchvalue,
     isLoading: state.project.isLoading,
     language: state.localization

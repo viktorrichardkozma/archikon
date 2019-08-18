@@ -10,7 +10,8 @@ import {
    FETCHED_SLIDESHOW_DATA,
    FETCHING_SLIDESHOW_DATA,
    SEARCH_VALUE_DATA,
-   FILTER_VALUE_DATA,
+   ADD_CATEGORY_FILTER,
+   REMOVE_CATEGORY_FILTER,
    LOCALE_SET,
    ERROR} from './types';
 
@@ -159,6 +160,23 @@ export const addSearchValue = (search) => dispatch => {
 }
 
 
+//FILTERS
+
+
+export const addCategoryFilter = (filter) => dispatch => {
+    dispatch({
+        type: ADD_CATEGORY_FILTER,
+        payload: filter
+    })
+}
+
+
+export const removeCategoryFilter = (filter) => dispatch => {
+    dispatch({
+        type: REMOVE_CATEGORY_FILTER,
+        payload: filter
+    })
+}
 
 //LANGUAGES
 export const localeSet = lang  => ({

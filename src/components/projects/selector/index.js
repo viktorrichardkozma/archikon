@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import {FormattedMessage} from 'react-intl';
 
 import classNames from 'classnames';
-import {addSearchValue, addCategoryFilter} from '../../../actions'
+import {addSearchValue, addCategoryFilter, removeCategoryFilter} from '../../../actions'
 
 import './selector.scss'
 
@@ -15,7 +15,9 @@ import 'react-dropdown/style.css'
 import search from '../../common/icons/search.svg'
 
 
-class ProjectTypeSelector extends React.Component {
+class ProjectTypeSelector extends Component {
+
+
   changeView = viewMode => {
     this.props.changeView(viewMode);
   };
@@ -25,10 +27,16 @@ class ProjectTypeSelector extends React.Component {
     addSearchValue(event.target.value.trim().toLowerCase())
   }
 
-  render() {
-    const {viewMode, language, searchvalue} = this.props;
-    
+  isChecked = filter => this.props.filters.includes(filter)
 
+  toggle = filter => {
+    const {addCategoryFilter, removeCategoryFilter} = this.props;
+    this.isChecked(filter) ? removeCategoryFilter(filter) : addCategoryFilter(filter)
+  };
+  
+  render() {
+    const {viewMode, searchvalue, filters} = this.props;
+    
     return (
       <div className="project-listing-selector">
         <div className="selector-wrapper">
@@ -49,31 +57,31 @@ class ProjectTypeSelector extends React.Component {
                 <input value={searchvalue} type="text" style={{ backgroundImage: "url("+search+")"} } onChange={this.handleInputChange} className={classNames('filter-item', 'selector','field',{ 'activated': (viewMode==='list') ? true : false})}>
                 </input>
 
-                <div onClick={() => this.filterAdd('none')} className={classNames('filter-item', 'selector', { 'activated': (viewMode==='list') ? true : false})}>
+                <div onClick={() => this.toggle('all')} className={classNames('filter-item', 'selector', { 'activated': filters.length===0 })}>
                   <FormattedMessage id="0_all"> </FormattedMessage>
                 </div>
 
-                <div onClick={() => this.filterAdd('public')} className={classNames('filter-item', 'selector', { 'activated': (viewMode==='list') ? true : false})}>
+                <div onClick={() => this.toggle('public')} className={classNames('filter-item', 'selector', { 'activated': this.isChecked('public')})}>
                   <FormattedMessage id="1_public"> </FormattedMessage>
                 </div>
 
-                <div onClick={() => this.filterAdd('commercial')} className={classNames('filter-item', 'selector', { 'activated': (viewMode==='list') ? true : false})}>
+                <div onClick={() => this.toggle('commercial')} className={classNames('filter-item', 'selector', { 'activated': this.isChecked('commercial')})}>
                   <FormattedMessage id="2_commercial"> </FormattedMessage>
                 </div>
 
-                <div onClick={() => this.filterAdd('hotel')} className={classNames('filter-item', 'selector', { 'activated': (viewMode==='list') ? true : false})}>
+                <div onClick={() => this.toggle('hotelandres')} className={classNames('filter-item', 'selector', { 'activated': this.isChecked('hotelandres')})}>
                   <FormattedMessage id="3_hotel"> </FormattedMessage>
                 </div>
 
-                <div onClick={() => this.filterAdd('industrial')} className={classNames('filter-item', 'selector', { 'activated': (viewMode==='list') ? true : false})}>
+                <div onClick={() => this.toggle('industrial')} className={classNames('filter-item', 'selector', { 'activated': this.isChecked('industrial')})}>
                   <FormattedMessage id="4_industrial"> </FormattedMessage>
                 </div>
 
-                <div onClick={() => this.filterAdd('heritage')} className={classNames('filter-item', 'selector', { 'activated': (viewMode==='list') ? true : false})}>
+                <div onClick={() => this.toggle('heritage')} className={classNames('filter-item', 'selector', { 'activated': this.isChecked('heritage')})}>
                   <FormattedMessage id="5_heritage"> </FormattedMessage>
                 </div>
 
-                <div onClick={() => this.filterAdd('other')} className={classNames('filter-item', 'selector', { 'activated': (viewMode==='list') ? true : false})}>
+                <div onClick={() => this.toggle('other')} className={classNames('filter-item', 'selector', { 'activated': this.isChecked('other')})}>
                   <FormattedMessage id="6_other"> </FormattedMessage>
                 </div>
               </div>
@@ -90,14 +98,15 @@ const mapStateToProps = (state) => {
   return {
     filters: state.project.filters,
     searchvalue: state.project.searchvalue,
-    language: state.localization
+    language: state.localization,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addSearchValue: (value) => dispatch(addSearchValue(value)),
-    addCategoryFilter: (value) => dispatch(addCategoryFilter(value))
+    addCategoryFilter: (value) => dispatch(addCategoryFilter(value)),
+    removeCategoryFilter: (value) => dispatch(removeCategoryFilter(value))
   };
 };
 

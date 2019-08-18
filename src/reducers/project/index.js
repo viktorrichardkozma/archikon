@@ -1,10 +1,10 @@
-import { FETCHED_PROJECTS_DATA, FETCHED_PROJECT_DATA, FETCHING_PROJECT_DATA, SEARCH_VALUE_DATA} from '../../actions/types';
+import { FETCHED_PROJECTS_DATA, FETCHED_PROJECT_DATA, FETCHING_PROJECT_DATA, SEARCH_VALUE_DATA, ADD_CATEGORY_FILTER,REMOVE_CATEGORY_FILTER} from '../../actions/types';
 
 const initialState={
     projects: null,
     selectedProject: null,
     isLoading: false,
-    filters: null,
+    filters: [],
     searchvalue: null
 }
 
@@ -32,6 +32,18 @@ export default function(state=initialState,action){
                 ...state,
                 searchvalue: action.payload
             };
+        case ADD_CATEGORY_FILTER:
+                return {
+                ...state,
+                filters: [...state.filters, action.payload]
+            };
+        case REMOVE_CATEGORY_FILTER:
+                return {
+                ...state,
+                filters: state.filters.filter(filter => filter !== action.payload)
+            };
+
+
         default:
             return state
     }
