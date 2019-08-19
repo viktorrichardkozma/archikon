@@ -3,6 +3,8 @@ import './carousel.scss'
 import carouselLogo from '../../common/logos/archikon_logo_white.png'
 
 class Carousel extends Component {
+	intervalID = 0;
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -19,8 +21,19 @@ class Carousel extends Component {
 
 	componentDidMount(){
 		const {data} = this.props;
-	
-		this.interval = setInterval(() => {
+
+		this.setState({
+			activeID: 0,
+			wrapperStyle: {
+				backgroundImage: `url('${this.props.data[0].image}')`
+			},
+			buttonHover: false,
+			buttonStyle: {
+				color: '#ffffff'
+			}
+		})
+
+		this.intervalID = setInterval(() => {
 			if (this.state.activeID===data.length-1){
 				this.setState({
 					activeID: 0,
@@ -33,11 +46,11 @@ class Carousel extends Component {
 
 			this.changeActive(this.state.activeID)
 		}, 4000);
+
 	}	
 
 	componentWillUnmount() {
-		clearInterval(this.interval);
-
+		clearInterval(this.intervalID);
 	}
 
 	changeActive(id) {

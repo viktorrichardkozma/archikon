@@ -50,7 +50,7 @@ class Projects extends React.Component {
     const { viewMode, language} = this.state;
   
     return (
-        (true) ? (
+       
         <Fragment>
           <Helmet>
             <title>{`Archikon |  ${language==="hu" ? 'Iroda' : 'Office'}`} </title>
@@ -62,7 +62,7 @@ class Projects extends React.Component {
             <Awards visible={(viewMode==="awards")} />
           </div>
         </Fragment>
-        )  : <LoadingBar/> 
+        
     );
   }
 }

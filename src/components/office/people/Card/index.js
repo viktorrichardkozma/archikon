@@ -1,25 +1,40 @@
-import React from 'react'
+import React,{ Component } from 'react'
 import './Card.scss'
 
-const Card = (props) => {
-  console.log(props)
+class Card extends Component {
+  state = {
+    bottomBarOpened: false
+  };
 
-  let name = props.data.name.split(' ');
+  openBottomBar = () => {
+    this.setState((prevState) => ({
+      bottomBarOpened: true
+    })); 
+  }
 
-  if (props.language==='en') {
+  closeBottomBar = () => {
+    this.setState((prevState) => ({
+      bottomBarOpened: false
+    })); 
+  }
+
+  render() {
+  let name = this.props.data.name.split(' ');
+  const {bottomBarOpened} = this.state;
+
+  if (this.props.language==='en') {
     let first_name = name[0];
     let last_name = name[name.length-1]
     name[name.length-1] = first_name;
     name[0] = last_name
   }
 
-  console.log(name)
-
   return (
+
     <div className="people-card">
       <div className="people-card-inner">
         <div className="avatar-wrapper">
-          <img src={props.data.image}>
+          <img src={this.props.data.image}>
           </img>
         </div>
         <div className="text-wrapper">     
@@ -27,17 +42,27 @@ const Card = (props) => {
             {name.join(' ')}
           </div>
           <div className="detail">
-            { (props.language==='hu') ? props.data.title_hu : props.data.title_en}
+            { (this.props.language==='hu') ? this.props.data.title_hu : this.props.data.title_en}
             <br/>
-            {props.data.mail}
+            {this.props.data.email}
             <br/>
-            {props.data.phone}
+            {this.props.data.phone}
+            {  (this.props.data.description_hu || this.props.data.description_en) ? 
+              <div onClick={this.openBottomBar} className="info">
+                + Info
+              </div>    
+              : null }
+
+        {bottomBarOpened && <div className="bottombar"><div onClick={this.closeBottomBar} className="close">x</div>
+          {(this.props.language==='hu') ? this.props.data.description_hu : this.props.data.description_en}
+        </div>}
+             
           </div>
         </div>
       </div>
     </div>
   )
 }
-
+}
 
 export default Card;

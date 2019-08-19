@@ -40,6 +40,7 @@ class People extends Component {
     this.props.getStaff()
   }
 
+
   static getDerivedStateFromProps(props, state) {
     if (props.staff !== state.staff) {
       return {
@@ -51,6 +52,7 @@ class People extends Component {
   }
 
   render() {
+
     const {staff, isLoading}= this.state;
     const {language} = this.props;
 
@@ -70,7 +72,7 @@ class People extends Component {
         <div className="boss-wrapper">
           { 
             bossStaff.map(human => {
-              return <Card key={human.id} language={language.lang} data={human}/> 
+              return <Card key={human.id} openBottomBar={this.openBottomBar} language={language.lang} data={human}/> 
             })
           }
         </div>
@@ -103,6 +105,7 @@ class People extends Component {
       </div>
     ) : <LoadingBar/>)
     : null }
+    
 }
 
 const mapStateToProps = (state) => {

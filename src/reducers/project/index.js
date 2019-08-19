@@ -5,7 +5,7 @@ const initialState={
     selectedProject: null,
     isLoading: false,
     filters: [],
-    searchvalue: null
+    searchvalue: ''
 }
 
 export default function(state=initialState,action){

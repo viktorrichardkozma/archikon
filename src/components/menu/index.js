@@ -104,7 +104,7 @@ class Menu extends Component {
                       <FormattedMessage id="menu_home"> </FormattedMessage>
                     </Link>
                   </div>
-                  <div onClick={()=>this.changePage()} className={classNames('menu-item', { 'activated': (location.pathname==='/projects-listed' || location.pathname==='/projects-selected') ? true : false})}>
+                  <div onClick={()=>this.changePage()} className={classNames('menu-item', { 'activated': (location.pathname.includes('project')) ? true : false})}>
                     <Link to="/projects-selected">
                       <FormattedMessage id="menu_projects"> </FormattedMessage>
                     </Link>

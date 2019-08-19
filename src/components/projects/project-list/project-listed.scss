@@ -17,20 +17,36 @@
             .header, .row {
                 display: flex;
                 justify-content: space-between;
+                
                 &.notfound {
                     display: flex;
                     justify-content: center;
                     margin-top:10px;
+                    border-bottom:none;
                 }
             
-            div {
-                flex: 1;
-                padding: 0.2rem 0.4em;
-                border-bottom: 1px solid #1c1c1c;
-            }
+                div {
+                    flex: 1;
+                    padding: 0.2rem 0.4em;
+                }
+
+                &:first-child{
+                    border-bottom: 1px solid #1c1c1c;
+                    flex: 1;
+                    padding: 0.2rem 0.4em;
+                }
+
+                &:last-child > div{
+                    border-bottom: none;
+                }
+
             }
 
             .row{
+                color: #8F8F8F;
+                flex: 1;
+                padding: 0.2rem 0.4em;
+                border-bottom: 1px solid #1c1c1c;
 
                 .category{
                     text-transform: lowercase;
@@ -39,6 +55,17 @@
                 &:last-child > div{
                     border-bottom: none;
                 }
+
+                &.hasSite{
+                    color: #8F8F8F;
+                    cursor: pointer;
+                    &:hover{
+                        color: #1c1c1c;
+
+                    }
+                }
+
+
             }
             
             
@@ -46,7 +73,7 @@
                 font-size:14px;
                 font-weight: 600;
                 position: sticky;
-                top:180px;
+                top: 200px;
                     background: white;
                 div { 
                     cursor: pointer;
@@ -62,7 +89,7 @@
 
         &-wrapper {
                
-            
+
             .table {
                 margin:0;
                 display: flex;
@@ -75,37 +102,39 @@
                     .location, .country, .category{
                         display: none
                     }
-                   
     
                     &.notfound {
                         display: flex;
                         justify-content: center;
                         margin-top:10px;
+                        border: none;
                     }
                 
-                div {
-                    flex: 1;
-                    padding: 0.2rem 0.4em;
-                    border-bottom: 1px solid #1c1c1c;
-                }
+                    div {
+                        flex: 1;
+                        padding: 0.2rem 0.4em;
+                    }
+                    .year {
+                        text-align: right;
+                    }
                 }
                 
                 .header {
-                    font-size:14px;
-                    font-weight: 600;
                     position: sticky;
-                    background-color:white;
-                    top: 159px;
+  
+                    top: 293px;
 
                     .location, .country{
                         display: none
                     }
-
-                   
-                   
-                div { 
-                    cursor: pointer;
-                }
+                    
+                    .year{
+                        text-align: right;
+                    }
+                                      
+                    div { 
+                        cursor: pointer;
+                    }
                 }
             }
         }

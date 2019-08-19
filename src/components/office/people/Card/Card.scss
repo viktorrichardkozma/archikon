@@ -23,16 +23,55 @@
 
             .name { 
                 font-weight: 600;
-                padding: 10px 0px;
+                padding-bottom: 10px;
             }
 
             .detail{
                 font-size:12px;
             }
 
+            .info{
+                font-weight: 600;
+                cursor: pointer;
+                margin-top:10px;
+
+
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+
             img {
                 width:100%;
             }
         }
+    }
+}
+
+.bottombar {
+    position:fixed;
+    bottom: 0px;
+    padding: 40px 100px;
+    background: white;
+    height: auto;
+    border-top:1px solid #1c1c1c;
+    left: 0;
+    text-align: left;
+}
+
+
+
+.close{
+    text-align: right;
+    font-size: 30px;
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .bottombar{
+        padding: 40px;
     }
 }

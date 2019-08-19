@@ -29,6 +29,12 @@ class projectEntity extends Component {
     this.resize();
   }
 
+  removeImageData = () => {
+    this.setState({
+      selectedProject: null
+    });
+  }
+
   changeseeMoreState = () => {
     const {seeMoreOpened} = this.state;
 
@@ -39,7 +45,6 @@ class projectEntity extends Component {
   };
 
   goBack(){
-    console.log("CIA")
     this.props.history.goBack();
   }
   
@@ -148,12 +153,12 @@ class projectEntity extends Component {
           </div>
 
           <div className="gallery-wrapper">
-     				<Carousel hidePanel={true} data={addedIdToImages} />
+     				<Carousel hidePanel={true} removeImageData={this.removeImageData} data={addedIdToImages} />
           </div>
         </div>
       )
     :  
-    <div class="loading-wrapper">
+    <div className="loading-wrapper">
       <LoadingBar/>
     </div>
   }

@@ -7,6 +7,8 @@ import {
    FETCHED_PROJECT_DATA,
    FETCHED_AWARDS_DATA,
    FETCHING_AWARDS_DATA,
+   FETCHED_ABOUT_DATA,
+   FETCHING_ABOUT_DATA,
    FETCHED_SLIDESHOW_DATA,
    FETCHING_SLIDESHOW_DATA,
    SEARCH_VALUE_DATA,
@@ -120,6 +122,34 @@ export function fetchedAwards(data) {
     };
 }
 
+
+//ABOUT
+
+export const fetchingAbout = () => dispatch => {
+    dispatch(loadingAbout());
+    axios.get('http://92.119.123.89/about/')
+        .then(data => dispatch(fetchedAbout(data)))
+        .catch(err=>
+            dispatch({
+                type: ERROR,
+                payload: err.data
+            })
+    );
+}
+
+//LOADING
+const loadingAbout = () => dispatch => {
+    dispatch({
+        type: FETCHING_ABOUT_DATA
+    })
+}
+
+export function fetchedAbout(data) {
+    return {
+      type: FETCHED_ABOUT_DATA,
+      about: data.data
+    };
+}
 
 
 //SLIDESHOW

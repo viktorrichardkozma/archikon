@@ -3,27 +3,30 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchingProjects} from '../../../actions/';
 import LoadingBar from '../../common/loading-bar'
+import classnames from 'classnames'
+import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
 
 import {FormattedMessage} from 'react-intl'
 import Selector from '../selector';
+import classNames from 'classnames';
 
 
 import CategoriesTranslator from '../../common/categoryTranslator';
 
 import './project-listed.scss'
 
-const Row = ({id, name, location, country, year, category}) => (
-  <div className="row" key={id}>
-    <div className="name">{name}</div>
-    <div className="location">{location}</div>
-    <div className="country">{country}</div>
-    <div className="year">{year}</div>
-    <div className="category">
-      <CategoriesTranslator categories={category} />
+const Row = ({id, name, location, country, year, category, hassite}) => (
+    <div className={classNames('row',{'hasSite' : hassite })} key={id}>
+      <div className="name">{name}</div>
+      <div className="location">{location}</div>
+      <div className="country">{country}</div>
+      <div className="year">{year}</div>
+      <div className="category">
+        <CategoriesTranslator categories={category} />
+      </div>
     </div>
-  </div>
 )
 
 class ProjectListed extends React.Component {
@@ -34,7 +37,7 @@ class ProjectListed extends React.Component {
       projects: null,
       sorted: false,
       searchvalue: null,
-      sorterType: "yearSorter",
+      sorterType: null,
       filters: []
     };
     
@@ -111,6 +114,7 @@ class ProjectListed extends React.Component {
         location: language.lang==="hu" ? project.location_hu : project.location_en,
         country: language.lang==="hu" ? project.country_hu : project.country_en,
         category: project.category,
+        hassite: project.listed,
         year: project.year.toString()
     })
     ) : null
@@ -130,7 +134,12 @@ class ProjectListed extends React.Component {
       })
     ) : projectSearchFiltered
 
-  let rows = (projectFiltered && projectFiltered.length!==0) ? projectFiltered.map( (rowData) => <Row {...rowData} />)
+  let rows = (projectFiltered && projectFiltered.length!==0) ? projectFiltered.map( (rowData) =>
+   rowData.hassite ?
+      <Link key={rowData.id} to={`/projects/${rowData.id}`}>
+        <Row {...rowData} />
+      </Link> :  <Row {...rowData} />  
+   )
     : 
     <div className="row notfound" >
           -
@@ -169,7 +178,7 @@ class ProjectListed extends React.Component {
                 {rows}
               </div>
             </div>
-            ) : <div class="loading-wrapper">
+            ) : <div className="loading-wrapper">
             <LoadingBar/>
           </div>}
           </div>

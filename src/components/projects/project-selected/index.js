@@ -46,7 +46,7 @@ class ProjectsSelected extends Component {
       project => project.selected===true
     ).
     map(project => 
-     <SquareView id={project.id} data={project} language={language.lang}/>    
+     <SquareView key={project.id} id={project.id} data={project} language={language.lang}/>    
     ) : null
 
     return (isLoading===false && projects) ? ( 
@@ -60,7 +60,7 @@ class ProjectsSelected extends Component {
           </div>
       </div>
       )
-      :  <div class="loading-wrapper">
+      :  <div className="loading-wrapper">
         <LoadingBar/>
       </div>
     

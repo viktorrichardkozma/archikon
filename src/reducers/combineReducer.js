@@ -2,6 +2,7 @@ import {combineReducers} from 'redux';
 import staffReducer from './staff';
 import awardsReducer from './awards';
 import projectReducer from './project';
+import aboutReducer from './about';
 import localizationReducer from './localization';
 import slideshowReducer from './slideshow'
 
@@ -10,5 +11,6 @@ export default combineReducers({
     slideshow: slideshowReducer,
     staff: staffReducer,
     localization: localizationReducer,
-    awards: awardsReducer
+    awards: awardsReducer,
+    about: aboutReducer
 });
