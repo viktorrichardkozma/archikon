@@ -11,14 +11,26 @@ import {addSearchValue, addCategoryFilter, removeCategoryFilter} from '../../../
 
 import './selector.scss'
 
-import Dropdown from 'react-dropdown'
-import 'react-dropdown/style.css'
-
-
 import search from '../../common/icons/search.svg'
 
 
 class ProjectTypeSelector extends Component {
+  state={
+    filters: []
+  }
+
+   
+  static getDerivedStateFromProps(props, state) {
+   
+   
+    if (props.filters !== state.filters) {
+      return {
+        filters: props.filters
+      };
+    }
+
+    return null;
+  }
 
 
   handleInputChange = event => {
@@ -26,7 +38,7 @@ class ProjectTypeSelector extends Component {
     addSearchValue(event.target.value.trim().toLowerCase())
   }
 
-  isChecked = filter => this.props.filters.includes(filter)
+  isChecked = filter => this.state.filters.includes(filter)
 
   toggle = filter => {
     const {addCategoryFilter, removeCategoryFilter} = this.props;
@@ -38,7 +50,8 @@ class ProjectTypeSelector extends Component {
   };
   
   render() {
-    const { searchvalue, filters, location} = this.props;
+    const { searchvalue, location} = this.props;
+    const {filters} = this.state;
     
     return (
       <div className="project-listing-selector">

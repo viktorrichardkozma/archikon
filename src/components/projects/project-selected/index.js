@@ -10,8 +10,6 @@ import Helmet from 'react-helmet'
 
 import Selector from '../selector';
 
-import { Link } from 'react-router-dom'
-
 import './project-selected.scss'
 
 class ProjectsSelected extends Component {
@@ -40,12 +38,9 @@ class ProjectsSelected extends Component {
     const {projects, isLoading} = this.state
     const {language} = this.props;
 
-
-
     const selectedProjects = (projects!==null) ? projects.filter(
       project => project.selected===true
-    ).
-    map(project => 
+    ).map(project => 
      <SquareView key={project.id} id={project.id} data={project} language={language.lang}/>    
     ) : null
 
@@ -60,7 +55,7 @@ class ProjectsSelected extends Component {
           </div>
       </div>
       )
-      :  <div className="loading-wrapper">
+      :  <div className="loading-wrapper selected">
         <LoadingBar/>
       </div>
     

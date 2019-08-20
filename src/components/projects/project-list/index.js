@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import { connect } from 'react-redux';
-import {fetchingProjects} from '../../../actions/';
+import {fetchingProjects,addCategoryFilter} from '../../../actions/';
 import LoadingBar from '../../common/loading-bar'
-import classnames from 'classnames'
 import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
@@ -24,7 +23,7 @@ const Row = ({id, name, location, country, year, category, hassite}) => (
       <div className="country">{country}</div>
       <div className="year">{year}</div>
       <div className="category">
-        <CategoriesTranslator categories={category} />
+        <CategoriesTranslator  categories={category} />
       </div>
     </div>
 )
@@ -48,9 +47,14 @@ class ProjectListed extends React.Component {
   componentDidMount () { 
     this.props.getProjects()
   }
-    
+   
+  
+  componentWillUnmount(){
+    this.props.addCategoryFilter('all')
+  }
+
   compareBy(key) {
-    if (key!="year") {
+    if (key!=="year") {
       return function (a, b) {
         if (a[key] < b[key]) return -1;
         if (a[key] > b[key]) return 1;
@@ -138,7 +142,7 @@ class ProjectListed extends React.Component {
    rowData.hassite ?
       <Link key={rowData.id} to={`/projects/${rowData.id}`}>
         <Row {...rowData} />
-      </Link> :  <Row {...rowData} />  
+      </Link> :  <Row key={rowData.id}  {...rowData} />  
    )
     : 
     <div className="row notfound" >
@@ -200,7 +204,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getProjects: () => dispatch(fetchingProjects())
+    getProjects: () => dispatch(fetchingProjects()),
+    addCategoryFilter: (value) => dispatch(addCategoryFilter(value))
   };
 };
 

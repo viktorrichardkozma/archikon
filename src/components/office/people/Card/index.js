@@ -34,7 +34,7 @@ class Card extends Component {
     <div className="people-card">
       <div className="people-card-inner">
         <div className="avatar-wrapper">
-          <img src={this.props.data.image}>
+          <img alt={this.props.data.name} src={this.props.data.image}>
           </img>
         </div>
         <div className="text-wrapper">     

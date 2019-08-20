@@ -32,8 +32,9 @@ class Carousel extends Component {
 				color: '#ffffff'
 			}
 		})
-
+		
 		this.intervalID = setInterval(() => {
+			if (data) {
 			if (this.state.activeID===data.length-1){
 				this.setState({
 					activeID: 0,
@@ -45,8 +46,8 @@ class Carousel extends Component {
 			}
 
 			this.changeActive(this.state.activeID)
+			}
 		}, 4000);
-
 	}	
 
 	componentWillUnmount() {
@@ -94,7 +95,7 @@ class Carousel extends Component {
 					buttonColour={this.buttonColour.bind(this)}
 				/> )}
 			</section>
-		);
+		)
 	}
 }
 class Panel extends React.Component {

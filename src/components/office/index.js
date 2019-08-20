@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, Component} from 'react';
 
 import { connect } from 'react-redux';
 import { fetchingProjects } from '../../actions/';
@@ -8,12 +8,20 @@ import Selector from './selector';
 
 import './office.scss'
 
-//Action
-import LoadingBar from '../common/loading-bar'
-
 import People from './people';
 import AboutUs from './aboutus';
 import Awards from './awards';
+
+
+class ScrollToTopOnMount extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
+  render() {
+    return null
+  }
+}
 
 class Projects extends React.Component {
 
@@ -29,7 +37,11 @@ class Projects extends React.Component {
     setTimeout(this.enableContent, 1280)
   }
 
+  
+
   changeView = (view) => {
+    window.scrollTo(0, 0)
+
     this.setState({viewMode: view})
   }
 
@@ -52,6 +64,8 @@ class Projects extends React.Component {
     return (
        
         <Fragment>
+          <ScrollToTopOnMount/>
+
           <Helmet>
             <title>{`Archikon |  ${language==="hu" ? 'Iroda' : 'Office'}`} </title>
           </Helmet>

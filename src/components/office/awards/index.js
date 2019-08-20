@@ -38,7 +38,7 @@ class Awards extends Component {
       (isLoading===false && awards) ? (
       <div>
       {awards.map(award =>
-        <div key={award.name_hu}>
+        <div key={award.id}>
           <p>
           {`${award.year} | `}
             <a href={award.link}>

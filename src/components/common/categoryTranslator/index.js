@@ -39,7 +39,7 @@ class categoriesTranslator extends Component {
     
     return  <span>
         {categories.split(',').map( category => {
-           return <CategoryTranslator lang={language.lang} category={category} />
+           return <CategoryTranslator key={category} lang={language.lang} category={category} />
         })}
     </span>
 

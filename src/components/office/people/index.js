@@ -86,7 +86,7 @@ class People extends Component {
         </div>
         <hr/>
         <div className="people-ex-wrapper">
-          <Header2 data={"Volt munkatársaink"}/>
+          <Header2 data={(language.lang==="hu") ? "Volt munkatársaink" : "Former colleagues"}/>
           { (nonactiveStaff.length!==0) ? 
             nonactiveStaff.map(human => {
               return <div> {human.name} </div>
@@ -96,9 +96,9 @@ class People extends Component {
         <hr/>
         <div className="people-new-wrapper">
 
-          <Header2 data={"Jövőbeli munkatársaink"}/>
+          <Header2 data={(language.lang==="hu") ? "Jövőbeli munkatársaink" : "Our future colleagues"}/>
           <a href="mailto:titkarsag@archikon.hu?subject=Archikon | jelentkezés"> 
-            <Button data={"JELENTKEZZ!"}/>
+            <Button data={(language.lang==="hu") ? "JELENTKEZZ!" : "APPLY!"}/>
           </a> 
         </div>
 

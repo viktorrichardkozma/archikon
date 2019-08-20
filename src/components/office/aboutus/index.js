@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import renderHTML from 'react-render-html';
-import headerLogo from '../../common/logos/archikon_logo_black.png'
 import LoadingBar from '../../common/loading-bar'
 
 

@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import LoadingBar from '../common/loading-bar'
 import './content.scss'
 
 import {Route, Switch} from 'react-router-dom'
 
-import { AnimatedSwitch } from 'react-router-transition';
 
 import home from '../home'
 import projectsSelected from '../projects/project-selected'
@@ -18,8 +16,6 @@ import projectEntity from '../projectEntity'
 
 import { withRouter } from 'react-router-dom'
 import classNames from 'classnames';
-
-import headerLogo from '../common/logos/archikon_logo_black.png'
 
 class Projects extends React.Component {
 

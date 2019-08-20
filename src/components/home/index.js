@@ -1,7 +1,6 @@
-import React, { Component,Fragment} from 'react'
+import React, { Component } from 'react'
 import Carousel from './carousel/'
 import './home.scss'
-import classNames from 'classnames';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet'
 
@@ -24,6 +23,9 @@ class Home extends Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.slideshow !== state.slideshow) {
+
+
+
       return {
         slideshow: props.slideshow,
         isLoading: props.isLoading
@@ -46,13 +48,20 @@ class Home extends Component {
      }
     ) : null 
 
+    let preLoadimages = (slideshow) ? slideshow.map( (image, id) => 
+      <img key={id} src={image.image} alt={id} />
+    ) : null 
+
 		return (
       <div className="content-wrapper-main-page">
+        <div className="preLoad" style={{display:'none'}}>
+          {preLoadimages}
+        </div>
       <Helmet>
         <title>{`Archikon |  ${language==="hu" ? 'Főoldal' : "Home"}`} </title>
       </Helmet>
       <div className="header-logo-wrapper">
-        {<img className="header-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
+        {<img className="header-logo" src={headerLogo} alt={"Archikon Architects Logo"}/>}
       </div>
 			<section className="carousel-wrapper">
         {(isLoading===false && slideshow) ? 

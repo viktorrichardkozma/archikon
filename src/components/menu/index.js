@@ -77,9 +77,13 @@ class Menu extends Component {
           <div className={classNames('menu-button',{'menu-open' : !isMenuOpened})} onClick={() => this.changeMenuState()}>
                   {(!isMenuOpened) ? <MenuOpened/> : <MenuClosed/>}
           </div>
-          {(!(location.pathname==='/') && !isMenuOpened ) && <div className='menu-closed-logo-wrapper'>
-            {<img className="menu-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
-          </div>}
+          {(!(location.pathname==='/') && !isMenuOpened ) && 
+            <Link to="/">
+              <div className='menu-closed-logo-wrapper'>
+                {<img className="menu-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
+              </div>
+            </Link>
+          }
           {isMenuOpened && (
           <Fragment>
           <div className='menu-opened-logo-wrapper'>
@@ -101,7 +105,7 @@ class Menu extends Component {
             
                   <div onClick={()=>this.changePage()} className={classNames('menu-item', { 'activated': (location.pathname==='/') ? true : false})}>
                     <Link to="/">
-                      <FormattedMessage id="menu_home"> </FormattedMessage>
+                      {/* <FormattedMessage id="menu_home"> </FormattedMessage> */}
                     </Link>
                   </div>
                   <div onClick={()=>this.changePage()} className={classNames('menu-item', { 'activated': (location.pathname.includes('project')) ? true : false})}>

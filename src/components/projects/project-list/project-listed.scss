@@ -18,12 +18,7 @@
                 display: flex;
                 justify-content: space-between;
                 
-                &.notfound {
-                    display: flex;
-                    justify-content: center;
-                    margin-top:10px;
-                    border-bottom:none;
-                }
+               
             
                 div {
                     flex: 1;
@@ -34,6 +29,13 @@
                     border-bottom: 1px solid #1c1c1c;
                     flex: 1;
                     padding: 0.2rem 0.4em;
+                }
+
+                &.notfound {
+                    display: flex;
+                    justify-content: center;
+                    margin-top:10px;
+                    border-bottom:none;
                 }
 
                 &:last-child > div{
@@ -107,7 +109,7 @@
                         display: flex;
                         justify-content: center;
                         margin-top:10px;
-                        border: none;
+                        border-bottom: none;
                     }
                 
                     div {

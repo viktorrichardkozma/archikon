@@ -1,24 +1,26 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
 
 import {FormattedMessage} from 'react-intl'
 
 import classNames from 'classnames';
 
 import './selector.scss'
-import { Link, withRouter } from 'react-router-dom'
 
-class OfficeTypeSelector extends React.Component {
+class OfficeTypeSelector extends Component {
 
   changeView = viewMode => {
     this.props.changeView(viewMode);
   };
 
+  
+
   render() {
     const {viewMode} = this.props;
 
     return (
+      
       <div className="office-view-selector">
+
         <div className="selector-wrapper">
           <div className="view-mode-wrapper">
             <div onClick={() => this.changeView('aboutus')} className={classNames('view-mode-item', 'selector', { 'activated': (viewMode==='aboutus') ? true : false})}>

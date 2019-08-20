@@ -9,7 +9,6 @@ import {FormattedMessage} from 'react-intl'
 import Helmet from 'react-helmet'
 import { withRouter } from 'react-router-dom'
 
-
 import { ReactComponent as Arrow} from '../common/icons/nyil.svg'
 import CategoriesTranslator from '../common/categoryTranslator';
 import { ReactComponent as DownArrow} from '../common/icons/down.svg';
@@ -18,6 +17,7 @@ class projectEntity extends Component {
   state = {
     isLoading: this.props.isLoading,
     selectedProject: this.props.selectedProject,
+    addedIdToImages: null,
     seeMoreOpened: false,
     seeMoreEnabled: false
   };
@@ -27,12 +27,6 @@ class projectEntity extends Component {
 
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
-  }
-
-  removeImageData = () => {
-    this.setState({
-      selectedProject: null
-    });
   }
 
   changeseeMoreState = () => {
@@ -59,29 +53,35 @@ class projectEntity extends Component {
       })
     }
   }
-
+  
   static getDerivedStateFromProps(props, state) {
 
     if (props.selectedProject !== state.selectedProject) {
       return {
         selectedProject: props.selectedProject,
-        isLoading: props.isLoading
+        isLoading: props.isLoading,
+        addedIdToImages: props.selectedProject.images.map( (image, id) => {
+          return {id: id, image: image.image} 
+        }
+        )
       };
     }
     return null;
   }
 
   render() {
-    const {selectedProject, isLoading, seeMoreOpened, seeMoreEnabled} = this.state;
+    const {selectedProject, isLoading, seeMoreOpened, seeMoreEnabled, addedIdToImages} = this.state;
     const {language} = this.props;
 
-    let addedIdToImages = (selectedProject) ? selectedProject.images.map( (image, id) => {
-      return {id: id, image: image.image} 
-     }
+    let preLoadimages = (selectedProject) ? selectedProject.images.map( (image, id) => 
+      <img alt={image.id} src={image.image} />
     ) : null 
  
     return (isLoading===false && selectedProject) ? ( 
         <div className="project-entity">
+          <div className="preLoad" style={{display:'none'}}>
+            {preLoadimages}
+          </div>
           <Helmet>
             <title>{`Archikon |  ${language.lang==="hu" ? selectedProject.name_hu : selectedProject.name_en}`} </title>
           </Helmet>
@@ -153,7 +153,9 @@ class projectEntity extends Component {
           </div>
 
           <div className="gallery-wrapper">
-     				<Carousel hidePanel={true} removeImageData={this.removeImageData} data={addedIdToImages} />
+     				{ (addedIdToImages!==null) ? <Carousel hidePanel={true} removeImageData={this.removeImageData} data={this.state.addedIdToImages} /> :  <div className="loading-wrapper">
+            <LoadingBar/>
+          </div>}
           </div>
         </div>
       )
