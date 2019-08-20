@@ -4,14 +4,23 @@ import Maps from './maps'
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet'
 
-//Action
+
+class ScrollToTopOnMount extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
+  render() {
+    return null
+  }
+}
 
 class Contact extends Component {
   constructor(props) {
     super(props);
     this.state = {
         list: [],
-        language:''
+        language: ''
     };
   }
 
@@ -29,6 +38,8 @@ class Contact extends Component {
     const {language} = this.state;
 
     return <div className="contact">
+      <ScrollToTopOnMount/>
+
       <Helmet>
         <title>{`Archikon |  ${language==="hu" ? 'Kapcsolat' : 'Contact'}`} </title>
       </Helmet>

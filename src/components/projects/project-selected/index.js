@@ -12,6 +12,16 @@ import Selector from '../selector';
 
 import './project-selected.scss'
 
+class ScrollToTopOnMount extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
+  render() {
+    return null
+  }
+}
+
 class ProjectsSelected extends Component {
   state = {
     isLoading: this.props.isLoading,
@@ -46,6 +56,8 @@ class ProjectsSelected extends Component {
 
     return (isLoading===false && projects) ? ( 
       <div className="project-view-wrapper">
+                     <ScrollToTopOnMount/>
+
            <Selector/>
           <div className="project-selected-wrapper">
           <Helmet>
