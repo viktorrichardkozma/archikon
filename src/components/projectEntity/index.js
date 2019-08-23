@@ -13,11 +13,17 @@ import { ReactComponent as Arrow} from '../common/icons/nyil.svg'
 import CategoriesTranslator from '../common/categoryTranslator';
 import { ReactComponent as DownArrow} from '../common/icons/down.svg';
 
+const MobileGallery = ({data}) => data.map(image => {
+  return <img key={image.id} src={image.image} alt="" className="item" />
+});
+
+
 class projectEntity extends Component {
   state = {
     isLoading: this.props.isLoading,
     selectedProject: this.props.selectedProject,
     addedIdToImages: null,
+    isMobile: null,
     seeMoreOpened: false,
     seeMoreEnabled: false
   };
@@ -45,11 +51,13 @@ class projectEntity extends Component {
   resize() {
     if (window.innerWidth <= 768){
       this.setState({
-        seeMoreEnabled: true
+        seeMoreEnabled: true,
+        isMobile:true
       })
     } else {
       this.setState({
-        seeMoreEnabled: false
+        seeMoreEnabled: false,
+        isMobile:true
       })
     }
   }
@@ -70,7 +78,7 @@ class projectEntity extends Component {
   }
 
   render() {
-    const {selectedProject, isLoading, seeMoreOpened, seeMoreEnabled, addedIdToImages} = this.state;
+    const {selectedProject, isLoading, seeMoreOpened, seeMoreEnabled, addedIdToImages, isMobile} = this.state;
     const {language} = this.props;
 
     let preLoadimages = (selectedProject) ? selectedProject.images.map( (image, id) => 
@@ -153,9 +161,15 @@ class projectEntity extends Component {
           </div>
 
           <div className="gallery-wrapper">
-     				{ (addedIdToImages!==null) ? <Carousel hidePanel={true} removeImageData={this.removeImageData} data={this.state.addedIdToImages} /> :  <div className="loading-wrapper">
-            <LoadingBar/>
-          </div>}
+             { !isMobile ? ((addedIdToImages!==null && !isMobile ) ? <Carousel hidePanel={true} removeImageData={this.removeImageData} data={this.state.addedIdToImages} /> :
+              <div className="loading-wrapper">
+                 <LoadingBar/>
+              </div>
+              ) : (addedIdToImages!==null ) ?  <div className="mobile-gallery-wrapper"><MobileGallery data={this.state.addedIdToImages}/> </div> : (
+              <div className="loading-wrapper">
+                 <LoadingBar/>
+              </div>
+              )}
           </div>
         </div>
       )

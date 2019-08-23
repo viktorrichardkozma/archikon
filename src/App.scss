@@ -2,14 +2,28 @@
   height: 100%;
 }
 
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+.input-checkbox {
+-webkit-appearance: none;
+border-radius: 0;
+}
+
 input:focus {outline:0 !important;}
 
 input[type=text] {
   border: none;
   border-bottom: 1px solid #1c1c1c;
   padding-left:5px;
-}
-
-* {
-  box-sizing: border-box;
 }

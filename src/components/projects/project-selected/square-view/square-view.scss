@@ -13,7 +13,7 @@ $this-tile-size-lg: 16.6666%;
     padding-top: $this-tile-size-sm;
     cursor: pointer;
    
-    font-size: 20px;
+    font-size: 16px;
     color: white;
     font-weight: bold;
     text-align: center;
@@ -27,7 +27,7 @@ $this-tile-size-lg: 16.6666%;
 
       &-inner {
         &-content {
-          font-size: 10px;
+          font-size: 8px;
         }
       }
       
@@ -102,7 +102,7 @@ $this-tile-size-lg: 16.6666%;
   
         &-inner {
           &-content {
-            font-size: 10px;
+            font-size: 8px;
     
           }
         }
@@ -153,7 +153,7 @@ $this-tile-size-lg: 16.6666%;
 
               .name{
                 font-size:26px;
-
+                width: 100%;
               }
               .location{
                 display:none;
@@ -172,7 +172,7 @@ $this-tile-size-lg: 16.6666%;
                 border: 1px solid;
                 cursor: pointer;
                 letter-spacing: 1px;
-              
+
               }
               
           }

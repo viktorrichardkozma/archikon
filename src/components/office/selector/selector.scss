@@ -52,8 +52,9 @@
                     color: $link-activated;
                 }
 
-                .activated {
+                &.activated {
                     color: $link-activated;
+                
                 }
             }
 
