@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './carousel.scss'
+import classNames from 'classnames'
 import carouselLogo from '../../common/logos/archikon_logo_white.png'
 
 class Carousel extends Component {
@@ -80,10 +81,10 @@ class Carousel extends Component {
 		}
 	}
 	render() {
-		const {hidePanel} = this.props;
+		const {hidePanel,mainCarousel} = this.props;
 
 		return (
-			<section className="wrapper" style={this.state.wrapperStyle}>
+			<section className={classNames('wrapper', {"wrapper-main": mainCarousel}, {"wrapper-entity": !mainCarousel})} style={this.state.wrapperStyle}>
 				<Selectors 
 					data={this.props.data}
 					activeID={this.state.activeID}

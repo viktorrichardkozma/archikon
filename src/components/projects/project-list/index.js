@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {fetchingProjects,addCategoryFilter} from '../../../actions/';
 import LoadingBar from '../../common/loading-bar'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-relative-link";
 
 import { Helmet } from 'react-helmet'
 

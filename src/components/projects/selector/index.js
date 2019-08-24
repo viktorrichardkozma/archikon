@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import {FormattedMessage} from 'react-intl';
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-relative-link";
 
 import { withRouter } from 'react-router-dom'
 

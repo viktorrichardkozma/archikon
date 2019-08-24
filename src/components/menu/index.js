@@ -14,7 +14,8 @@ import { ReactComponent as MenuClosed} from '../common/icons/menuClosed.svg'
 
 import './menu.scss'
 
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import { Link } from "react-router-relative-link";
 
 class Menu extends Component {
 

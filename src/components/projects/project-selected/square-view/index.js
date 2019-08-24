@@ -1,7 +1,7 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl'
 
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-relative-link";
 
 import './square-view.scss'
 

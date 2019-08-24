@@ -57,7 +57,7 @@ class projectEntity extends Component {
     } else {
       this.setState({
         seeMoreEnabled: false,
-        isMobile:true
+        isMobile:false
       })
     }
   }
@@ -161,7 +161,7 @@ class projectEntity extends Component {
           </div>
 
           <div className="gallery-wrapper">
-             { !isMobile ? ((addedIdToImages!==null && !isMobile ) ? <Carousel hidePanel={true} removeImageData={this.removeImageData} data={this.state.addedIdToImages} /> :
+             { !isMobile ? (addedIdToImages!==null ? <Carousel hidePanel={true} removeImageData={this.removeImageData} data={this.state.addedIdToImages} /> :
               <div className="loading-wrapper">
                  <LoadingBar/>
               </div>

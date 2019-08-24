@@ -35,12 +35,22 @@ $white: rgb(255,255,255);
 	}
 }
 
-section.wrapper {
+section.wrapper{
 	width: 100%;
 	height: 100%;
-	background-size: cover;
-	background-position: center;
+
 	transition: background-image 500ms ease-in-out;
+	background-position: center; 
+}
+
+section.wrapper-main {
+	background-size: cover;
+}
+
+section.wrapper-entity {
+    background-size: contain;
+	background-repeat: no-repeat;
+
 }
 
 aside.panel {

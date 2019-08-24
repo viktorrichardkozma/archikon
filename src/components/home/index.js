@@ -65,7 +65,7 @@ class Home extends Component {
       </div>
 			<section className="carousel-wrapper">
         {(isLoading===false && slideshow) ? 
-				  <Carousel hidePanel={false} data={addedIdToImages} />
+				  <Carousel mainCarousel={true} hidePanel={false} data={addedIdToImages} />
           : 
           <div className="loading-wrapper">
             <LoadingBar/>
