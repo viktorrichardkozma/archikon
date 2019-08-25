@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 //REDUX
-import store from './store'; 
+import store from './store';
 import { connect } from 'react-redux';
 
 //LOCALIZATION
@@ -27,8 +27,8 @@ import './App.scss';
 addLocaleData(en)
 addLocaleData(hu)
 
-if(localStorage.alhub) 
-{ 
+if(localStorage.alhub)
+{
   store.dispatch(localeSet(localStorage.alhubLang))
 } else {
   store.dispatch(localeSet('hu'))
@@ -42,7 +42,7 @@ class IntlApp extends Component {
     let history = createBrowserHistory()
 
     return (
-      <BrowserRouter basename={process.env === 'production' ? '/client' : '/'}  history={history}>     
+      <BrowserRouter history={history} basename={process.env.NODE_ENV === 'production' ? '/client' : '/'}>
         <IntlProvider locale={lang} messages={messages[lang]}>
           <div className="App">
             <Menu/>
@@ -50,7 +50,7 @@ class IntlApp extends Component {
             {/* <Footer/> */}
           </div>
         </IntlProvider>
-      </BrowserRouter>     
+      </BrowserRouter>
     );
   }
 }
