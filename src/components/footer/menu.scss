@@ -1,5 +1,10 @@
 @import '../../colors.scss';
 
+.menuClosed{
+    display:none;
+}
+
+
 .menu {
     display: flex;
     padding: 0px 50px;

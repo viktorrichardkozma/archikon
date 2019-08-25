@@ -78,20 +78,20 @@ class Menu extends Component {
           <div className={classNames('menu-button',{'menu-open' : !isMenuOpened})} onClick={() => this.changeMenuState()}>
                   {(!isMenuOpened) ? <MenuOpened/> : <MenuClosed/>}
           </div>
-          {(!(location.pathname==='/') && !isMenuOpened ) && 
-            <Link to="/">
-              <div className='menu-closed-logo-wrapper'>
+          
+            {!(location.pathname==='/') && (<Link to="/">
+              <div className={classNames('menu-closed-logo-wrapper',{'menuClosed': isMenuOpened })} > 
                 {<img className="menu-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
               </div>
-            </Link>
-          }
-          {isMenuOpened && (
+            </Link>)}
+          
+          
           <Fragment>
-          <div className='menu-opened-logo-wrapper'>
+          <div className={classNames('menu-opened-logo-wrapper',{'menuClosed':!isMenuOpened})}>
             {<img className="header-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
           </div>
         
-        <div className="menu-wrapper">
+        <div className={classNames('menu-wrapper',{'menuClosed':!isMenuOpened})}>
           <div className="logo-wrapper">
             <Link to="/">
               Archikon Architects
@@ -144,7 +144,7 @@ class Menu extends Component {
           </div>
         </div>
         </Fragment>
-        )}
+        
         </div>
     );
   }
