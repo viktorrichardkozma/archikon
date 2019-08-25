@@ -14,7 +14,8 @@ import CategoriesTranslator from '../common/categoryTranslator';
 import { ReactComponent as DownArrow} from '../common/icons/down.svg';
 
 const MobileGallery = ({data}) => data.map(image => {
-  return <img key={image.id} src={image.image} alt="" className="item" />
+  return  <div className="image-wrapper">
+        <img key={image.id} src={image.image} alt="" className="item" /> </div>
 });
 
 

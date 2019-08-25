@@ -96,9 +96,13 @@
         display:flex;
         flex-wrap: wrap;
 
-        .item{ 
-            width: 100%;
+        .image-wrapper { 
             margin-bottom: 35px;
+            width: 100%;
+            
+            .item{
+                width: 100%;
+            }
         }
 
     }

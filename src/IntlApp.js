@@ -42,7 +42,7 @@ class IntlApp extends Component {
     let history = createBrowserHistory()
 
     return (
-      <BrowserRouter history={history}>     
+      <BrowserRouter basename={process.env === 'production' ? '/client' : '/'}  history={history}>     
         <IntlProvider locale={lang} messages={messages[lang]}>
           <div className="App">
             <Menu/>
