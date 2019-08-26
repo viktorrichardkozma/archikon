@@ -40,7 +40,6 @@ class People extends Component {
     this.props.getStaff()
   }
 
-
   static getDerivedStateFromProps(props, state) {
     if (props.staff !== state.staff) {
       return {

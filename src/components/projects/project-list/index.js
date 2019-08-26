@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import { connect } from 'react-redux';
 import {fetchingProjects,addCategoryFilter} from '../../../actions/';
@@ -15,6 +15,16 @@ import classNames from 'classnames';
 import CategoriesTranslator from '../../common/categoryTranslator';
 
 import './project-listed.scss'
+
+class ScrollToTopOnMount extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
+  render() {
+    return null
+  }
+}
 
 const Row = ({id, name, location, country, year, category, hassite}) => (
     <div className={classNames('row',{'hasSite' : hassite })} key={id}>
@@ -151,6 +161,8 @@ class ProjectListed extends React.Component {
    
     return (
       <div className="project-view-wrapper">
+                             <ScrollToTopOnMount/>
+
         <Selector/>
 
         <div className="project-listed">
