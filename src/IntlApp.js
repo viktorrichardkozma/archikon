@@ -27,10 +27,12 @@ import './App.scss';
 addLocaleData(en)
 addLocaleData(hu)
 
-if(localStorage.alhub)
+
+if(localStorage.alhubLang)
 {
   store.dispatch(localeSet(localStorage.alhubLang))
 } else {
+
   store.dispatch(localeSet('hu'))
 }
 

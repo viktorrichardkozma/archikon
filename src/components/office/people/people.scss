@@ -49,15 +49,16 @@
         width: 100%;
 
         .apply{
-            width:250px;
-            height:80px;
+            width: 186px;
+            height: 58px;
             font-weight: 600;
-            border:1px solid #1c1c1c;
+            border: 1px solid #1c1c1c;
             display: flex;
             align-items: center;
-            font-size: 30px;
+            font-size: 18px;
             justify-content: center;
             margin-bottom: 100px;
+            margin-top: 16px;
             &:hover{
                 background-color: #1c1c1c;
                 color: white;
