@@ -34,20 +34,18 @@ class AboutUs extends Component {
     const {visible, language} = this.props
     const {about, isLoading}= this.state;
 
-    return (visible===true) ? ((about && isLoading!==true) ? (
-      (language.lang==='hu') ?
-      (<div className="office-decription-wrapper">
-        {renderHTML(about[0].info_hu)}
-        </div>) : (<div className="office-decription-wrapper">
-        {renderHTML(about[0].info_en)}
-        </div>)) :
-        <div className="loading-wrapper">
-          <LoadingBar/>
-        </div>
+    return (visible===true) ? 
+      (
+        (about && isLoading!==true) ? (
+          <div className="office-decription-wrapper">
+            {(language.lang==='hu') ? renderHTML(about[0].info_hu) : renderHTML(about[0].info_en)}
+          </div>
+        ) :
+          <div className="loading-wrapper">
+            <LoadingBar/>
+          </div>
       ) : null
-  
   }
-  
 }
 
 const mapStateToProps = (state) => {
