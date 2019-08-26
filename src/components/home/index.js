@@ -24,8 +24,6 @@ class Home extends Component {
   static getDerivedStateFromProps(props, state) {
     if (props.slideshow !== state.slideshow) {
 
-
-
       return {
         slideshow: props.slideshow,
         isLoading: props.isLoading

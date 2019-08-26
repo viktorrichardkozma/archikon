@@ -33,7 +33,7 @@ class Awards extends Component {
     const {awards, isLoading}= this.state;
     const {language} = this.props;
 
-    return (this.props.visible===true) ?
+    return (this.props.isVisible===true) ?
     (
       (isLoading===false && awards) ? (
       <div>

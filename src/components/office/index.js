@@ -71,9 +71,9 @@ class Projects extends React.Component {
           </Helmet>
           <Selector changeView={this.changeView} viewMode={this.state.viewMode} />
           <div className="office-wrapper">  
-            <AboutUs visible={(viewMode==="aboutus")} />  
-            <People visible={(viewMode==="people")} />
-            <Awards visible={(viewMode==="awards")} />
+            <AboutUs isVisible={(viewMode==="aboutus")} />  
+            <People isVisible={(viewMode==="people")} />
+            <Awards isVisible={(viewMode==="awards")} />
           </div>
         </Fragment>
         

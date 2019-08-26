@@ -31,14 +31,16 @@ class AboutUs extends Component {
   }
 
   render() {
-    const {visible, language} = this.props
-    const {about, isLoading}= this.state;
+    const {isVisible, language} = this.props
+    const {about, isLoading} = this.state;
 
-    return (visible===true) ? 
+    return (isVisible) ? 
       (
-        (about && isLoading!==true) ? (
+        (about && !isLoading) ? (
           <div className="office-decription-wrapper">
-            {(language.lang==='hu') ? renderHTML(about[0].info_hu) : renderHTML(about[0].info_en)}
+            {
+              renderHTML( language==='hu' ? about[0].info_hu : about[0].info_en )
+            }
           </div>
         ) :
           <div className="loading-wrapper">
@@ -52,7 +54,7 @@ const mapStateToProps = (state) => {
   return {
     about: state.about.about,
     isLoading: state.about.isLoading,
-    language: state.localization
+    language: state.localization.lang
   };
 };
 

@@ -65,7 +65,7 @@ class People extends Component {
     : null
 
 
-    return (this.props.visible===true) ?
+    return (this.props.isVisible===true) ?
     ( (isLoading===false && staff) ? ( 
       <div className="people">
         <div className="boss-wrapper">
