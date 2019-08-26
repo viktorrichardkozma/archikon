@@ -55,7 +55,7 @@
 
     .description-wrapper{
         font-size:14px;
-        overflow: scroll;
+        overflow: auto;
         height: 40%;
         text-align: justify;
 
@@ -170,7 +170,7 @@
     
         .description-wrapper{
             font-size:14px;
-            overflow: scroll;
+            overflow: auto;
             height: auto;
             margin-bottom: 30px;
         }
