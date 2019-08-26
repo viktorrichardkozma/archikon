@@ -8,14 +8,14 @@ import './square-view.scss'
 //Action
 
 const SquareView = (props) => {
-  return <Link to={`/projects/${props.data.id}`}>
-      <div className="square">
+  return  <div className="square">
           <div className="square-inner" style={{
               backgroundImage :`url(${props.data.thumbnail})`,
               backgroundPosition: 'center',
-              backgroundSize: '500px'}} >
+              backgroundSize: '350px'}} >
             
             <div className="square-inner-content" >
+            <Link to={`/projects/${props.data.id}`}>
               <div className="square-inner-content-wrapper" >
                   <div className="name">
                       {(props.language==='hu') ? props.data.name_hu : props.data.name_en}
@@ -33,10 +33,11 @@ const SquareView = (props) => {
                     </div>
                   </Link>
               </div>
+              </Link>
             </div>
           </div>
         </div>
-      </Link>
+ 
  
 }
 
