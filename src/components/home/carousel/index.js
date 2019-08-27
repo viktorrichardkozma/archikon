@@ -10,6 +10,7 @@ class Carousel extends Component {
 		super(props);
 		this.state = {
 			activeID: 0,
+			url: this.props.data[0].url,
 			wrapperStyle: {
 				backgroundImage: `url('${this.props.data[0].image}')`
 			},
@@ -25,6 +26,7 @@ class Carousel extends Component {
 
 		this.setState({
 			activeID: 0,
+			url: this.props.data[0].url,
 			wrapperStyle: {
 				backgroundImage: `url('${this.props.data[0].image}')`
 			},
@@ -33,7 +35,7 @@ class Carousel extends Component {
 				color: '#ffffff'
 			}
 		})
-		
+
 		this.intervalID = setInterval(() => {
 			if (data) {
 			if (this.state.activeID===data.length-1){
@@ -43,13 +45,13 @@ class Carousel extends Component {
 			} else {
 				this.setState((prevState, props) => ({
 					activeID: prevState.activeID + 1
-				})); 
+				}));
 			}
 
 			this.changeActive(this.state.activeID)
 			}
 		}, 4000);
-	}	
+	}
 
 	componentWillUnmount() {
 		clearInterval(this.intervalID);
@@ -58,6 +60,7 @@ class Carousel extends Component {
 	changeActive(id) {
 		this.setState({
 			activeID: id,
+			url: this.props.data[id].url,
 			wrapperStyle: {
 				backgroundImage: `url('${this.props.data[id].image}')`
 			}
@@ -85,15 +88,16 @@ class Carousel extends Component {
 
 		return (
 			<section className={classNames('wrapper', {"wrapper-main": mainCarousel}, {"wrapper-entity": !mainCarousel})} style={this.state.wrapperStyle}>
-				<Selectors 
+				<Selectors
 					data={this.props.data}
 					activeID={this.state.activeID}
 					changeActive={this.changeActive.bind(this)}
 				/>
-				{ (!hidePanel && <Panel 
+				{ (!hidePanel && <Panel
 					data={this.props.data[this.state.activeID]}
 					buttonStyle={this.state.buttonStyle}
 					buttonColour={this.buttonColour.bind(this)}
+					url={this.state.url}
 				/> )}
 			</section>
 		)
@@ -103,9 +107,11 @@ class Panel extends React.Component {
 	render() {
 		return (
 			<aside className="panel" style={this.props.panelStyle}>
-				<div className="carousel-logo-wrapper">
-					<img className="carousel-logo" src={carouselLogo}  alt="Archikon Architects Logo"/>
-				</div>
+				<a href={this.props.url}>
+					<div className="carousel-logo-wrapper">
+						<img className="carousel-logo" src={carouselLogo}  alt="Archikon Architects Logo"/>
+					</div>
+				</a>
 			</aside>
 		);
 	}
@@ -121,8 +127,8 @@ class Selectors extends React.Component {
 	render() {
 		return (
 			<div className="selectors">
-				{this.props.data.map((item) => 
-					<Selector 
+				{this.props.data.map((item) =>
+					<Selector
 						key={item.id}
 						id={item.id}
 						handleClick={this.handleClick}

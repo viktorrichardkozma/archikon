@@ -23,7 +23,6 @@ class Home extends Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.slideshow !== state.slideshow) {
-
       return {
         slideshow: props.slideshow,
         isLoading: props.isLoading
@@ -37,18 +36,17 @@ class Home extends Component {
     return null;
   }
 
-  
 	render() {
     const {slideshow, isLoading, language}= this.state;
 
     let addedIdToImages = (slideshow) ? slideshow.map( (image, id) => {
-      return {id: id, image: image.image} 
+      return {id: id, image: image.image, url: image.url}
      }
-    ) : null 
+    ) : null
 
-    let preLoadimages = (slideshow) ? slideshow.map( (image, id) => 
+    let preLoadimages = (slideshow) ? slideshow.map( (image, id) =>
       <img key={id} src={image.image} alt={id} />
-    ) : null 
+    ) : null
 
 		return (
       <div className="content-wrapper-main-page">
@@ -62,9 +60,9 @@ class Home extends Component {
         {<img className="header-logo" src={headerLogo} alt={"Archikon Architects Logo"}/>}
       </div>
 			<section className="carousel-wrapper">
-        {(isLoading===false && slideshow) ? 
+        {(isLoading===false && slideshow) ?
 				  <Carousel mainCarousel={true} hidePanel={false} data={addedIdToImages} />
-          : 
+          :
           <div className="loading-wrapper">
             <LoadingBar/>
           </div>
