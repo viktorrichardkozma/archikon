@@ -1,25 +1,21 @@
-    //LOGO + LINE-WRAPPER-MARGIN
-.office-decription-wrapper{
+// LOGO + LINE-WRAPPER-MARGIN
+.office-decription-wrapper {
     padding-left:150px + 40px;
     padding-right: 40%;
-   
 
-    .desc-logo{
-
+    .desc-logo {
         display: block;
         width: 50px;
         margin-bottom: 20px;
     }
-
 }
 
 
 
 @media screen and (max-width: 767px) {
 
-    .office-decription-wrapper{
+    .office-decription-wrapper {
         padding: 0px;
-        text-align: justify;
     }
-    
+
  }

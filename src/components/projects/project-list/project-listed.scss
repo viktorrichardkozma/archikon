@@ -1,8 +1,8 @@
 .project-listed {
 
     &-wrapper {
-           
-        
+
+
         .table {
             display: flex;
             flex-direction: column;
@@ -13,20 +13,20 @@
                     color:#BCBCBC;
                 }
             }
-            
+
             .header, .row {
                 display: flex;
                 justify-content: space-between;
-                
-               
-            
+
+
+
                 div {
                     flex: 1;
                     padding: 0.2rem 0.4em;
                 }
 
                 &:first-child{
-                    border-bottom: 1px solid #1c1c1c;
+                    border-bottom: 1px solid #e0e0e0;
                     flex: 1;
                     padding: 0.2rem 0.4em;
                 }
@@ -48,7 +48,7 @@
                 color: #8F8F8F;
                 flex: 1;
                 padding: 0.2rem 0.4em;
-                border-bottom: 1px solid #1c1c1c;
+                border-bottom: 1px solid #e0e0e0;
 
                 .category{
                     text-transform: lowercase;
@@ -69,15 +69,15 @@
 
 
             }
-            
-            
+
+
             .header {
                 font-size:14px;
                 font-weight: 600;
                 position: sticky;
                 top: 200px;
                     background: white;
-                div { 
+                div {
                     cursor: pointer;
                 }
             }
@@ -90,13 +90,13 @@
     .project-listed {
 
         &-wrapper {
-               
+
 
             .table {
                 margin:0;
                 display: flex;
                 flex-direction: column;
-                
+
                 .header, .row {
                     display: flex;
                     justify-content: space-between;
@@ -104,14 +104,14 @@
                     .location, .country, .category{
                         display: none
                     }
-    
+
                     &.notfound {
                         display: flex;
                         justify-content: center;
                         margin-top:10px;
                         border-bottom: none;
                     }
-                
+
                     div {
                         flex: 1;
                         padding: 0.2rem 0.4em;
@@ -120,21 +120,21 @@
                         text-align: right;
                     }
                 }
-                
+
                 .header {
                     position: sticky;
-  
+
                     top: 293px;
 
                     .location, .country{
                         display: none
                     }
-                    
+
                     .year{
                         text-align: right;
                     }
-                                      
-                    div { 
+
+                    div {
                         cursor: pointer;
                     }
                 }

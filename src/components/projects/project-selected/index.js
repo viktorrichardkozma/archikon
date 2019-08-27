@@ -28,7 +28,7 @@ class ProjectsSelected extends Component {
     projects: this.props.projects
   };
 
-  
+
   componentDidMount () { 
     this.props.getProjects()
   }
@@ -42,7 +42,7 @@ class ProjectsSelected extends Component {
     }
     return null;
   }
-  
+
 
   render() {
     const {projects, isLoading} = this.state
@@ -50,11 +50,15 @@ class ProjectsSelected extends Component {
 
     const selectedProjects = (projects!==null) ? projects.filter(
       project => project.selected===true
-    ).map(project => 
-     <SquareView key={project.id} id={project.id} data={project} language={language.lang}/>    
+    ).map(project =>
+     <SquareView key={project.id} id={project.id} data={project} language={language.lang}/>
     ) : null
 
-    return (isLoading===false && projects) ? ( 
+    if (selectedProjects) {
+      selectedProjects.reverse();
+    }
+
+    return (isLoading===false && projects) ? (
       <div className="project-view-wrapper">
                      <ScrollToTopOnMount/>
 
@@ -70,7 +74,7 @@ class ProjectsSelected extends Component {
       :  <div className="loading-wrapper selected">
         <LoadingBar/>
       </div>
-    
+
   }
 }
 
