@@ -20,7 +20,7 @@ import {
 //PROJECTS ALL
 export const fetchingProjects = () => dispatch => {
     dispatch(loadingProject());
-    axios.get('http://92.119.123.89/projects/')
+    axios.get('https://92.119.123.89/projects/')
         .then(data => dispatch(fetchedProjects(data)))
         .catch(err=>
             dispatch({
@@ -40,7 +40,7 @@ export function fetchedProjects(data) {
 //PROJECTS ID
 export const fetchingProject = (id) => dispatch => {
     dispatch(loadingProject());
-    axios.get('http://92.119.123.89/projects/'+id+'/')
+    axios.get('https://92.119.123.89/projects/'+id+'/')
         .then(data => dispatch(fetchedProject(data)))
         .catch(err=>
             dispatch({
@@ -69,7 +69,7 @@ const loadingProject = () => dispatch => {
 
 export const fetchingStaff = () => dispatch => {
     dispatch(loadingStaff());
-    axios.get('http://92.119.123.89/staff/')
+    axios.get('https://92.119.123.89/staff/')
         .then(data => dispatch(fetchedStaff(data)))
         .catch(err=>
             dispatch({
@@ -98,7 +98,7 @@ export function fetchedStaff(data) {
 
 export const fetchingAwards = () => dispatch => {
     dispatch(loadingAwards());
-    axios.get('http://92.119.123.89/awards/')
+    axios.get('https://92.119.123.89/awards/')
         .then(data => dispatch(fetchedAwards(data)))
         .catch(err=>
             dispatch({
@@ -127,7 +127,7 @@ export function fetchedAwards(data) {
 
 export const fetchingAbout = () => dispatch => {
     dispatch(loadingAbout());
-    axios.get('http://92.119.123.89/about/')
+    axios.get('https://92.119.123.89/about/')
         .then(data => dispatch(fetchedAbout(data)))
         .catch(err=>
             dispatch({
@@ -156,7 +156,7 @@ export function fetchedAbout(data) {
 
 export const fetchingSlideshow = () => dispatch => {
     dispatch(loadingSlideshow());
-    axios.get('http://92.119.123.89/slideshows/')
+    axios.get('https://92.119.123.89/slideshows/')
         .then(data => dispatch(fetchedSlideshow(data)))
         .catch(err=>
             dispatch({
@@ -215,7 +215,7 @@ export const localeSet = lang  => ({
 })
 
 
-export const setLocale = lang => dispatch => { 
+export const setLocale = lang => dispatch => {
     localStorage.alhubLang=lang
     dispatch(localeSet(lang))
 }
