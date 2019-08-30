@@ -11,7 +11,6 @@ import {FormattedMessage} from 'react-intl'
 import Selector from '../selector';
 import classNames from 'classnames';
 
-import CategoriesTranslator from '../../common/categoryTranslator';
 import { translateCategoriesString } from '../../common/categoryTranslator';
 
 import { ReactComponent as DownArrow } from './down.svg';

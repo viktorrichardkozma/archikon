@@ -15,7 +15,7 @@
 
 
                 div {
-                    flex: 1;
+                    flex: 3;
                     padding: 0.2rem 0.4em;
 
                     svg {
@@ -33,6 +33,14 @@
                         -ms-transform: rotate(180deg);
                         transform: rotate(180deg);
                     }
+                }
+
+                div.year, div.country {
+                    flex-grow: 1;
+                }
+
+                div.category, div.location {
+                    flex-grow: 2;
                 }
 
                 &:first-child{

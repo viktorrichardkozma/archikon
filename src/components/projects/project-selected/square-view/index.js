@@ -18,6 +18,11 @@ const SquareView = (props) => {
               <div className="square-inner-content-wrapper" >
                   <div className="name">
                     {(props.language==='hu') ? props.data.name_hu : props.data.name_en}
+                    <Link to={`/projects/${props.data.id}`}>
+                      <div className="button">
+                          <FormattedMessage id="button_info"> </FormattedMessage>
+                      </div>
+                    </Link>
                   </div>
               </div>
             </div>
