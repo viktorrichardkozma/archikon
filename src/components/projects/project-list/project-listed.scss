@@ -8,12 +8,6 @@
             flex-direction: column;
             margin-bottom: 30px;
 
-            .header {
-                .category{
-                    color:#BCBCBC;
-                }
-            }
-
             .header, .row {
                 display: flex;
                 justify-content: space-between;
@@ -23,6 +17,22 @@
                 div {
                     flex: 1;
                     padding: 0.2rem 0.4em;
+
+                    svg {
+                        width: 14px;
+                        margin-left: 8px;
+                        -webkit-transition: .25s transform ease-out;
+                        -moz-transition: .25s transform ease-out;
+                        -ms-transition: .25s transform ease-out;
+                        transition: .25s transform ease-out;
+                    }
+
+                    svg.descending {
+                        -webkit-transform: rotate(180deg);
+                        -moz-transform: rotate(180deg);
+                        -ms-transform: rotate(180deg);
+                        transform: rotate(180deg);
+                    }
                 }
 
                 &:first-child{

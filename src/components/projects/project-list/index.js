@@ -11,8 +11,10 @@ import {FormattedMessage} from 'react-intl'
 import Selector from '../selector';
 import classNames from 'classnames';
 
-
 import CategoriesTranslator from '../../common/categoryTranslator';
+import { translateCategoriesString } from '../../common/categoryTranslator';
+
+import { ReactComponent as DownArrow } from './down.svg';
 
 import './project-listed.scss'
 
@@ -32,9 +34,7 @@ const Row = ({id, name, location, country, year, category, hassite}) => (
       <div className="location">{location}</div>
       <div className="country">{country}</div>
       <div className="year">{year}</div>
-      <div className="category">
-        <CategoriesTranslator  categories={category} />
-      </div>
+      <div className="category">{category}</div>
     </div>
 )
 
@@ -46,10 +46,11 @@ class ProjectListed extends React.Component {
       projects: null,
       sorted: false,
       searchvalue: null,
-      sorterType: null,
-      filters: []
+      filters: [],
+      ascending: true,
+      sortKey: '',
     };
-    
+
     this.compareBy.bind(this);
     this.sortBy.bind(this);
   }
@@ -57,40 +58,52 @@ class ProjectListed extends React.Component {
   componentDidMount () { 
     this.props.getProjects()
   }
-   
-  
+
+
   componentWillUnmount(){
     this.props.addCategoryFilter('all')
   }
 
-  compareBy(key) {
-    if (key!=="year") {
+  compareBy(key, ascending, lang) {
+    if (ascending) {
       return function (a, b) {
-        if (a[key] < b[key]) return -1;
-        if (a[key] > b[key]) return 1;
+        const first = key === 'category' ? translateCategoriesString(a[key], lang) : a[key];
+        const second = key === 'category' ? translateCategoriesString(b[key], lang) : b[key];
+
+        if (first < second) return -1;
+        if (first > second) return 1;
         return 0;
       };
     } else {
       return function (a, b) {
-        if (a[key] < b[key]) return 1;
-        if (a[key] > b[key]) return -1;
+        const first = key === 'category' ? translateCategoriesString(a[key], lang) : a[key];
+        const second = key === 'category' ? translateCategoriesString(b[key], lang) : b[key];
+
+        if (first < second) return 1;
+        if (first > second) return -1;
         return 0;
       };
     }
   }
- 
-  sortBy(key,event) {
-    let arrayCopy = [...this.state.projects];
-    arrayCopy.sort(this.compareBy(key));
+
+  sortBy(key, lang) {
+    let ascending = this.state.ascending;
+    if (this.state.sortKey !== key) {
+      ascending = true;
+    }
+
+    let arrayCopy = [...this.state.projects]
+    arrayCopy.sort(this.compareBy(key, ascending, lang));
 
     this.setState({
       projects: arrayCopy,
       sorted: true,
-      sorterType: event.currentTarget.id
+      ascending: !ascending,
+      sortKey: key,
     })
 
   }
- 
+
   static getDerivedStateFromProps(props, state) {
     if (props.projects !== state.projects && state.sorted===false) {
       return {
@@ -122,20 +135,20 @@ class ProjectListed extends React.Component {
     const {language} = this.props;
 
     let projectTranslated = (projects) ? projects.map( (project) => (
-      { 
+      {
         id: project.id,
         name: language.lang==="hu" ? project.name_hu : project.name_en,
         location: language.lang==="hu" ? project.location_hu : project.location_en,
         country: language.lang==="hu" ? project.country_hu : project.country_en,
-        category: project.category,
+        category: translateCategoriesString(project.category, language.lang),
         hassite: project.listed,
         year: project.year.toString()
     })
     ) : null
- 
-   let projectSearchFiltered = (searchvalue && projectTranslated) ? 
-     projectTranslated.filter((project) => 
-        project.name.toLowerCase().match(searchvalue) || 
+
+   let projectSearchFiltered = (searchvalue && projectTranslated) ?
+     projectTranslated.filter((project) =>
+        project.name.toLowerCase().match(searchvalue) ||
         project.location.toLowerCase().match(searchvalue) ||
         project.country.toLowerCase().match(searchvalue) ||
         project.category.toLowerCase().includes(searchvalue) ||
@@ -152,13 +165,13 @@ class ProjectListed extends React.Component {
    rowData.hassite ?
       <Link key={rowData.id} to={`/projects/${rowData.id}`}>
         <Row {...rowData} />
-      </Link> :  <Row key={rowData.id}  {...rowData} />  
+      </Link> :  <Row key={rowData.id}  {...rowData} />
    )
-    : 
+    :
     <div className="row notfound" >
           -
     </div>
-   
+
     return (
       <div className="project-view-wrapper">
                              <ScrollToTopOnMount/>
@@ -170,24 +183,43 @@ class ProjectListed extends React.Component {
             <title>{`Archikon |  ${language.lang==="hu" ? 'Projektek | Lista' : "Projects | List"}`} </title>
           </Helmet>
           <div className="project-listed-wrapper">
-          {(isLoading===false && projects) ? ( 
+          {(isLoading===false && projects) ? (
             <div className="table">
               <div className="header">
-                <div id="nameSorter" className="name" onClick={(e) => this.sortBy(language.lang==="hu" ? 'name_hu' : "name_en",e)}>
-                  <FormattedMessage id="project_list"> </FormattedMessage>  {this.state.sorterType === "nameSorter" ? "■" : ""}
+                <div id="nameSorter" className="name"
+                  onClick={(e) => this.sortBy(language.lang === "hu" ? 'name_hu' : "name_en", language.lang)}
+                >
+                  <FormattedMessage id="project_list"></FormattedMessage> {
+                    this.state.sortKey.startsWith('name') ? <SortDirectionArrow ascending={this.state.ascending} /> : null
+                  }
                 </div>
-                <div id="locationSorter" className="location" onClick={(e) => this.sortBy(language.lang==="hu" ? 'location_hu' : "location_en",e)}>
-                  <FormattedMessage id="location_list"> </FormattedMessage> {this.state.sorterType === "locationSorter" ? "■" : ""}
+                <div id="locationSorter" className="location"
+                  onClick={(e) => this.sortBy(language.lang === "hu" ? 'location_hu' : "location_en", language.lang)}
+                >
+                  <FormattedMessage id="location_list"></FormattedMessage> {
+                    this.state.sortKey.startsWith('location') ? <SortDirectionArrow ascending={this.state.ascending} /> : null
+                  }
                 </div>
-                <div id="countrySorter" className="country" onClick={(e) => this.sortBy(language.lang==="hu" ? 'country_hu' : "country_en",e)}>
-                  <FormattedMessage id="country_list"> </FormattedMessage> {this.state.sorterType === "countrySorter" ? "■" : ""}
+                <div id="countrySorter" className="country"
+                  onClick={(e) => this.sortBy(language.lang === "hu" ? 'country_hu' : "country_en", language.lang)}
+                >
+                  <FormattedMessage id="country_list"></FormattedMessage> {
+                    this.state.sortKey.startsWith('country') ? <SortDirectionArrow ascending={this.state.ascending} /> : null
+                  }
                 </div>
-              
-                <div id="yearSorter" className="year" onClick={(e) => this.sortBy('year',e)}>
-                <FormattedMessage id="year_list"> </FormattedMessage> {this.state.sorterType === "yearSorter" ? "■" : ""}
+                <div id="yearSorter" className="year"
+                  onClick={(e) => this.sortBy('year', language.lang)}
+                >
+                  <FormattedMessage id="year_list"></FormattedMessage> {
+                    this.state.sortKey.startsWith('year') ? <SortDirectionArrow ascending={this.state.ascending} /> : null
+                  }
                 </div>
-                <div id="yearSorter" className="category">
-                <FormattedMessage id="category_list"> </FormattedMessage>
+                <div id="yearSorter" className="category"
+                  onClick={(e) => this.sortBy('category', language.lang)}
+                >
+                <FormattedMessage id="category_list"> </FormattedMessage> {
+                  this.state.sortKey.startsWith('category') ? <SortDirectionArrow ascending={this.state.ascending} /> : null
+                }
                 </div>
               </div>
               <div className="body">
@@ -202,6 +234,10 @@ class ProjectListed extends React.Component {
       </div>
     );
   }
+}
+
+const SortDirectionArrow = (props) => {
+  return <DownArrow className={props.ascending ? 'descending' : ''} />;
 }
 
 const mapStateToProps = (state) => {
