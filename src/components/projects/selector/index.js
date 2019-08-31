@@ -36,7 +36,7 @@ class ProjectTypeSelector extends Component {
 
   handleInputChange = event => {
     const {addSearchValue} = this.props 
-    addSearchValue(event.target.value.trim().toLowerCase())
+    addSearchValue(event.target.value)
   }
 
   isChecked = filter => this.state.filters.includes(filter)
@@ -77,7 +77,7 @@ class ProjectTypeSelector extends Component {
           {
             (location.pathname==='/projects-listed') ? (
               <div className="filter-wrapper">
-                <input value={searchvalue} type="text" style={{ backgroundImage: "url("+search+")"} } onChange={this.handleInputChange} className={classNames('filter-item', 'selector','field',{ 'activated': (location.pathname==='/projects-listed')? true : false})}>
+                <input value={searchvalue} type="text" style={{ backgroundImage: "url("+search+")"} } onChange={this.handleInputChange} className={classNames('filter-item', 'selector','field')}>
                 </input>
 
                 <div onClick={() => this.toggle('all')} className={classNames('filter-item', 'selector', { 'activated': filters.length===0 })}>

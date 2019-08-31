@@ -147,11 +147,11 @@ class ProjectListed extends React.Component {
 
    let projectSearchFiltered = (searchvalue && projectTranslated) ?
      projectTranslated.filter((project) =>
-        project.name.toLowerCase().match(searchvalue) ||
-        project.location.toLowerCase().match(searchvalue) ||
-        project.country.toLowerCase().match(searchvalue) ||
-        project.category.toLowerCase().includes(searchvalue) ||
-        project.year.match(searchvalue)
+        project.name.toLowerCase().match(searchvalue.toLowerCase()) ||
+        project.location.toLowerCase().match(searchvalue.toLowerCase()) ||
+        project.country.toLowerCase().match(searchvalue.toLowerCase()) ||
+        project.category.toLowerCase().includes(searchvalue.toLowerCase()) ||
+        project.year.match(searchvalue.toLowerCase())
     ) : projectTranslated
 
     let projectFiltered = (filters.length!==0 && projectSearchFiltered) ? (
