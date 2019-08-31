@@ -145,23 +145,22 @@ class ProjectListed extends React.Component {
     })
     ) : null
 
-   let projectSearchFiltered = (searchvalue && projectTranslated) ?
-     projectTranslated.filter((project) =>
+    let projectFiltered = (filters.length!==0 && projectTranslated) ? (
+      projectTranslated.filter((project) => {
+        return (project.categorytoFilters.split(',').filter(category => filters.includes(category)).length!==0)
+      })
+    ) : projectTranslated
+
+   let projectSearchFiltered = (searchvalue && projectFiltered) ?
+     projectFiltered.filter((project) =>
         project.name.toLowerCase().match(searchvalue.toLowerCase()) ||
         project.location.toLowerCase().match(searchvalue.toLowerCase()) ||
         project.country.toLowerCase().match(searchvalue.toLowerCase()) ||
         project.category.toLowerCase().includes(searchvalue.toLowerCase()) ||
         project.year.match(searchvalue.toLowerCase())
-    ) : projectTranslated
+    ) : projectFiltered
 
-    let projectFiltered = (filters.length!==0 && projectSearchFiltered) ? (
-      projectTranslated.filter((project) => {
-
-        return (project.categorytoFilters.split(',').filter(category => filters.includes(category)).length!==0)
-      })
-    ) : projectSearchFiltered
-
-    let rows = (projectFiltered && projectFiltered.length!==0) ? projectFiltered.map( (rowData) =>
+    let rows = (projectSearchFiltered && projectSearchFiltered.length!==0) ?projectSearchFiltered.map( (rowData) =>
     rowData.hassite ?
         <Link key={rowData.id} to={`/projects/${rowData.id}`}>
           <Row {...rowData} />

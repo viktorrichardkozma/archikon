@@ -77,7 +77,7 @@ class ProjectTypeSelector extends Component {
           {
             (location.pathname==='/projects-listed') ? (
               <div className="filter-wrapper">
-                <input value={searchvalue} type="text" style={{ backgroundImage: "url("+search+")"} } onChange={this.handleInputChange} className={classNames('filter-item', 'selector','field')}>
+                <input value={searchvalue} type="text" style={{ backgroundImage: "url("+search+")"} } onChange={this.handleInputChange} className={classNames('filter-item', 'selector','field','activatedSearch')}>
                 </input>
 
                 <div onClick={() => this.toggle('all')} className={classNames('filter-item', 'selector', { 'activated': filters.length===0 })}>

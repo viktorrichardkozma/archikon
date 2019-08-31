@@ -31,6 +31,9 @@
                     color: $link-activated;
                 }
 
+               
+
+
                 .activated {
                     color: $link-activated;
                 }
@@ -56,6 +59,9 @@
                 }
 
                 &:hover{
+                    color: $link-activated;
+                }
+                &.activatedSearch{
                     color: $link-activated;
                 }
 
@@ -128,6 +134,11 @@
                     &:hover{
                         color: $link-activated;
                     }
+
+                    &.activatedSearch{
+                        color: $link-activated;
+                    }
+
 
                     &.activated {
                         color: $link-activated;
