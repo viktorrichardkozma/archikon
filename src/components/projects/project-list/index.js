@@ -58,7 +58,6 @@ class ProjectListed extends React.Component {
     this.props.getProjects()
   }
 
-
   componentWillUnmount(){
     this.props.addCategoryFilter('all')
   }
@@ -140,6 +139,7 @@ class ProjectListed extends React.Component {
         location: language.lang==="hu" ? project.location_hu : project.location_en,
         country: language.lang==="hu" ? project.country_hu : project.country_en,
         category: translateCategoriesString(project.category, language.lang),
+        categorytoFilters: project.category,
         hassite: project.listed,
         year: project.year.toString()
     })
@@ -156,24 +156,25 @@ class ProjectListed extends React.Component {
 
     let projectFiltered = (filters.length!==0 && projectSearchFiltered) ? (
       projectTranslated.filter((project) => {
-        return (project.category.split(',').filter(category=>filters.includes(category)).length!==0)
+
+        return (project.categorytoFilters.split(',').filter(category => filters.includes(category)).length!==0)
       })
     ) : projectSearchFiltered
 
-  let rows = (projectFiltered && projectFiltered.length!==0) ? projectFiltered.map( (rowData) =>
-   rowData.hassite ?
-      <Link key={rowData.id} to={`/projects/${rowData.id}`}>
-        <Row {...rowData} />
-      </Link> :  <Row key={rowData.id}  {...rowData} />
-   )
-    :
-    <div className="row notfound" >
-          -
-    </div>
+    let rows = (projectFiltered && projectFiltered.length!==0) ? projectFiltered.map( (rowData) =>
+    rowData.hassite ?
+        <Link key={rowData.id} to={`/projects/${rowData.id}`}>
+          <Row {...rowData} />
+        </Link> :  <Row key={rowData.id}  {...rowData} />
+    )
+      :
+      <div className="row notfound" >
+            -
+      </div>
 
     return (
       <div className="project-view-wrapper">
-                             <ScrollToTopOnMount/>
+         <ScrollToTopOnMount/>
 
         <Selector/>
 

@@ -9,6 +9,8 @@ import { withRouter } from 'react-router-dom'
 import classNames from 'classnames';
 import {addSearchValue, addCategoryFilter, removeCategoryFilter} from '../../../actions'
 
+import { translateCategoriesString } from '../../common/categoryTranslator';
+
 import './selector.scss'
 
 import search from '../../common/icons/search.svg'
@@ -18,7 +20,6 @@ class ProjectTypeSelector extends Component {
   state={
     filters: []
   }
-
    
   static getDerivedStateFromProps(props, state) {
    
@@ -41,16 +42,18 @@ class ProjectTypeSelector extends Component {
   isChecked = filter => this.state.filters.includes(filter)
 
   toggle = filter => {
-    const {addCategoryFilter, removeCategoryFilter} = this.props;
+    const {addCategoryFilter, removeCategoryFilter, language} = this.props;
+
     if (filter!=="all") {
       this.isChecked(filter) ? removeCategoryFilter(filter) : addCategoryFilter(filter)
     } else {
-      addCategoryFilter(filter)
+      addCategoryFilter(translateCategoriesString(filter, language.lang))
     }
+
   };
   
   render() {
-    const { searchvalue, location} = this.props;
+    const {searchvalue, location} = this.props;
     const {filters} = this.state;
     
     return (
@@ -118,7 +121,7 @@ const mapStateToProps = (state) => {
   return {
     filters: state.project.filters,
     searchvalue: state.project.searchvalue,
-    language: state.localization,
+    language: state.localization
   };
 };
 

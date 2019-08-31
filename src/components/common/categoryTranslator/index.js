@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 export const translateCategoriesString = (categories, lang) => {
     return categories.split(',').map((category) => {
         switch(category.toLowerCase()) {
+            case "all":
+                return "all"
             case "public":
                 return (lang === 'hu') ? 'KÖZÉPÜLET' : category.toUpperCase()
             case "commercial":
@@ -27,6 +29,9 @@ const CategoryTranslator = props => {
     const {category} = props
 
     switch(category.toLowerCase()) {
+        case "all":
+            translatedCategory = "all"
+            break;
         case "public":
             translatedCategory = (props.lang==='hu') ? 'KÖZÉPÜLET ' : " "+category.toUpperCase()
             break;
