@@ -20,7 +20,7 @@ import {
 //PROJECTS ALL
 export const fetchingProjects = () => dispatch => {
     dispatch(loadingProject());
-    axios.get('https://92.119.123.89/api/projects/')
+    axios.get('https://teszt.archikon.hu/api/projects/')
         .then(data => dispatch(fetchedProjects(data)))
         .catch(err=>
             dispatch({
@@ -40,7 +40,7 @@ export function fetchedProjects(data) {
 //PROJECTS ID
 export const fetchingProject = (id) => dispatch => {
     dispatch(loadingProject());
-    axios.get('https://92.119.123.89/api/projects/'+id+'/')
+    axios.get('https://teszt.archikon.hu/api/projects/'+id+'/')
         .then(data => dispatch(fetchedProject(data)))
         .catch(err=>
             dispatch({
@@ -69,7 +69,7 @@ const loadingProject = () => dispatch => {
 
 export const fetchingStaff = () => dispatch => {
     dispatch(loadingStaff());
-    axios.get('https://92.119.123.89/api/staff/')
+    axios.get('https://teszt.archikon.hu/api/staff/')
         .then(data => dispatch(fetchedStaff(data)))
         .catch(err=>
             dispatch({
@@ -98,7 +98,7 @@ export function fetchedStaff(data) {
 
 export const fetchingAwards = () => dispatch => {
     dispatch(loadingAwards());
-    axios.get('https://92.119.123.89/api/awards/')
+    axios.get('https://teszt.archikon.hu/api/awards/')
         .then(data => dispatch(fetchedAwards(data)))
         .catch(err=>
             dispatch({
@@ -127,7 +127,7 @@ export function fetchedAwards(data) {
 
 export const fetchingAbout = () => dispatch => {
     dispatch(loadingAbout());
-    axios.get('https://92.119.123.89/api/about/')
+    axios.get('https://teszt.archikon.hu/api/about/')
         .then(data => dispatch(fetchedAbout(data)))
         .catch(err=>
             dispatch({
@@ -156,7 +156,7 @@ export function fetchedAbout(data) {
 
 export const fetchingSlideshow = () => dispatch => {
     dispatch(loadingSlideshow());
-    axios.get('https://92.119.123.89/api/slideshows/')
+    axios.get('https://teszt.archikon.hu/api/slideshows/')
         .then(data => dispatch(fetchedSlideshow(data)))
         .catch(err=>
             dispatch({
