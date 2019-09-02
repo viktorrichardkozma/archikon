@@ -11,6 +11,10 @@
     position: fixed;
     z-index: 1;
 
+    .menu-button{
+        display: none;
+    }
+
     .menu-opened-logo-wrapper, .menu-closed-logo-wrapper{
         display:none;
     }

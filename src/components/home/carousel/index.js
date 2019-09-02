@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './carousel.scss'
 import classNames from 'classnames'
-import carouselLogo from '../../common/logos/archikon_logo_white.png'
+// import carouselLogo from '../../common/logos/archikon_logo_white.png'
 
 class Carousel extends Component {
 	intervalID = 0;
@@ -109,7 +109,7 @@ class Panel extends React.Component {
 			<aside className="panel" style={this.props.panelStyle}>
 				<a href={this.props.url}>
 					<div className="carousel-logo-wrapper">
-						<img className="carousel-logo" src={carouselLogo}  alt="Archikon Architects Logo"/>
+						{/* <img className="carousel-logo" src={carouselLogo}  alt="Archikon Architects Logo"/> */}
 					</div>
 				</a>
 			</aside>
