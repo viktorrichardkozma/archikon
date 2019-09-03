@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './carousel.scss'
 import classNames from 'classnames'
 // import carouselLogo from '../../common/logos/archikon_logo_white.png'
+import { Link } from "react-router-relative-link";
+
 
 class Carousel extends Component {
 	intervalID = 0;
@@ -107,11 +109,11 @@ class Panel extends React.Component {
 	render() {
 		return (
 			<aside className="panel" style={this.props.panelStyle}>
-				<a href={this.props.url}>
+				<Link to={this.props.url.substring(this.props.url.indexOf('hu')+2)}>
 					<div className="carousel-logo-wrapper">
 						{/* <img className="carousel-logo" src={carouselLogo}  alt="Archikon Architects Logo"/> */}
 					</div>
-				</a>
+				</Link>
 			</aside>
 		);
 	}
