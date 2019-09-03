@@ -46,7 +46,6 @@ class Projects extends React.Component {
     const {location} = this.props;
     const {hasUserSeenSplashScreen} = this.state;
 
-    console.log(hasUserSeenSplashScreen)
     return (
       <Fragment>
         <div className={classNames('splash-screen ',  { 'hidden': hasUserSeenSplashScreen })}>
