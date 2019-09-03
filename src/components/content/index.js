@@ -29,14 +29,36 @@ class Projects extends React.Component {
         hasUserSeenSplashScreen: false
     };
   
-    setTimeout(this.enableContent, 2000)
-  
+    setTimeout(this.enableContent, 1500)
   }
 
+
+  componentDidMount(){
+    window.addEventListener("resize", this.resize.bind(this));
+    this.resize();
+  }
+
+    
+  resize() {
+    if (window.innerWidth <= 768){
+      this.setState({
+        isMobile:true
+      })
+    } else {
+      this.setState({
+        isMobile:false
+      })
+    }
+  }
+
+
   enableContent() {
-    if (!sessionStorage.hasUserSeenSplashScreen || sessionStorage.hasUserSeenSplashScreen) {
-      this.setState({hasUserSeenSplashScreen : true})
-      sessionStorage.hasUserSeenSplashScreen = true
+    const {isMobile} = this.state;
+    if(!isMobile){
+      if (!sessionStorage.hasUserSeenSplashScreen || sessionStorage.hasUserSeenSplashScreen) {
+        this.setState({hasUserSeenSplashScreen : true})
+        sessionStorage.hasUserSeenSplashScreen = true
+      }
     }
   }
 
@@ -52,7 +74,7 @@ class Projects extends React.Component {
       <Fragment>
         <div className={classNames('splash-screen',  { 'hidden': hasUserSeenSplashScreen })}>
           <div className="splash-logo-wrapper">
-            <img className="splash-logo fade-in" src={blackLogo} alt={"Archikon Architects Logo"}/>
+            <img className="splash-logo" src={blackLogo} alt={"Archikon Architects Logo"}/>
           </div>
         </div>
         <div className={classNames('content-wrapper', { 'content-wrapper-main-page': (location.pathname==='/' || location.pathname==='/contact' || !isNaN(location.pathname.substr(location.pathname.lastIndexOf('/') + 1)))? true : false})}>
