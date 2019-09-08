@@ -54,9 +54,9 @@ class ProjectsSelected extends Component {
      <SquareView key={project.id} id={project.id} data={project} language={language.lang}/>
     ) : null
 
-    if (selectedProjects) {
-      selectedProjects.reverse();
-    }
+    // if (selectedProjects) {
+    //   selectedProjects.reverse();
+    // }
 
     return (isLoading===false && projects) ? (
       <div className="project-view-wrapper">

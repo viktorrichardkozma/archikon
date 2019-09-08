@@ -58,20 +58,24 @@ class People extends Component {
     const nonactiveStaff = (staff) ? staff.filter( human => human.active===false)
     : null
 
-    const activeStaff = (staff) ? staff.filter( human => human.active===true && human.leader===false)
-    : null
+    const activeStaff = staff &&
+      staff.filter((human) => (human.active && !human.leader && human.name !== 'Szlávik Ágnes'))
+    if (staff) {
+      const assistant = staff.filter((human) => (human.name === 'Szlávik Ágnes'))[0];
+      activeStaff.push(assistant);
+    }
 
     const bossStaff = (staff) ? staff.filter( human => human.leader===true)
     : null
 
 
     return (this.props.isVisible===true) ?
-    ( (isLoading===false && staff) ? ( 
+    ( (isLoading===false && staff) ? (
       <div className="people">
         <div className="boss-wrapper">
-          { 
+          {
             bossStaff.map(human => {
-              return <Card key={human.id} openBottomBar={this.openBottomBar} language={language.lang} data={human}/> 
+              return <Card key={human.id} openBottomBar={this.openBottomBar} language={language.lang} data={human}/>
             })
           }
         </div>
@@ -79,14 +83,14 @@ class People extends Component {
         <div className="people-wrapper">
           {
             activeStaff.map(human => {
-              return <Card key={human.id} language={language.lang} data={human}/> 
+              return <Card key={human.id} language={language.lang} data={human}/>
             })
           }
         </div>
         <hr/>
         <div className="people-ex-wrapper">
           <Header2 data={(language.lang==="hu") ? "Volt munkatársaink" : "Former colleagues"}/>
-          { (nonactiveStaff.length!==0) ? 
+          { (nonactiveStaff.length!==0) ?
             nonactiveStaff.map(human => {
               return <div> {human.name} </div>
             }) : "-"
@@ -96,15 +100,15 @@ class People extends Component {
         <div className="people-new-wrapper">
 
           <Header2 data={(language.lang==="hu") ? "Jövőbeli munkatársaink" : "Our future colleagues"}/>
-          <a href="mailto:titkarsag@archikon.hu?subject=Archikon | jelentkezés"> 
+          <a href="mailto:titkarsag@archikon.hu?subject=Archikon | jelentkezés">
             <Button data={(language.lang==="hu") ? "JELENTKEZZ!" : "APPLY!"}/>
-          </a> 
+          </a>
         </div>
 
       </div>
     ) : <LoadingBar/>)
     : null }
-    
+
 }
 
 const mapStateToProps = (state) => {
