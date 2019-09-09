@@ -51,7 +51,7 @@ export function fetchedProjects(data) {
 // PROJECTS SINGLE
 export const fetchingProject = (id) => (dispatch) => {
     dispatch(loadingProject());
-    axios.get(`${BASE_URL}/projects/'+id+'/`)
+    axios.get(`${BASE_URL}/projects/${id}/`)
         .then(data => dispatch(fetchedProject(data)))
         .catch(err=>
             dispatch({

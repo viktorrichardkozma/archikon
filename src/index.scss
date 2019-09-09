@@ -17,8 +17,8 @@ a, .selector{
 body {
   margin: 0;
   padding: 0;
-  height:100%;
-  font-family: "Avenir";
+  height: 100%;
+  font-family: 'Avenirrrr';
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -29,21 +29,23 @@ body {
 }
 
 @font-face {
-  font-family: 'Avenir_Reg';
+  font-family: 'Avenirrrr';
   font-style: normal;
   font-weight: 400;
-  src:
-    local('Avenir_Reg'),
-    url(./fonts/AvenirNextLTPro-Regular.otf) format('otf');
+  src: url(./fonts/Avenir-Book.eot);
+  src: url(./fonts/Avenir-Book.eot?#iefix) format("embedded-opentype"),
+       url(./fonts/Avenir-Book.woff) format("woff"),
+       url(./fonts/Avenir-Book.ttf) format("truetype");
 }
 
 @font-face {
-  font-family: 'Avenir_Demi';
+  font-family: 'Avenirrrr';
   font-style: normal;
   font-weight: 500;
-  src:
-    local('Avenir_Demi'),
-    url(./fonts/AvenirNextLTPro-Demi.otf) format('otf');
+  src: url(./fonts/Avenir-Roman.eot);
+  src: url(./fonts/Avenir-Roman.eot?#iefix) format("embedded-opentype"),
+       url(./fonts/Avenir-Roman.woff) format("woff"),
+       url(./fonts/Avenir-Roman.ttf) format("truetype");
 }
 
 //variables
