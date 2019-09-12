@@ -28,7 +28,7 @@ class Awards extends Component {
     }
     return null;
   }
-  
+
   render() {
     const {awards, isLoading}= this.state;
     const {language} = this.props;
@@ -41,14 +41,14 @@ class Awards extends Component {
         <div key={award.id}>
           <p>
           {`${award.year} | `}
-            <a href={award.link}>
+            <a href={(award.link === '-' || award.link === '') ? '#' : award.link}>
             <b> {language.lang==="hu" ? award.name_hu : award.name_en}   </b>
-            </a> {`| ${language.lang==="hu" ? award.subtitle_hu : award.subtitle_en}`}         
-          </p> 
-        </div> 
+            </a> {`| ${language.lang==="hu" ? award.subtitle_hu : award.subtitle_en}`}
+          </p>
+        </div>
       )}
     </div>) : <LoadingBar/>
-    ) : null 
+    ) : null
   }
 }
 

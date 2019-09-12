@@ -28,8 +28,8 @@ class Menu extends Component {
   }
 
   changeLanguage = () => {
-    const {language} = this.props
-    const chosenLanguage = (language.lang==='hu') ? 'en' : 'hu';
+    const { language } = this.props
+    const chosenLanguage = (language.lang === 'hu') ? 'en' : 'hu';
     this.props.setLocale(chosenLanguage);
   };
 
@@ -78,32 +78,32 @@ class Menu extends Component {
           <div className={classNames('menu-button',{'menu-open' : !isMenuOpened})} onClick={() => this.changeMenuState()}>
                   {(!isMenuOpened) ? <MenuOpened/> : <MenuClosed/>}
           </div>
-          
+
             {!(location.pathname==='/') && (<Link to="/">
-              <div className={classNames('menu-closed-logo-wrapper',{'menuClosed': isMenuOpened })} > 
+              <div className={classNames('menu-closed-logo-wrapper',{'menuClosed': isMenuOpened })} >
                 {<img className="menu-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
               </div>
             </Link>)}
-          
-          
+
+
           <Fragment>
           <div className={classNames('menu-opened-logo-wrapper',{'menuClosed':!isMenuOpened})}>
             {<img className="header-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
           </div>
-        
+
         <div className={classNames('menu-wrapper',{'menuClosed':!isMenuOpened})}>
           <div className="logo-wrapper">
-            <Link to="/">
+            <Link to="/projects-selected">
               Archikon Architects
             </Link>
           </div>
           <div className="line-wrapper">
-            <div className="line"> 
+            <div className="line">
             </div>
           </div>
           <div className="menu-item-wrapper">
             <div className="menu-items">
-            
+
                   <div onClick={()=>this.changePage()} className={classNames('menu-item', { 'activated': (location.pathname==='/') ? true : false})}>
                     <Link to="/">
                       <FormattedMessage id="menu_home"> </FormattedMessage>
@@ -131,20 +131,20 @@ class Menu extends Component {
                         </a>
                       </div>
                       <div className="icon-item">
-                      <a href="https://www.facebook.com/Archikon/">
+                      <a href="https://www.instagram.com/archikon_architects/">
                           <InstagramIcon/>
                         </a>
                       </div>
                     <div className="icon-item language" onClick={()=>this.changeLanguage()}>
-                        {language.lang}
+                        {language.lang === 'en' ? 'hu' : 'en'}
                     </div>
                   </div>
-             
+
             </div>
           </div>
         </div>
         </Fragment>
-        
+
         </div>
     );
   }

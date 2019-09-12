@@ -20,10 +20,10 @@ class ProjectTypeSelector extends Component {
   state={
     filters: []
   }
-   
+
   static getDerivedStateFromProps(props, state) {
-   
-   
+
+
     if (props.filters !== state.filters) {
       return {
         filters: props.filters
@@ -35,7 +35,7 @@ class ProjectTypeSelector extends Component {
 
 
   handleInputChange = event => {
-    const {addSearchValue} = this.props 
+    const {addSearchValue} = this.props
     addSearchValue(event.target.value)
   }
 
@@ -45,17 +45,21 @@ class ProjectTypeSelector extends Component {
     const {addCategoryFilter, removeCategoryFilter, language} = this.props;
 
     if (filter!=="all") {
-      this.isChecked(filter) ? removeCategoryFilter(filter) : addCategoryFilter(filter)
+      if (this.isChecked(filter)) {
+        removeCategoryFilter(filter)
+      } else {
+        addCategoryFilter(filter)
+      }
     } else {
       addCategoryFilter(translateCategoriesString(filter, language.lang))
     }
 
   };
-  
+
   render() {
     const {searchvalue, location} = this.props;
     const {filters} = this.state;
-    
+
     return (
       <div className="project-listing-selector">
         <div className="selector-wrapper">
@@ -72,7 +76,7 @@ class ProjectTypeSelector extends Component {
             </Link>
           </div>
           <div>
- 
+
           </div>
           {
             (location.pathname==='/projects-listed') ? (
