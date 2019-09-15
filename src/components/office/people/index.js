@@ -33,11 +33,32 @@ class Button extends React.Component {
 class People extends Component {
   state = {
     isLoading: this.props.isLoading,
-    staff: this.props.staff
+    staff: this.props.staff,
+    bottomBarOpened: false,
+    description: null,
+    selectedName: null,
   };
 
   componentDidMount () { 
     this.props.getStaff()
+  }
+
+  openBottomBar = (selectedName, description) => {
+    this.setState({
+      ...this.state,
+      selectedName,
+      description,
+      bottomBarOpened: true,
+    });
+  }
+
+  closeBottomBar = () => {
+    this.setState({
+      ...this.state,
+      selectedName: null,
+      description: null,
+      bottomBarOpened: false,
+    });
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -65,9 +86,7 @@ class People extends Component {
       activeStaff.push(assistant);
     }
 
-    const bossStaff = (staff) ? staff.filter( human => human.leader===true)
-    : null
-
+    const bossStaff = (staff) ? staff.filter( human => human.leader===true) : null
 
     return (this.props.isVisible===true) ?
     ((isLoading===false && staff) ? (
@@ -75,7 +94,15 @@ class People extends Component {
         <div className="boss-wrapper">
           {
             bossStaff.map(human => {
-              return <Card key={human.id} openBottomBar={this.openBottomBar} language={language.lang} data={human}/>
+              return <Card
+                key={human.id}
+                openBottomBar={this.openBottomBar}
+                closeBottomBar={this.closeBottomBar}
+                bottomBarOpened={this.state.bottomBarOpened}
+                selectedName={this.state.selectedName}
+                language={language.lang}
+                data={human}
+              />
             })
           }
         </div>
@@ -83,7 +110,7 @@ class People extends Component {
         <div className="people-wrapper">
           {
             activeStaff.map(human => {
-              return <Card key={human.id} language={language.lang} data={human}/>
+              return <Card key={human.id} language={language.lang} data={human} />
             })
           }
         </div>
@@ -105,6 +132,11 @@ class People extends Component {
           </a>
         </div>
 
+        {this.state.bottomBarOpened &&
+          <div className="bottombar">
+            <div onClick={this.closeBottomBar} className="close">✕</div>
+            {this.state.description}
+          </div>}
       </div>
     ) : <LoadingBar/>)
     : null }

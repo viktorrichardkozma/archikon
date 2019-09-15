@@ -2,25 +2,13 @@ import React,{ Component } from 'react'
 import './Card.scss'
 
 class Card extends Component {
-  state = {
-    bottomBarOpened: false
-  };
-
   openBottomBar = () => {
-    this.setState((prevState) => ({
-      bottomBarOpened: true
-    }));
-  }
-
-  closeBottomBar = () => {
-    this.setState((prevState) => ({
-      bottomBarOpened: false
-    }));
+    this.props.openBottomBar(this.props.data.name, (this.props.language==='hu') ?
+      this.props.data.description_hu : this.props.data.description_en);
   }
 
   render() {
     let name = this.props.data.name.split(' ');
-    const {bottomBarOpened} = this.state;
 
     if (this.props.language==='en') {
       let first_name = name[0];
@@ -46,18 +34,11 @@ class Card extends Component {
               {this.props.data.email}
               <br/>
               {this.props.data.phone}
-              {  (this.props.data.description_hu || this.props.data.description_en) ?
-                <div onClick={this.openBottomBar} className="info">
-                  + Info
-                </div>
+              {(this.props.data.description_hu || this.props.data.description_en) ?
+                ((this.props.bottomBarOpened && name.join(' ') === this.props.selectedName) ?
+                <div onClick={this.props.closeBottomBar} className="info">‒ Info</div> :
+                <div onClick={this.openBottomBar} className="info">+ Info</div>)
                 : null }
-
-          {bottomBarOpened &&
-            <div className="bottombar">
-              <div onClick={this.closeBottomBar} className="close">✕</div>
-            {(this.props.language==='hu') ? this.props.data.description_hu : this.props.data.description_en}
-          </div>}
-
             </div>
           </div>
         </div>

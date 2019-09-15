@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import './carousel.scss'
 import classNames from 'classnames'
-// import carouselLogo from '../../common/logos/archikon_logo_white.png'
 import { Link } from "react-router-relative-link";
 
+import { ReactComponent as Arrow } from '../../common/icons/nyil.svg'
 
 class Carousel extends Component {
 	intervalID = 0;
@@ -40,17 +40,7 @@ class Carousel extends Component {
 
 		this.intervalID = setInterval(() => {
 			if (data) {
-			if (this.state.activeID===data.length-1){
-				this.setState({
-					activeID: 0,
-				})
-			} else {
-				this.setState((prevState, props) => ({
-					activeID: prevState.activeID + 1
-				}));
-			}
-
-			this.changeActive(this.state.activeID)
+				this.changeActive((this.state.activeID + 1) % data.length);
 			}
 		}, 4000);
 	}
@@ -85,6 +75,16 @@ class Carousel extends Component {
 			});
 		}
 	}
+
+	goToNextImage = () => {
+		this.changeActive((this.state.activeID + 1) % this.props.data.length);
+	}
+
+	goToPreviousImage = () => {
+		const newID = this.state.activeID === 0 ? this.props.data.length - 1 : this.state.activeID - 1;
+		this.changeActive(newID);
+	}
+
 	render() {
 		const {hidePanel,mainCarousel} = this.props;
 
@@ -101,6 +101,8 @@ class Carousel extends Component {
 					buttonColour={this.buttonColour.bind(this)}
 					url={this.state.url}
 				/> )}
+				{!mainCarousel && <div className='carousel-arrow left' onClick={this.goToPreviousImage}><Arrow /></div>}
+				{!mainCarousel && <div className='carousel-arrow right' onClick={this.goToNextImage}><Arrow /></div>}
 			</section>
 		)
 	}
