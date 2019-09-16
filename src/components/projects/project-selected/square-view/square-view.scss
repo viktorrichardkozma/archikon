@@ -48,6 +48,7 @@ $this-tile-size-lg: 16.6666%;
       margin: 20px;
       font-size:auto;
       color: $link-activated;
+      background-size: 350px;
 
       &:hover &-content{
         opacity: 1;
@@ -126,6 +127,7 @@ $this-tile-size-lg: 16.6666%;
         margin: 20px;
         font-size:auto;
         color: $link-activated;
+        background-size: cover;
 
         &:hover &-content{
           opacity: 1;

@@ -25,9 +25,9 @@
         justify-content: space-between;
         align-items: center;
         border:none;
-        
+
         .logo-wrapper{
-            flex: 0 0 150px;
+            flex: 0 0 160px;
             font-weight: 600;
 
             .logo {
@@ -36,7 +36,7 @@
                 font-size:16px;
             }
         }
-         
+
         .line-wrapper{
             flex: 1;
             position: relative;
@@ -51,7 +51,7 @@
         }
 
         .menu-item-wrapper {
-            flex: 0 0 500px; 
+            flex: 0 0 500px;
             .menu-items{
                 color: $link-non-activated;
                 display:flex;
@@ -82,16 +82,17 @@
 
                     .icon-item {
                         width: 33%;
-                        margin: 0 5px;     
+                        margin: 0 5px;
 
                         &.language {
                             text-transform: uppercase;
                             cursor: pointer;
-                        } 
+                        }
                     }
 
                     .icon-item svg{
                        display:flex;
+                       height: 25px;
                     }
 
                     .icon-item:hover svg{
@@ -106,10 +107,6 @@
 
 
 @media screen and (max-width: 767px) {
-
-
-
-
     .menu {
         height:50%;
         padding: 0px;
@@ -122,12 +119,12 @@
         }
 
         &.main-page{
-          
+
             border:none;
         }
 
         .menu-button{
-            width:30px;
+            width: 30px;
             cursor: pointer;
             position:fixed;
             right: 20px;
@@ -150,7 +147,7 @@
             }
         }
 
-    
+
         .menu-opened-logo-wrapper{
             width: 100%;
             display: flex;
@@ -171,26 +168,26 @@
             }
         }
 
-        
+
         .menu-wrapper{
             width:100%;
             display:flex;
             justify-content: space-between;
             align-items: center;
-            
+
             .logo-wrapper{
                 display:none;
             }
-             
+
             .line-wrapper{
                 display:none;
             }
 
             &.menuClosed{
                 display:none;
-                
+
             }
-    
+
             .menu-item-wrapper {
                 justify-content: flex-end;
                 flex: 1 1;
@@ -198,7 +195,7 @@
                 box-sizing: border-box;
                 height: 100%;
                 padding: 80px 20px 20px 20px;
-                
+
 
                 .menu-items{
                     flex-direction: column;
@@ -208,26 +205,27 @@
                     .menu-item{
                         display:flex;
                         margin: 0px;
-                        font-size: 14px;
+                        font-size: 16px;
+                        padding: 1px;
 
                         &:first-child{
                             display:flex;
                             margin: 0px;
                         }
                     }
-    
+
                     .menu-item:hover {
                         color:$link-activated;
                         // text-decoration: underline;
                     }
-    
+
                     .icons-wrapper {
                         display: flex;
                         align-items:center;
                         justify-content: flex-end;
                         flex-direction: column;
                         color: $link-activated;
-    
+
                         .icon-item {
                             width: 100%;
                             margin: 0;
@@ -235,14 +233,15 @@
                             &.language {
                                 text-transform: uppercase;
                                 text-align: right;
-                            } 
+                            }
                         }
-    
+
                         .icon-item svg{
                            display:flex;
                            margin-right: -5px;
+                           height: 28px;
                         }
-    
+
                         .icon-item:hover svg{
                             // transform: scale(1.1);
                         }
