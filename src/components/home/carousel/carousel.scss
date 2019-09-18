@@ -11,6 +11,7 @@ $white: rgb(255,255,255);
 .selectors {
 	position: absolute;
 	top: 60px;
+	margin: 0 -50px 0 0;
 	right: 0;
 	width: 50px;
 	height: calc(100% - 60px);
@@ -36,11 +37,12 @@ $white: rgb(255,255,255);
 }
 
 section.wrapper{
+	position: relative;
 	width: 100%;
 	height: 100%;
 
 	transition: background-image 500ms ease-in-out;
-	background-position: center; 
+	background-position: center;
 }
 
 section.wrapper-main {
@@ -48,9 +50,29 @@ section.wrapper-main {
 }
 
 section.wrapper-entity {
-    background-size: contain;
+	background-size: contain;
 	background-repeat: no-repeat;
+}
 
+section img {
+	position: absolute;
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	opacity: 0;
+
+	-webkit-transition: opacity .4s ease-in-out;
+  -moz-transition: opacity .4s ease-in-out;
+  -o-transition: opacity .4s ease-in-out;
+  transition: opacity .4s ease-in-out;
+}
+
+section img.active {
+	opacity: 1;
 }
 
 aside.panel {
@@ -60,14 +82,14 @@ aside.panel {
 	color: $white;
 	transition: background 500ms ease-in-out;
 
-	.carousel-logo-wrapper{
+	.carousel-logo-wrapper {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		height: 100%;
 
-		.carousel-logo{
-			width:150px;	
+		.carousel-logo {
+			width: 150px;
 		}
 
 	}
@@ -91,8 +113,7 @@ aside.panel {
 	}
 
 	aside.panel .carousel-logo-wrapper .carousel-logo{
-		display: none;	
+		display: none;
 	}
 
-
- }
+}

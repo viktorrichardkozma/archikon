@@ -125,10 +125,12 @@
     .carousel-arrow.left {
         left: 0;
         padding-left: 8px;
+        margin-left: -30px;
     }
 
     .carousel-arrow.right {
         right: 0;
+        margin-right: -30px;
 
         svg {
             transform: rotateZ(180deg);

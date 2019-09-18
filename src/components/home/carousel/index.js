@@ -13,13 +13,15 @@ class Carousel extends Component {
 		this.state = {
 			activeID: 0,
 			url: this.props.data[0].url,
+			image: this.props.data[0].image,
 			wrapperStyle: {
 				backgroundImage: `url('${this.props.data[0].image}')`
 			},
 			buttonHover: false,
 			buttonStyle: {
 				color: '#ffffff'
-			}
+			},
+			isActive: false,
 		};
 	}
 
@@ -29,20 +31,29 @@ class Carousel extends Component {
 		this.setState({
 			activeID: 0,
 			url: this.props.data[0].url,
+			image: this.props.data[0].image,
 			wrapperStyle: {
 				backgroundImage: `url('${this.props.data[0].image}')`
 			},
 			buttonHover: false,
 			buttonStyle: {
 				color: '#ffffff'
-			}
+			},
+			isActive: false,
 		})
 
 		this.intervalID = setInterval(() => {
 			if (data) {
 				this.changeActive((this.state.activeID + 1) % data.length);
 			}
-		}, 4000);
+		}, 10000);
+
+		setTimeout(() => {
+			this.setState({
+				...this.state,
+				isActive: true,
+			})
+		}, 1)
 	}
 
 	componentWillUnmount() {
@@ -51,13 +62,23 @@ class Carousel extends Component {
 
 	changeActive(id) {
 		this.setState({
-			activeID: id,
-			url: this.props.data[id].url,
-			wrapperStyle: {
-				backgroundImage: `url('${this.props.data[id].image}')`
-			}
-		});
+			...this.state,
+			isActive: false,
+		})
+
+		setTimeout(() => {
+			this.setState({
+				activeID: id,
+				url: this.props.data[id].url,
+				image: this.props.data[id].image,
+				wrapperStyle: {
+					backgroundImage: `url('${this.props.data[id].image}')`
+				},
+				isActive: true,
+			});
+		}, 400)
 	}
+
 	buttonColour() {
 		if(!this.state.buttonHover){
 			this.setState({
@@ -86,21 +107,27 @@ class Carousel extends Component {
 	}
 
 	render() {
-		const {hidePanel,mainCarousel} = this.props;
+		const { hidePanel, mainCarousel } = this.props;
 
 		return (
-			<section className={classNames('wrapper', {"wrapper-main": mainCarousel}, {"wrapper-entity": !mainCarousel})} style={this.state.wrapperStyle}>
-				<Selectors
+			<section className={classNames('wrapper', {"wrapper-main": mainCarousel}, {"wrapper-entity": !mainCarousel})} style={mainCarousel ? this.state.wrapperStyle : {}}>
+				{
+					!mainCarousel && <img id={this.state.image} src={this.state.image} alt='meh' className={this.state.isActive ? 'active' : ''} />
+				}
+
+				{mainCarousel && <Selectors
 					data={this.props.data}
 					activeID={this.state.activeID}
 					changeActive={this.changeActive.bind(this)}
-				/>
-				{ (!hidePanel && <Panel
+				/>}
+
+				{(!hidePanel && <Panel
 					data={this.props.data[this.state.activeID]}
 					buttonStyle={this.state.buttonStyle}
 					buttonColour={this.buttonColour.bind(this)}
 					url={this.state.url}
-				/> )}
+				/>)}
+
 				{!mainCarousel && <div className='carousel-arrow left' onClick={this.goToPreviousImage}><Arrow /></div>}
 				{!mainCarousel && <div className='carousel-arrow right' onClick={this.goToNextImage}><Arrow /></div>}
 			</section>

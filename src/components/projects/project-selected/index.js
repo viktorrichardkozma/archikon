@@ -25,9 +25,17 @@ class ScrollToTopOnMount extends Component {
 class ProjectsSelected extends Component {
   state = {
     isLoading: this.props.isLoading,
-    projects: this.props.projects
+    projects: this.props.projects,
+    selectedProjectID: null,
   };
 
+  showInfo = (id) => {
+    this.setState({ selectedProjectID: id });
+  }
+
+  hideInfo = () => {
+    this.setState({ selectedProjectID: null });
+  }
 
   componentDidMount () { 
     this.props.getProjects()
@@ -51,7 +59,7 @@ class ProjectsSelected extends Component {
     const selectedProjects = (projects!==null) ? projects.filter(
       project => project.selected===true
     ).map(project =>
-     <SquareView key={project.id} id={project.id} data={project} language={language.lang}/>
+      <SquareView key={project.id} id={project.id} data={project} language={language.lang} selectedID={this.props.selectedID} showInfo={this.showInfo} />
     ) : null
 
     // if (selectedProjects) {
