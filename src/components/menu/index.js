@@ -79,7 +79,7 @@ class Menu extends Component {
                   {(!isMenuOpened) ? <MenuOpened/> : <MenuClosed/>}
           </div>
 
-            {!(location.pathname==='/') && (<Link to="/">
+            {!(location.pathname==='/') && (<Link to="/projects-selected">
               <div className={classNames('menu-closed-logo-wrapper',{'menuClosed': isMenuOpened })} >
                 {<img className="menu-logo" src={headerLogo}  alt="Archikon Architects Logo"/>}
               </div>
