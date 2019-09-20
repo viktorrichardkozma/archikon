@@ -76,6 +76,13 @@ class Carousel extends Component {
 				},
 				isActive: true,
 			});
+
+			clearInterval(this.intervalID);
+			this.intervalID = setInterval(() => {
+				if (this.props.data) {
+					this.changeActive((this.state.activeID + 1) % this.props.data.length);
+				}
+			}, 10000);
 		}, 400)
 	}
 

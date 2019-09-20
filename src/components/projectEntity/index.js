@@ -30,7 +30,7 @@ class projectEntity extends Component {
   };
 
   componentDidMount(){
-    this.props.getProject(this.props.match.params.id); 
+    this.props.getProject(this.props.match.params.id);
 
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
@@ -48,7 +48,7 @@ class projectEntity extends Component {
   goBack(){
     this.props.history.goBack();
   }
-  
+
   resize() {
     if (window.innerWidth <= 768){
       this.setState({
@@ -62,15 +62,14 @@ class projectEntity extends Component {
       })
     }
   }
-  
-  static getDerivedStateFromProps(props, state) {
 
+  static getDerivedStateFromProps(props, state) {
     if (props.selectedProject !== state.selectedProject) {
       return {
         selectedProject: props.selectedProject,
         isLoading: props.isLoading,
         addedIdToImages: props.selectedProject.images.map( (image, id) => {
-          return {id: id, image: image.image} 
+          return {id: id, image: image.image}
         }
         )
       };
@@ -82,11 +81,11 @@ class projectEntity extends Component {
     const {selectedProject, isLoading, seeMoreOpened, seeMoreEnabled, addedIdToImages, isMobile} = this.state;
     const {language} = this.props;
 
-    let preLoadimages = (selectedProject) ? selectedProject.images.map( (image, id) => 
+    let preLoadimages = (selectedProject) ? selectedProject.images.map( (image, id) =>
       <img alt={image.id} src={image.image} />
-    ) : null 
- 
-    return (isLoading===false && selectedProject) ? ( 
+    ) : null
+
+    return (isLoading===false && selectedProject) ? (
         <div className="project-entity">
           <div className="preLoad" style={{display:'none'}}>
             {preLoadimages}
@@ -95,8 +94,8 @@ class projectEntity extends Component {
             <title>{`Archikon |  ${language.lang==="hu" ? selectedProject.name_hu : selectedProject.name_en}`} </title>
           </Helmet>
           <div className="chevron-wrapper">
-            
-            <Arrow onClick={() => this.goBack()}/> 
+
+            <Arrow onClick={() => this.goBack()}/>
           </div>
           <div className="detail">
             <div className="category-wrapper">
@@ -135,7 +134,7 @@ class projectEntity extends Component {
                       <div>
                         <div className="seemore-wrapper" onClick={()=>this.changeseeMoreState()} >
                           <FormattedMessage id="see_more"> </FormattedMessage>
-                          <DownArrow/> 
+                          <DownArrow/>
                         </div>
                         {(language.lang==='hu')
                         ? selectedProject.description_hu.substring(0, 400)+"..."
@@ -145,7 +144,7 @@ class projectEntity extends Component {
                       <div>
                         <div className="seemore-wrapper" onClick={()=>this.changeseeMoreState()}>
                              <FormattedMessage id="see_less"> </FormattedMessage>
-                             <DownArrow className={classNames({'up' : seeMoreOpened})} /> 
+                             <DownArrow className={classNames({'up' : seeMoreOpened})} />
                         </div>
                         {(language.lang==='hu')
                           ? selectedProject.description_hu
@@ -155,7 +154,7 @@ class projectEntity extends Component {
                     )
                   )
                  )
-                 
+
                 }
               </div>
             </div>
@@ -174,7 +173,7 @@ class projectEntity extends Component {
           </div>
         </div>
       )
-    :  
+    :
     <div className="loading-wrapper">
       <LoadingBar/>
     </div>

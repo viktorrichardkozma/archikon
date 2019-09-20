@@ -58,8 +58,21 @@
 
 
     .description-wrapper{
-        font-size:15px;
+        font-size: 15px;
         margin-bottom: 60px;
+        height: 50%;
+        overflow: hidden;
+        width: 100%;
+        overflow-x: hidden;
+
+        .description {
+            overflow: auto;
+            height: 100%;
+            padding-right: 17px;
+            box-sizing: content-box;
+            width: 100%;
+            overflow-x: hidden;
+        }
 
         .seemore-wrapper{
             display: block;
@@ -221,6 +234,7 @@
             overflow: auto;
             height: auto;
             margin-bottom: 30px;
+            overflow-x: hidden;
         }
 
         .gallery-wrapper{
