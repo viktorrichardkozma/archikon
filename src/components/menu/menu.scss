@@ -28,7 +28,7 @@
 
         .logo-wrapper{
             flex: 0 0 164px;
-            font-weight: 600;
+            font-weight: 500;
 
             .logo {
                 font-family: 'Avenir_Demi';
@@ -207,6 +207,7 @@
                         margin: 0px;
                         font-size: 16px;
                         padding: 1px;
+                        margin-top: 8px;
 
                         &:first-child{
                             display:flex;
@@ -225,6 +226,7 @@
                         justify-content: flex-end;
                         flex-direction: column;
                         color: $link-activated;
+                        margin-top: 8px;
 
                         .icon-item {
                             width: 100%;

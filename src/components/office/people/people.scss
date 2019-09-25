@@ -18,12 +18,12 @@
         @media screen and (max-width: 767px) {
            padding:0;
         }
-        
+
         .people-card:last-child {
             flex-basis: 100%;
             height: 100%;
         }
-    
+
     }
 
     .people-wrapper {
@@ -51,7 +51,7 @@
         .apply{
             width: 186px;
             height: 58px;
-            font-weight: 600;
+            font-weight: 500;
             border: 1px solid #1c1c1c;
             display: flex;
             align-items: center;
@@ -64,7 +64,7 @@
                 color: white;
             }
         }
-    }  
+    }
 
 }
 

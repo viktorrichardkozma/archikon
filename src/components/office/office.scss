@@ -1,11 +1,17 @@
-
-.office-wrapper{
+.office-wrapper {
   margin-bottom: 40px;
+
+  .office-decription-wrapper {
+    margin-left: 50px;
+  }
+}
+
+.award-list {
   margin-left: 50px;
 }
 
 @media screen and (max-width: 767px) {
-  .office-wrapper{
+  .award-list {
     margin-left: 0px;
   }
 }

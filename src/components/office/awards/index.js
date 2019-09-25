@@ -36,7 +36,7 @@ class Awards extends Component {
     return (this.props.isVisible===true) ?
     (
       (isLoading===false && awards) ? (
-      <div>
+      <div className="award-list">
       {awards.map(award =>
         <div key={award.id}>
           <p>

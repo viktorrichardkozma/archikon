@@ -14,16 +14,16 @@
     box-sizing: border-box;
     position: fixed;
     z-index: 1;
- 
+
     .menu-wrapper{
         width:100%;
         display:flex;
         justify-content: space-between;
         align-items: center;
-        
+
         .logo-wrapper{
             flex: 0 0 150px;
-            font-weight: 600;
+            font-weight: 500;
 
             .logo {
                 font-family: 'Avenir_Demi';
@@ -31,7 +31,7 @@
                 font-size:16px;
             }
         }
-         
+
         .line-wrapper{
             flex: 1;
             position: relative;
@@ -46,7 +46,7 @@
         }
 
         .menu-item-wrapper {
-            flex: 0 0 500px; 
+            flex: 0 0 500px;
             .menu-items{
                 color: $link-non-activated;
                 display:flex;
@@ -79,12 +79,12 @@
                         width: 33%;
                         margin: 0 5px;
 
-                        
+
 
                         &.language {
                             text-transform: uppercase;
-                            
-                        } 
+
+                        }
                     }
 
                     .icon-item svg{

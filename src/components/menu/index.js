@@ -6,6 +6,7 @@ import {FormattedMessage} from 'react-intl'
 
 import classNames from 'classnames';
 import headerLogo from '../common/logos/archikon_logo_black.png'
+import { ReactComponent as SvgLogo } from './archikon-logo.svg';
 
 import { ReactComponent as FacebookIcon} from '../common/icons/facebook.svg'
 import { ReactComponent as InstagramIcon} from '../common/icons/instagram.svg'
@@ -94,7 +95,8 @@ class Menu extends Component {
         <div className={classNames('menu-wrapper',{'menuClosed':!isMenuOpened})}>
           <div className="logo-wrapper">
             <Link to="/projects-selected">
-              Archikon Architects
+              {/* Archikon Architects */}
+              <SvgLogo style={{ height: '15px' }} />
             </Link>
           </div>
           <div className="line-wrapper">
