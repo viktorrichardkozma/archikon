@@ -119,8 +119,19 @@
         }
 
         &.main-page{
-
+            height: auto;
             border:none;
+
+            .menuClosed {
+                display: block !important;
+                .header-logo {
+                    -o-transform: scale(1) translate(0, 0);
+                    -ms-transform: scale(1) translate(0, 0);
+                    -moz-transform: scale(1) translate(0, 0);
+                    -webkit-transform: scale(1) translate(0, 0);
+                    transform: scale(1) translate(0, 0);
+                }
+            }
         }
 
         .menu-button{
@@ -130,6 +141,7 @@
             right: 20px;
             display: inline;
             top: 22px;
+            z-index: 11;
         }
 
         .menu-closed-logo-wrapper{
@@ -147,12 +159,24 @@
             }
         }
 
+        .header-logo {
+            -o-transition: .45s all ease-out;
+            -ms-transition: .45s all ease-out;
+            -moz-transition: .45s all ease-out;
+            -webkit-transition: .45s all ease-out;
+            transition: .45s all ease-out;
+        }
+
 
         .menu-opened-logo-wrapper{
             width: 100%;
-            display: flex;
-            align-items: flex-end;
-            margin: 20px;
+            display: block;
+            position: absolute;
+            height: 100%;
+            z-index: 10;
+            text-align: center;
+            z-index: 8;
+            // opacity: 1;
 
             &.opened{
                 align-items: center;
@@ -161,10 +185,23 @@
 
             &.menuClosed{
                 display:none;
+                // opacity: 0;
             }
 
             .header-logo{
-                width:40%;
+                // width:40%;
+                width: 25%;
+                margin: auto;
+                top: 0;
+                bottom: 0;
+                position: absolute;
+                left: 0;
+                right: 0;
+                -o-transform: scale(0.65) translate(-58vw, 190%);
+                -ms-transform: scale(0.65) translate(-58vw, 190%);
+                -moz-transform: scale(0.65) translate(-58vw, 190%);
+                -webkit-transform: scale(0.65) translate(-58vw, 190%);
+                transform: scale(0.65) translate(-58vw, 190%);
             }
         }
 
@@ -174,6 +211,7 @@
             display:flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 10;
 
             .logo-wrapper{
                 display:none;
@@ -186,6 +224,9 @@
             &.menuClosed{
                 display:none;
 
+                .menu-item-wrapper {
+                    visibility: hidden;
+                }
             }
 
             .menu-item-wrapper {

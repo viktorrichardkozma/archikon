@@ -37,6 +37,28 @@ const Row = ({id, name, location, country, year, category, hassite}) => (
     </div>
 )
 
+const compareBy = (key, ascending, lang) => {
+  if (ascending) {
+    return function (a, b) {
+      const first = key === 'category' ? translateCategoriesString(a[key], lang) : a[key];
+      const second = key === 'category' ? translateCategoriesString(b[key], lang) : b[key];
+
+      if (first < second) return -1;
+      if (first > second) return 1;
+      return 0;
+    };
+  } else {
+    return function (a, b) {
+      const first = key === 'category' ? translateCategoriesString(a[key], lang) : a[key];
+      const second = key === 'category' ? translateCategoriesString(b[key], lang) : b[key];
+
+      if (first < second) return 1;
+      if (first > second) return -1;
+      return 0;
+    };
+  }
+}
+
 class ProjectListed extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +72,6 @@ class ProjectListed extends React.Component {
       sortKey: '',
     };
 
-    this.compareBy.bind(this);
     this.sortBy.bind(this);
   }
 
@@ -62,28 +83,6 @@ class ProjectListed extends React.Component {
     this.props.addCategoryFilter('all')
   }
 
-  compareBy(key, ascending, lang) {
-    if (ascending) {
-      return function (a, b) {
-        const first = key === 'category' ? translateCategoriesString(a[key], lang) : a[key];
-        const second = key === 'category' ? translateCategoriesString(b[key], lang) : b[key];
-
-        if (first < second) return -1;
-        if (first > second) return 1;
-        return 0;
-      };
-    } else {
-      return function (a, b) {
-        const first = key === 'category' ? translateCategoriesString(a[key], lang) : a[key];
-        const second = key === 'category' ? translateCategoriesString(b[key], lang) : b[key];
-
-        if (first < second) return 1;
-        if (first > second) return -1;
-        return 0;
-      };
-    }
-  }
-
   sortBy(key, lang) {
     let ascending = this.state.ascending;
     if (this.state.sortKey !== key) {
@@ -91,7 +90,7 @@ class ProjectListed extends React.Component {
     }
 
     let arrayCopy = [...this.state.projects]
-    arrayCopy.sort(this.compareBy(key, ascending, lang));
+    arrayCopy.sort(compareBy(key, ascending, lang));
 
     this.setState({
       projects: arrayCopy,
@@ -104,8 +103,14 @@ class ProjectListed extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.projects !== state.projects && state.sorted===false) {
+      let arrayCopy = [...props.projects]
+      arrayCopy.sort(compareBy('year', false, props.language.lang));
+
       return {
-        projects: props.projects,
+        projects: arrayCopy,
+        sorted: true,
+        ascending: true,
+        sortKey: 'year',
         isLoading: props.isLoading
       };
     }
