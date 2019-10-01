@@ -16,11 +16,11 @@
         justify-content: space-between;
         color: $link-non-activated;
         width: 100%;
-        font-size:12px;
+        font-size:13px;
 
         .view-mode-wrapper {
             display: flex;
-            flex: 0 0 180px;
+            flex: 0 0 240px;
 
             .view-mode-item {
                 &:first-child{
@@ -83,7 +83,7 @@
     .project-listing-selector {
         top:60px;
         padding: 35px 8px;
-        height: 210px;
+        height: 214px;
 
         .selector-wrapper{
 

@@ -46,7 +46,7 @@ class Carousel extends Component {
 			if (data) {
 				this.changeActive((this.state.activeID + 1) % data.length);
 			}
-		}, 10000);
+		}, 3000);
 
 		setTimeout(() => {
 			this.setState({
@@ -82,7 +82,7 @@ class Carousel extends Component {
 				if (this.props.data) {
 					this.changeActive((this.state.activeID + 1) % this.props.data.length);
 				}
-			}, 10000);
+			}, 3000);
 		}, 400)
 	}
 
