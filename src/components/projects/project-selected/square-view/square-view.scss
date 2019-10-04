@@ -16,6 +16,7 @@ $this-tile-size-lg: 16.6666%;
     color: white;
     font-weight: bold;
     text-align: center;
+    margin: 20px;
 
     @media (min-width: 480px) {
       width: $this-tile-size-md;
@@ -45,10 +46,10 @@ $this-tile-size-lg: 16.6666%;
       bottom: 0;
       right: 0;
       left: 0;
-      margin: 20px;
+      // margin: 20px;
       font-size:auto;
       color: $link-activated;
-      background-size: 350px;
+      background-size: 100%;
 
       &:hover &-content{
         opacity: 1;
@@ -110,6 +111,7 @@ $this-tile-size-lg: 16.6666%;
       color: white;
       font-weight: bold;
       text-align: center;
+      margin: 0;
 
       @media (min-width: 480px) {
         width: $this-tile-size-md;

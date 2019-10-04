@@ -12,6 +12,8 @@ import {
    FETCHING_ABOUT_DATA,
    FETCHED_SLIDESHOW_DATA,
    FETCHING_SLIDESHOW_DATA,
+   FETCHED_CONTACT_DATA,
+   FETCHING_CONTACT_DATA,
    SEARCH_VALUE_DATA,
    ADD_CATEGORY_FILTER,
    REMOVE_CATEGORY_FILTER,
@@ -154,6 +156,33 @@ export function fetchedAbout(data) {
     return {
       type: FETCHED_ABOUT_DATA,
       about: data.data
+    };
+}
+
+
+// CONTACT
+export const fetchingContact = () => (dispatch) => {
+    dispatch(loadingContact());
+    axios.get(`${BASE_URL}/contact/`)
+        .then(data => dispatch(fetchedContact(data)))
+        .catch(err=>
+            dispatch({
+                type: ERROR,
+                payload: err.data
+            })
+    );
+}
+
+const loadingContact = () => (dispatch) => {
+    dispatch({
+        type: FETCHING_CONTACT_DATA
+    })
+}
+
+export function fetchedContact(data) {
+    return {
+      type: FETCHED_CONTACT_DATA,
+      contact: data.data
     };
 }
 

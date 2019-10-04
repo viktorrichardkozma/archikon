@@ -4,6 +4,7 @@ import Maps from './maps'
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet'
 
+import { fetchingContact } from '../../actions';
 
 class ScrollToTopOnMount extends Component {
   componentDidMount() {
@@ -24,9 +25,14 @@ class Contact extends Component {
     };
   }
 
+  componentDidMount(){
+    this.props.getContact()
+  }
+
   static getDerivedStateFromProps(props, state) {
     if (props.language !== state.language) {
       return {
+        contact: props.contact,
         language: props.language.lang,
         isLoading: props.isLoading
       };
@@ -35,7 +41,19 @@ class Contact extends Component {
   }
 
   render() {
-    const {language} = this.state;
+    const { language, contact } = this.state;
+
+    let title = '';
+    let info = '';
+    if (contact.contact) {
+      if (language === 'hu') {
+        title = contact.contact.title_hu
+        info = contact.contact.info_hu
+      } else {
+        title = contact.contact.title_en
+        info = contact.contact.info_en
+      }
+    }
 
     return <div className="contact">
       <ScrollToTopOnMount/>
@@ -49,20 +67,8 @@ class Contact extends Component {
       </div>
       <div className="contact-wrapper-part">
         <div className="text">
-
-        <h1> Archikon Architects Kft.  </h1>
-        <p>
-          1114 Budapest, Bartók Béla út 61. fsz. 4-6.
-        </p>
-        <p>
-          Tel.: +36 1 209 9376 | +36 1 209 9377
-        </p>
-        <p>
-          Fax.: +36 1 209 9376/108 | Mobil: +36 30 746 5167
-        </p>
-        <p>
-          E-mail: titkarsag@archikon.hu | Web: archikon.hu
-        </p>  
+          <h1>{title}</h1>
+          {info.split('\n').map(line => (<p>{line}</p>))}
         </div>
       </div>
     </div>
@@ -72,9 +78,17 @@ class Contact extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    language: state.localization
+    contact: state.contact,
+    language: state.localization,
   };
 };
 
-export default connect(mapStateToProps, {})(Contact);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getContact: () => dispatch(fetchingContact())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);
+
 
