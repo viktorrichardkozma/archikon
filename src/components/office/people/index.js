@@ -119,7 +119,17 @@ class People extends Component {
           <Header2 data={(language.lang==="hu") ? "Volt munkatársaink" : "Former colleagues"}/>
           { (nonactiveStaff.length!==0) ?
             nonactiveStaff.map(human => {
-              return <div> {human.name} </div>
+              let name = human.name.split(' ');
+              console.log(name)
+
+              if (this.props.language.lang==='en') {
+                let first_name = name[0];
+                let last_name = name[name.length-1]
+                name[name.length-1] = first_name;
+                name[0] = last_name
+              }
+            
+              return <div> {name.join(' ')} </div>
             }) : "-"
           }
         </div>
@@ -127,7 +137,7 @@ class People extends Component {
         <div className="people-new-wrapper">
 
           <Header2 data={(language.lang==="hu") ? "Jövőbeli munkatársaink" : "Our future colleagues"}/>
-          <a href="mailto:titkarsag@archikon.hu?subject=Archikon | jelentkezés">
+          <a href="mailto:office@archikon.hu?subject=Archikon | jelentkezés">
             <Button data={(language.lang==="hu") ? "JELENTKEZZ!" : "APPLY!"}/>
           </a>
         </div>

@@ -34,6 +34,7 @@ class Card extends Component {
               {this.props.data.email}
               <br/>
               {this.props.data.phone}
+              
               {(this.props.data.description_hu || this.props.data.description_en) ?
                 ((this.props.bottomBarOpened && name.join(' ') === this.props.selectedName) ?
                 <div onClick={this.props.closeBottomBar} className="info">‒ Info</div> :
