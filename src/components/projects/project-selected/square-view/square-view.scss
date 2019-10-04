@@ -9,7 +9,8 @@ $this-tile-size-lg: 16.6666%;
     position: relative;
     display: inline-block;
     height: 0;
-    width: $this-tile-size-sm;
+    min-width: $this-tile-size-sm;
+    max-width: $this-tile-size-sm;
     padding-top: $this-tile-size-sm;
 
     font-size: 16px;
@@ -19,7 +20,8 @@ $this-tile-size-lg: 16.6666%;
     margin: 20px;
 
     @media (min-width: 480px) {
-      width: $this-tile-size-md;
+      min-width: $this-tile-size-md;
+      max-width: $this-tile-size-md;
       padding-top: $this-tile-size-md;
     }
 
@@ -32,7 +34,8 @@ $this-tile-size-lg: 16.6666%;
     }
 
     @media (min-width: 768px) {
-      width: $this-tile-size-lg;
+      min-width: $this-tile-size-lg;
+      max-width: $this-tile-size-lg;
       padding-top: $this-tile-size-lg;
     }
 
@@ -112,9 +115,11 @@ $this-tile-size-lg: 16.6666%;
       font-weight: bold;
       text-align: center;
       margin: 0;
+      margin-bottom: 24px;
 
       @media (min-width: 480px) {
-        width: $this-tile-size-md;
+        min-width: $this-tile-size-md;
+        max-width: $this-tile-size-md;
         padding-top: $this-tile-size-md;
       }
 
@@ -130,7 +135,8 @@ $this-tile-size-lg: 16.6666%;
       }
 
       @media (min-width: 768px) {
-        width: $this-tile-size-lg;
+        min-width: $this-tile-size-lg;
+        max-width: $this-tile-size-lg;
         padding-top: $this-tile-size-lg;
 
 
