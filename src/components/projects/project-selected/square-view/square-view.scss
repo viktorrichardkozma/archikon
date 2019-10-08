@@ -1,42 +1,122 @@
 @import '../../../../colors.scss';
 
 $this-padding: 10px;
-$this-tile-size-sm: 100%;
-$this-tile-size-md: 44%;
-$this-tile-size-lg: 16.6666%;
+$this-tile-size-sm: 320px;
+$this-tile-size-md: 260px;
+$this-tile-size-lg: 200px;
+
+.project-selected-container {
+    display: grid;
+    justify-content: space-evenly;
+    width: 100%;
+    grid-template-columns: auto;
+}
 
 .square {
+  position: relative;
+  display: inline-block;
+  height: 0;
+  min-width: $this-tile-size-sm;
+  max-width: $this-tile-size-sm;
+  padding-top: $this-tile-size-sm;
+
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px;
+
+  @media (min-width:768px) and (max-width:1400px) {
+    &-inner {
+      &-content {
+        font-size: 10px;
+      }
+    }
+  }
+
+  &-inner {
+    position: absolute;
+    display: flex;
+    text-align: left;
+    justify-content: left;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    font-size:auto;
+    color: $link-activated;
+    background-size: 100%;
+
+    &:hover &-content{
+      opacity: 1;
+    }
+
+    &-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      opacity: 0;
+      align-items: center;
+      background: white;
+      transition: .15s opacity linear;
+
+      &.active {
+        opacity: 1;
+      }
+
+      a {
+        height: 100%;
+        width: 100%;
+        display: none;
+      }
+
+      &.active a, &:hover a {
+        display: block;
+      }
+
+      &-wrapper {
+          display: flex;
+          text-align: center;
+          width: 100%;
+          height: 100%;
+
+          .button{
+            display: none;
+          }
+
+          .name {
+            margin: auto;
+          }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .square {
     position: relative;
     display: inline-block;
     height: 0;
-    min-width: $this-tile-size-sm;
-    max-width: $this-tile-size-sm;
+    width: $this-tile-size-sm;
     padding-top: $this-tile-size-sm;
 
-    font-size: 16px;
+    font-size: 20px;
     color: white;
     font-weight: bold;
     text-align: center;
-    margin: 20px;
+    margin: 0;
+    margin-bottom: 24px;
 
-    @media (min-width: 480px) {
-      min-width: $this-tile-size-md;
-      max-width: $this-tile-size-md;
-      padding-top: $this-tile-size-md;
-    }
-
-    @media (min-width:768px) and (max-width:1400px) {
+    @media (min-width:874px) and (max-width:1400px) {
       &-inner {
         &-content {
-          font-size: 10px;
+          font-size: 8px;
+
         }
       }
-    }
-
-    @media (min-width: 874px) {
-      min-width: 20%;
-      max-width: 20%;
-      padding-top: 20%;
     }
 
     &-inner {
@@ -49,166 +129,126 @@ $this-tile-size-lg: 16.6666%;
       bottom: 0;
       right: 0;
       left: 0;
-      // margin: 20px;
+      margin: 20px;
       font-size:auto;
       color: $link-activated;
-      background-size: 100%;
+      background-size: cover;
 
       &:hover &-content{
         opacity: 1;
       }
 
       &-content {
+        display: flex;
         width: 100%;
         height: 100%;
-        display: flex;
         opacity: 0;
         align-items: center;
-        background: white;
+        background:rgba(255,255,255,.5);
         transition: .15s opacity linear;
 
-        &.active {
-          opacity: 1;
-        }
-
-        a {
-          height: 100%;
-          width: 100%;
-          display: none;
-        }
-
-        &.active a, &:hover a {
-          display: block;
-        }
-
         &-wrapper {
-            display: flex;
-            text-align: center;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          margin: 0px;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          flex-wrap: wrap;
+          text-align: center;
+
+          .name{
+            font-size:26px;
             width: 100%;
-            height: 100%;
+          }
+          .location{
+            display:none;
+          }
 
-            .button{
-              display: none;
-            }
 
-            .name {
-              margin: auto;
-            }
+          .button{
+            width: 100px;
+            height: 30px;
+            display: flex;
+            font-size: 10px;
+            text-transform: uppercase;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid;
+            cursor: pointer;
+            letter-spacing: 1px;
+            margin: 8px auto 0;
+          }
         }
       }
     }
-
   }
+}
 
-
-  @media (max-width: 768px) {
+/* Larger than mobile */
+@media (min-width: 400px) {
+  .project-selected-container {
+    grid-template-columns: auto;
 
     .square {
-      position: relative;
-      display: inline-block;
-      height: 0;
-      width: $this-tile-size-sm;
+      min-width: $this-tile-size-sm;
+      max-width: $this-tile-size-sm;
       padding-top: $this-tile-size-sm;
-
-      font-size: 20px;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      margin: 0;
-      margin-bottom: 24px;
-
-      @media (min-width: 480px) {
-        min-width: $this-tile-size-md;
-        max-width: $this-tile-size-md;
-        padding-top: $this-tile-size-md;
-      }
-
-      @media (min-width:874px) and (max-width:1400px) {
-
-        &-inner {
-          &-content {
-            font-size: 8px;
-
-          }
-        }
-
-      }
-
-      @media (min-width: 874px) {
-        min-width: $this-tile-size-lg;
-        max-width: $this-tile-size-lg;
-        padding-top: $this-tile-size-lg;
-
-
-      }
-
-      &-inner {
-        position: absolute;
-        display: flex;
-        text-align: left;
-        justify-content: left;
-        align-items: center;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        margin: 20px;
-        font-size:auto;
-        color: $link-activated;
-        background-size: cover;
-
-        &:hover &-content{
-          opacity: 1;
-        }
-
-        &-content {
-          display: flex;
-          width: 100%;
-          height: 100%;
-          opacity: 0;
-          align-items: center;
-          background:rgba(255,255,255,.5);
-          transition: .15s opacity linear;
-
-          &-wrapper {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            margin: 0px;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            flex-wrap: wrap;
-            text-align: center;
-
-            .name{
-              font-size:26px;
-              width: 100%;
-            }
-            .location{
-              display:none;
-            }
-
-
-            .button{
-              width: 100px;
-              height: 30px;
-              display: flex;
-              font-size: 10px;
-              text-transform: uppercase;
-              align-items: center;
-              justify-content: center;
-              border: 1px solid;
-              cursor: pointer;
-              letter-spacing: 1px;
-              margin: 8px auto 0;
-            }
-
-          }
-        }
-      }
-
     }
-
-
   }
+
+}
+
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+  .project-selected-container {
+    grid-template-columns: auto auto;
+
+    .square {
+      min-width: $this-tile-size-md;
+      max-width: $this-tile-size-md;
+      padding-top: $this-tile-size-md;
+    }
+  }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .project-selected-container {
+    grid-template-columns: auto auto auto;
+
+    .square {
+      min-width: $this-tile-size-lg;
+      max-width: $this-tile-size-lg;
+      padding-top: $this-tile-size-lg;
+    }
+  }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+  .project-selected-container {
+    grid-template-columns: auto auto auto auto;
+
+    .square {
+      min-width: $this-tile-size-lg;
+      max-width: $this-tile-size-lg;
+      padding-top: $this-tile-size-lg;
+    }
+  }
+}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {
+  .project-selected-container {
+    grid-template-columns: auto auto auto auto auto;
+
+    .square {
+      min-width: $this-tile-size-lg;
+      max-width: $this-tile-size-lg;
+      padding-top: $this-tile-size-lg;
+    }
+  }
+}

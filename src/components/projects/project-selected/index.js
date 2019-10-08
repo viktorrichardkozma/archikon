@@ -68,15 +68,17 @@ class ProjectsSelected extends Component {
 
     return (isLoading===false && projects) ? (
       <div className="project-view-wrapper">
-                     <ScrollToTopOnMount/>
+        <ScrollToTopOnMount/>
 
-           <Selector/>
-          <div className="project-selected-wrapper">
+        <Selector/>
+        <div className="project-selected-wrapper">
           <Helmet>
             <title>{`Archikon |  ${language.lang==="hu" ? 'Projektek | Válogatott munkáink' : "Projects | Selected projects"}`} </title>
           </Helmet>
-          {selectedProjects}
+          <div className='project-selected-container'>
+            {selectedProjects}
           </div>
+        </div>
       </div>
       )
       :  <div className="loading-wrapper selected">
