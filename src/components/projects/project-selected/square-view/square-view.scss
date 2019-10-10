@@ -6,10 +6,11 @@ $this-tile-size-md: 260px;
 $this-tile-size-lg: 200px;
 
 .project-selected-container {
-    display: grid;
-    justify-content: space-evenly;
-    width: 100%;
-    grid-template-columns: auto;
+  max-width: 1600px;
+  width: 100%;
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: auto;
 }
 
 .square {
@@ -24,7 +25,7 @@ $this-tile-size-lg: 200px;
   color: white;
   font-weight: bold;
   text-align: center;
-  margin: 20px;
+  margin: 25px 20px;
 
   @media (min-width:768px) and (max-width:1400px) {
     &-inner {
@@ -244,6 +245,19 @@ $this-tile-size-lg: 200px;
 @media (min-width: 1200px) {
   .project-selected-container {
     grid-template-columns: auto auto auto auto auto;
+
+    .square {
+      min-width: $this-tile-size-lg;
+      max-width: $this-tile-size-lg;
+      padding-top: $this-tile-size-lg;
+    }
+  }
+}
+
+/* Larger than Desktop HD */
+@media (min-width: 1420px) {
+  .project-selected-container {
+    grid-template-columns: auto auto auto auto auto auto;
 
     .square {
       min-width: $this-tile-size-lg;

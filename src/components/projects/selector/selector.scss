@@ -2,14 +2,15 @@
 
 .project-listing-selector {
     display: flex;
-    width: 100%;
+    width: calc(100% + 96px);
     background: white;
     box-sizing: border-box;
     z-index: 1;
     top: 80px;
-    padding: 50px 0px;
+    padding: 50px 46px;
     position: -webkit-sticky;
     position: sticky;
+    margin-left: -46px;
 
     .selector-wrapper{
         display:flex;
