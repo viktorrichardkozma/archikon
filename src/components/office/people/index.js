@@ -80,13 +80,15 @@ class People extends Component {
     : null
 
     const activeStaff = staff &&
-      staff.filter((human) => (human.active && !human.leader && human.name !== 'Szlávik Ágnes'))
+      staff.filter((human) => (human.active && !human.leader && human.name !== 'SZLÁVIK Ágnes'))
+   
+    
     if (staff) {
-      const assistant = staff.filter((human) => (human.name === 'Szlávik Ágnes'))[0];
+      const assistant = staff.filter((human) => (human.name === 'SZLÁVIK Ágnes'))[0];
       activeStaff.push(assistant);
     }
 
-    const bossStaff = (staff) ? staff.filter( human => human.leader===true) : null
+    const bossStaff = (staff) ? staff.filter( human => human.leader===true ) : null
 
     return (this.props.isVisible===true) ?
     ((isLoading===false && staff) ? (
@@ -106,7 +108,6 @@ class People extends Component {
             })
           }
         </div>
-
         <div className="people-wrapper">
           {
             activeStaff.map(human => {
@@ -120,7 +121,6 @@ class People extends Component {
           { (nonactiveStaff.length!==0) ?
             nonactiveStaff.map(human => {
               let name = human.name.split(' ');
-              console.log(name)
 
               if (this.props.language.lang==='en') {
                 let first_name = name[0];
